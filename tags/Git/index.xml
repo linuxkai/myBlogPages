@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Git on Linuxkai 的博客</title>
+    <link>https://blog.linuxkai.com/tags/Git/</link>
+    <description>Recent content in Git on Linuxkai 的博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <lastBuildDate>Sat, 25 Nov 2023 17:57:40 +0800</lastBuildDate>
+    <atom:link href="https://blog.linuxkai.com/tags/Git/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Git submodule操作</title>
+      <link>https://blog.linuxkai.com/posts/Git/git-submodule-%E6%93%8D%E4%BD%9C/</link>
+      <pubDate>Sat, 25 Nov 2023 17:57:40 +0800</pubDate>
+      <guid>https://blog.linuxkai.com/posts/Git/git-submodule-%E6%93%8D%E4%BD%9C/</guid>
+      <description>git submodule操作 添加子模块 git submodule add git-url 删除子模块 删除子模块目录及源码 删除项目目录下.gitmodules文件中子模块相关条目 删除配置项中子模块相关条(.git/config) 删除模块下的子模块目录</description>
+    </item>
+    <item>
+      <title>Git远程仓库地址变更本地如何修改</title>
+      <link>https://blog.linuxkai.com/posts/Git/Git%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93%E5%9C%B0%E5%9D%80%E5%8F%98%E6%9B%B4%E6%9C%AC%E5%9C%B0%E5%A6%82%E4%BD%95%E4%BF%AE%E6%94%B9/</link>
+      <pubDate>Sat, 25 Nov 2023 09:48:05 +0800</pubDate>
+      <guid>https://blog.linuxkai.com/posts/Git/Git%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93%E5%9C%B0%E5%9D%80%E5%8F%98%E6%9B%B4%E6%9C%AC%E5%9C%B0%E5%A6%82%E4%BD%95%E4%BF%AE%E6%94%B9/</guid>
+      <description>Git远程仓库地址变更本地如何修改 方法一： 通过命令直接修改 git remote set-url origin ssh_url(ssh_url换成新的git地址) 方法二： 通过命令先删除再添加远程仓库 git remote rm origin git remote add origin ssh_url 方法三： 修改配置文件 修改 [remote “o</description>
+    </item>
+    <item>
+      <title>Git 仓库迁移</title>
+      <link>https://blog.linuxkai.com/posts/Git/Git-%E4%BB%93%E5%BA%93%E8%BF%81%E7%A7%BB/</link>
+      <pubDate>Sat, 25 Nov 2023 09:27:36 +0800</pubDate>
+      <guid>https://blog.linuxkai.com/posts/Git/Git-%E4%BB%93%E5%BA%93%E8%BF%81%E7%A7%BB/</guid>
+      <description>Git 仓库迁移 说明: 这种方式可以保留原版本库中的所有内容,包括 log 信息 步骤 从原地址克隆一份裸版本库 $ git clone --bare git://github.com/username/project.git &amp;ndash;bare：创建的克隆版本库都不包含工作区，直接就是版本库的内容，这样的版本库称为裸版</description>
+    </item>
+    <item>
+      <title>Git 修改已提交 commit 的信息</title>
+      <link>https://blog.linuxkai.com/posts/Git/Git-%E4%BF%AE%E6%94%B9%E5%B7%B2%E6%8F%90%E4%BA%A4-commit-%E7%9A%84%E4%BF%A1%E6%81%AF/</link>
+      <pubDate>Fri, 01 Sep 2023 21:13:53 +0800</pubDate>
+      <guid>https://blog.linuxkai.com/posts/Git/Git-%E4%BF%AE%E6%94%B9%E5%B7%B2%E6%8F%90%E4%BA%A4-commit-%E7%9A%84%E4%BF%A1%E6%81%AF/</guid>
+      <description>修改最后一次提交 commit 的信息 修改最近提交的 commit 信息 git commit --amend --message=&amp;#34;NEW MESSAGE&amp;#34; --author=&amp;#34;test &amp;lt;test@163.com&amp;gt;&amp;#34; 仅修改 message 信息 git commit --amend --message=&amp;#34;NEW MESSAGE&amp;#34; 仅修改 author 信息 git commit --amend --author=&amp;#34;test &amp;lt;test@163.com&amp;gt;&amp;#34;</description>
+    </item>
+    <item>
+      <title>Git技巧</title>
+      <link>https://blog.linuxkai.com/posts/Git/Git-%E6%8A%80%E5%B7%A7/</link>
+      <pubDate>Tue, 15 Aug 2023 17:49:04 +0800</pubDate>
+      <guid>https://blog.linuxkai.com/posts/Git/Git-%E6%8A%80%E5%B7%A7/</guid>
+      <description>git 技巧 设置文本编辑器 git config --global core.editor emacs 配置用户信息 git config --global user.name &amp;#34;Your Name&amp;#34; git config --global user.email &amp;#34;email@example.com&amp;#34; 版本回退 回退上一个版本 git reset --hard HEAD^ 回退到指定版本 git reset --hard 0fa7197c3170f7dbf8c872592a873ab50a4ce094 回退完后,要强制提交,强制提交比较旧的代码 git push origin HEAD:master --force #or git push origin 0fa7197c3170f7dbf8c872592a873ab50a4ce094:master --force git reset 之后的后悔药 git reset</description>
+    </item>
+    <item>
+      <title>Git设置代理</title>
+      <link>https://blog.linuxkai.com/posts/Git/git-%E8%AE%BE%E7%BD%AE%E4%BB%A3%E7%90%86/</link>
+      <pubDate>Sun, 23 Apr 2023 15:32:16 +0800</pubDate>
+      <guid>https://blog.linuxkai.com/posts/Git/git-%E8%AE%BE%E7%BD%AE%E4%BB%A3%E7%90%86/</guid>
+      <description>配置代理 打开配置文件 vim ~/.gitconfig 添加如下配置 [http &amp;#34;https://github.com/&amp;#34;] proxy = http://127.0.0.1:1081 [https &amp;#34;https://github.com/&amp;#34;] proxy = http://127.0.0.1:1081 [http &amp;#34;https://my.comapnyserver.com/&amp;#34;] proxy = &amp;#34;&amp;#34;</description>
+    </item>
+    <item>
+      <title>Git修改分支名称</title>
+      <link>https://blog.linuxkai.com/posts/Git/git-%E4%BF%AE%E6%94%B9%E5%88%86%E6%94%AF%E5%90%8D%E7%A7%B0/</link>
+      <pubDate>Thu, 20 Apr 2023 16:35:30 +0800</pubDate>
+      <guid>https://blog.linuxkai.com/posts/Git/git-%E4%BF%AE%E6%94%B9%E5%88%86%E6%94%AF%E5%90%8D%E7%A7%B0/</guid>
+      <description>git 修改分支名称 本地分支重命名(还没有推送到远程) git branch -m oldName newName 远程分支重命名 (已经推送远程-假设本地分支和远程对应分支名称相同) 重命名远程分支对应的本地分支 git branch -m oldName newName 删除远程分支 git push --delete origin oldName 上传新命名的本地</description>
+    </item>
+  </channel>
+</rss>

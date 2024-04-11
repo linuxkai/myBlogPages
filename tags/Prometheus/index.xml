@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Prometheus on Linuxkai 的博客</title>
+    <link>https://blog.linuxkai.com/tags/Prometheus/</link>
+    <description>Recent content in Prometheus on Linuxkai 的博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <lastBuildDate>Sat, 09 Jan 2021 23:37:12 +0800</lastBuildDate>
+    <atom:link href="https://blog.linuxkai.com/tags/Prometheus/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Prometheus部署</title>
+      <link>https://blog.linuxkai.com/posts/Linux/Prometheus%E9%83%A8%E7%BD%B2/</link>
+      <pubDate>Sat, 09 Jan 2021 23:37:12 +0800</pubDate>
+      <guid>https://blog.linuxkai.com/posts/Linux/Prometheus%E9%83%A8%E7%BD%B2/</guid>
+      <description>下载各组件,(选择安装) wget https://github.com/prometheus/prometheus/releases/download/v2.23.0/prometheus-2.23.0.linux-amd64.tar.gz wget https://github.com/prometheus/alertmanager/releases/download/v0.21.0/alertmanager-0.21.0.linux-amd64.tar.gz wget https://github.com/prometheus/blackbox_exporter/releases/download/v0.17.0/blackbox_exporter-0.17.0.linux-amd64.tar.gz wget https://github.com/prometheus/consul_exporter/releases/download/v0.7.1/consul_exporter-0.7.1.linux-amd64.tar.gz wget https://github.com/prometheus/graphite_exporter/releases/download/v0.9.0/graphite_exporter-0.9.0.linux-amd64.tar.gz wget https://github.com/prometheus/haproxy_exporter/releases/download/v0.11.0/haproxy_exporter-0.11.0.linux-amd64.tar.gz wget https://github.com/prometheus/memcached_exporter/releases/download/v0.7.0/memcached_exporter-0.7.0.linux-amd64.tar.gz wget https://github.com/prometheus/mysqld_exporter/releases/download/v0.12.1/mysqld_exporter-0.12.1.linux-amd64.tar.gz wget https://github.com/prometheus/node_exporter/releases/download/v1.0.1/node_exporter-1.0.1.linux-amd64.tar.gz wget https://github.com/prometheus/pushgateway/releases/download/v1.2.0/pushgateway-1.2.0.linux-amd64.tar.gz wget https://github.com/prometheus/statsd_exporter/releases/download/v0.17.0/statsd_exporter-0.17.0.linux-amd64.tar.gz 安装prometheus组件 tar xf prometheus-2.20.1.linux-amd64.tar.gz prometheus配置文件prometheus.yml global: scrape_interval: 15s # 应用程序或服务抓取数据的周期，默认</description>
+    </item>
+  </channel>
+</rss>

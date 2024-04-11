@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Logstash on Linuxkai 的博客</title>
+    <link>https://blog.linuxkai.com/tags/Logstash/</link>
+    <description>Recent content in Logstash on Linuxkai 的博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <lastBuildDate>Sat, 09 Jan 2021 23:17:27 +0800</lastBuildDate>
+    <atom:link href="https://blog.linuxkai.com/tags/Logstash/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Logstash插件plugins-inputs-s3</title>
+      <link>https://blog.linuxkai.com/posts/Linux/Logstash%E6%8F%92%E4%BB%B6plugins-inputs-s3/</link>
+      <pubDate>Sat, 09 Jan 2021 23:17:27 +0800</pubDate>
+      <guid>https://blog.linuxkai.com/posts/Linux/Logstash%E6%8F%92%E4%BB%B6plugins-inputs-s3/</guid>
+      <description>文档地址： https://www.elastic.co/guide/en/logstash/current/plugins-inputs-s3.html 说明 S3 input插件将读取指定的S3中符合配置的每个文件的内容，并将文件中的每一行转换为一个message，后续可以利用filter对message进行处理。在读取了S3上的文件后，S3 i</description>
+    </item>
+  </channel>
+</rss>

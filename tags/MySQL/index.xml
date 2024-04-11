@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>MySQL on Linuxkai 的博客</title>
+    <link>https://blog.linuxkai.com/tags/MySQL/</link>
+    <description>Recent content in MySQL on Linuxkai 的博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <lastBuildDate>Wed, 09 Feb 2022 16:35:37 +0800</lastBuildDate>
+    <atom:link href="https://blog.linuxkai.com/tags/MySQL/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>MySQL flush-hosts问题</title>
+      <link>https://blog.linuxkai.com/posts/%E6%95%B0%E6%8D%AE%E5%BA%93/mysqladmin-flush-hosts%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/</link>
+      <pubDate>Wed, 09 Feb 2022 16:35:37 +0800</pubDate>
+      <guid>https://blog.linuxkai.com/posts/%E6%95%B0%E6%8D%AE%E5%BA%93/mysqladmin-flush-hosts%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/</guid>
+      <description>flush-hosts问题 问题 连接mysql时出现下面错误 &amp;#34;Host &amp;#39;192.168.1.100&amp;#39; is blocked because of many connection errors; unblock with &amp;#39;mysqladmin flush-hosts&amp;#39;&amp;#34; 原因 同一个ip在短时间内产生太多(超过mysql数据库max_connection_errors的最大值)中断的数据</description>
+    </item>
+  </channel>
+</rss>

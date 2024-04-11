@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Bind on Linuxkai 的博客</title>
+    <link>https://blog.linuxkai.com/tags/Bind/</link>
+    <description>Recent content in Bind on Linuxkai 的博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <lastBuildDate>Fri, 01 Jul 2022 22:31:32 +0800</lastBuildDate>
+    <atom:link href="https://blog.linuxkai.com/tags/Bind/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>DNS Bind配置</title>
+      <link>https://blog.linuxkai.com/posts/Linux/DNS-Bind%E9%85%8D%E7%BD%AE/</link>
+      <pubDate>Fri, 01 Jul 2022 22:31:32 +0800</pubDate>
+      <guid>https://blog.linuxkai.com/posts/Linux/DNS-Bind%E9%85%8D%E7%BD%AE/</guid>
+      <description>参考文档： https://www.cnblogs.com/sandshell/p/11673658.html#autoid-7-3-0 要求 使用内部解析 内部解析如果失败，使用公网解析 dns 集群使用 环境 系统版本：Centos 7.3 192.168.112.231(主DNS) 192.168.112.9(从DNS) 192.168.112.</description>
+    </item>
+  </channel>
+</rss>

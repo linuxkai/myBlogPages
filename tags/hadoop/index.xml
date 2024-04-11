@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Hadoop on Linuxkai 的博客</title>
+    <link>https://blog.linuxkai.com/tags/hadoop/</link>
+    <description>Recent content in Hadoop on Linuxkai 的博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <lastBuildDate>Mon, 28 Dec 2020 17:41:12 +0800</lastBuildDate>
+    <atom:link href="https://blog.linuxkai.com/tags/hadoop/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>hadoop集群中一些默认的端口和配置大全</title>
+      <link>https://blog.linuxkai.com/posts/%E5%A4%A7%E6%95%B0%E6%8D%AE/hadoop%E9%9B%86%E7%BE%A4%E4%B8%AD%E4%B8%80%E4%BA%9B%E9%BB%98%E8%AE%A4%E7%9A%84%E7%AB%AF%E5%8F%A3%E5%92%8C%E9%85%8D%E7%BD%AE%E5%A4%A7%E5%85%A8/</link>
+      <pubDate>Mon, 28 Dec 2020 17:41:12 +0800</pubDate>
+      <guid>https://blog.linuxkai.com/posts/%E5%A4%A7%E6%95%B0%E6%8D%AE/hadoop%E9%9B%86%E7%BE%A4%E4%B8%AD%E4%B8%80%E4%BA%9B%E9%BB%98%E8%AE%A4%E7%9A%84%E7%AB%AF%E5%8F%A3%E5%92%8C%E9%85%8D%E7%BD%AE%E5%A4%A7%E5%85%A8/</guid>
+      <description>hadoop集群中一些默认的端口和配置大全 组件 节点 默认端口 配置 用途说明 HDFS DataNode 50010 dfs.datanode.address datanode服务端口，用于数据传输 HDFS DataNode 50075 dfs.datanode.http.address http服务的端口 HDFS DataNode 50475 dfs.datanode.https.address https服务的端口 HDFS DataNode 50020 dfs.datanode.ipc.address ipc服务的端口 HDFS NameNode 50070</description>
+    </item>
+  </channel>
+</rss>

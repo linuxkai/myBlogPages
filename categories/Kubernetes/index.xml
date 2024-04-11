@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Kubernetes on Linuxkai 的博客</title>
+    <link>https://blog.linuxkai.com/categories/Kubernetes/</link>
+    <description>Recent content in Kubernetes on Linuxkai 的博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <lastBuildDate>Wed, 03 Aug 2022 10:30:14 +0800</lastBuildDate>
+    <atom:link href="https://blog.linuxkai.com/categories/Kubernetes/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Kubernetes集群安全地清空一个节点</title>
+      <link>https://blog.linuxkai.com/posts/Kubernetes/%E5%AE%89%E5%85%A8%E5%9C%B0%E6%B8%85%E7%A9%BA%E4%B8%80%E4%B8%AA%E8%8A%82%E7%82%B9/</link>
+      <pubDate>Wed, 03 Aug 2022 10:30:14 +0800</pubDate>
+      <guid>https://blog.linuxkai.com/posts/Kubernetes/%E5%AE%89%E5%85%A8%E5%9C%B0%E6%B8%85%E7%A9%BA%E4%B8%80%E4%B8%AA%E8%8A%82%E7%82%B9/</guid>
+      <description>k8s 集群安全地清空一个节点 清空节点 kubectl drain &amp;lt;node name&amp;gt; 问题 ➜ ~ kubectl drain xdf-31-kvm-python-107 node/xdf-31-kvm-python-107 already cordoned error: unable to drain node &amp;#34;xdf-31-kvm-python-107&amp;#34; due to error:[cannot delete Pods with local storage (use --delete-emptydir-data to override): ailearn-dev/ailearn-composer-interface-v1-f6f756895-wpnx5, ailearn-dev/ailearn-instruction-proxy-svr-v1-666d48bb6d-wlclh, ailearn-dev/kubevpn.traffic.manager, argocd/argocd-dex-server-5665ffc49-j5q2n, kube-system/metrics-server-799d467fd5-7tvc7, cannot delete DaemonSet-managed Pods (use --ignore-daemonsets to ignore): kube-system/calico-node-rcgw7, kube-system/kube-proxy-5rlmq, metallb-system/speaker-rbbvp, monitoring/node-exporter-5sl72], continuing command... There are pending nodes to be drained: xdf-31-kvm-python-107 cannot delete Pods with local storage (use --delete-emptydir-data to override): ailearn-dev/ailearn-composer-interface-v1-f6f756895-wpnx5, ailearn-dev/ailearn-instruction-proxy-svr-v1-666d48bb6d-wlclh, ailearn-dev/kubevpn.traffic.manager, argocd/argocd-dex-server-5665ffc49-j5q2n, kube-system/metrics-server-799d467fd5-7tvc7 cannot delete DaemonSet-managed Pods (use --ignore-daemonsets to ignore): kube-system/calico-node-rcgw7, kube-system/kube-proxy-5rlmq,</description>
+    </item>
+    <item>
+      <title>Kubernetes update步骤</title>
+      <link>https://blog.linuxkai.com/posts/Kubernetes/k8s-update/</link>
+      <pubDate>Sun, 31 Jul 2022 00:48:06 +0800</pubDate>
+      <guid>https://blog.linuxkai.com/posts/Kubernetes/k8s-update/</guid>
+      <description>升级k8s 集群(1.19&amp;ndash;&amp;gt;1.20) 官方文档: https://v1-20.docs.kubernetes.io/zh/docs/tasks/administer-cluster/kubeadm/kubeadm-upgrade/#%E5%8D%87%E7%BA%A7-kubelet-%E5%92%8C-kubectl-1 升级master(来自官方文档，未验证) 执行 &amp;ldquo;kubeadm upgrade&amp;rdquo; 升级第一个master节点 升级 kubeadm yum install -y kubeadm-1.20.15-0 --disableexcludes=kubernetes 验证下载操作正常，并且 kubeadm 版本正确 [root@xdf-14-python-base-57 ~]# kubeadm version kubeadm</description>
+    </item>
+    <item>
+      <title>Kubernetes安装步骤</title>
+      <link>https://blog.linuxkai.com/posts/Kubernetes/kubernetes-install/</link>
+      <pubDate>Wed, 01 Dec 2021 13:15:28 +0800</pubDate>
+      <guid>https://blog.linuxkai.com/posts/Kubernetes/kubernetes-install/</guid>
+      <description>kubernetes install 前置知识点 生产环境部署k8s 集群有两种模式 kubeadm: Kubeadm是一个K8s部署工具，提供kubeadm init和kubeadm join，用于快速部署Kubernetes集群 二进制包: 从github下载</description>
+    </item>
+  </channel>
+</rss>

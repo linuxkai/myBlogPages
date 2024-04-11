@@ -1,0 +1,784 @@
+<!doctype html>
+<html lang="zh">
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    
+
+    <title>Elasticsearch7.6.1 破解 | Linuxkai 的博客</title>
+    <meta property="og:title" content="Elasticsearch7.6.1 破解 - Linuxkai 的博客">
+    <meta property="og:type" content="article">
+    
+    <meta property="article:published_time" content='2021-07-27T23:47:39&#43;08:00'>
+    
+    
+    <meta property="article:modified_time" content='2021-07-27T23:47:39&#43;08:00'>
+    
+    <meta name="Keywords" content="运维笔记,Python开发,,Go语言,公众号,小程序">
+    <meta name="description" content="Elasticsearch7.6.1 破解">
+    
+    <meta name="author" content="">
+    <meta property="og:url" content="https://blog.linuxkai.com/posts/Linux/Elasticsearch7.6.1-%E7%A0%B4%E8%A7%A3/">
+    <link rel="shortcut icon" href='/favicon.ico'  type="image/x-icon">
+
+    <link rel="stylesheet" href='/css/normalize.css'>
+    <link rel="stylesheet" href='/css/style.css'>
+    <script type="text/javascript" src="//cdn.bootcdn.net/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    
+
+    
+    <script type="text/javascript">
+        var _hmt = _hmt || [];
+        (function () {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?b288dcb7926623147c327f43aa44d284";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+    
+
+    
+
+    
+    
+</head>
+
+<body>
+    <header id="header" class="clearfix">
+    <div class="container">
+        <div class="col-group">
+            <div class="site-name ">
+                
+                    <a id="logo" href="https://blog.linuxkai.com/">
+                        Linuxkai 的博客
+                    </a>
+                
+                <p class="description">运维笔记,Python开发,Golang语言</p>
+            </div>
+            <div>
+                <nav id="nav-menu" class="clearfix">
+                    <a class="current" href="https://blog.linuxkai.com/">首页</a>
+                    
+                    <a  href="https://blog.linuxkai.com/archives/" title="归档">归档</a>
+                    
+                    <a  href="https://blog.linuxkai.com/about/" title="关于">关于</a>
+                    
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>
+
+    <div id="body">
+        <div class="container">
+            <div class="col-group">
+
+                <div class="col-8" id="main">
+                    
+<div class="res-cons">
+    <style type="text/css">
+    .post-toc {
+        position: fixed;
+        width: 200px;
+        margin-left: -210px;
+        padding: 5px 10px;
+        font-family: Athelas, STHeiti, Microsoft Yahei, serif;
+        font-size: 12px;
+        border: 1px solid rgba(0, 0, 0, .07);
+        border-radius: 5px;
+        background-color: rgba(255, 255, 255, 0.98);
+        background-clip: padding-box;
+        -webkit-box-shadow: 1px 1px 2px rgba(0, 0, 0, .125);
+        box-shadow: 1px 1px 2px rgba(0, 0, 0, .125);
+        word-wrap: break-word;
+        white-space: nowrap;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        z-index: 999;
+        cursor: pointer;
+        max-height: 70%;
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+
+    .post-toc .post-toc-title {
+        width: 100%;
+        margin: 0 auto;
+        font-size: 20px;
+        font-weight: 400;
+        text-transform: uppercase;
+        text-align: center;
+    }
+
+    .post-toc .post-toc-content {
+        font-size: 15px;
+    }
+
+    .post-toc .post-toc-content>nav>ul {
+        margin: 10px 0;
+    }
+
+    .post-toc .post-toc-content ul {
+        padding-left: 20px;
+        list-style: square;
+        margin: 0.5em;
+        line-height: 1.8em;
+    }
+
+    .post-toc .post-toc-content ul ul {
+        padding-left: 5px;
+         
+    }
+
+    @media print,
+    screen and (max-width:1057px) {
+        .post-toc {
+            display: none;
+        }
+    }
+</style>
+<div class="post-toc" style="position: absolute; top: 188px;">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#破解过程">破解过程</a>
+      <ul>
+        <li><a href="#前期准备">前期准备</a></li>
+        <li><a href="#破解文件">破解文件</a>
+          <ul>
+            <li><a href="#修改文件">修改文件</a></li>
+          </ul>
+        </li>
+        <li><a href="#申请license">申请License</a></li>
+        <li><a href="#设置elasticsearch-密码">设置elasticsearch 密码</a></li>
+        <li><a href="#导入licensejson">导入license.json</a></li>
+        <li><a href="#开启安全配置选项">开启安全配置选项</a></li>
+        <li><a href="#查看license">查看License</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </div>
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        var postToc = $(".post-toc");
+        if (postToc.length) {
+            var leftPos = $("#main").offset().left;
+            if (leftPos < 220) {
+                postToc.css({ "width": leftPos - 10, "margin-left": (0 - leftPos) })
+            }
+
+            var t = postToc.offset().top - 20,
+                a = {
+                    start: {
+                        position: "absolute",
+                        top: t
+                    },
+                    process: {
+                        position: "fixed",
+                        top: 20
+                    },
+                };
+            $(window).scroll(function () {
+                var e = $(window).scrollTop();
+                e < t ? postToc.css(a.start) : postToc.css(a.process)
+            })
+        }
+
+        if ($("#TableOfContents").children().length < 1) {
+            $(".post-toc").remove();
+        }
+    })
+</script>
+    <article class="post">
+        <header>
+            <h1 class="post-title">Elasticsearch7.6.1 破解</h1>
+        </header>
+        
+  <time datetime="2021-07-27T15:47:39Z" class="post-meta meta-date dt-published">
+    发布日期: 2021年7月27日
+  </time>
+
+
+  <time datetime="2021-07-27T15:47:39Z" class="post-meta meta-updated">
+    | 更新日期: 2021年7月27日
+  </time>
+
+
+<div class="post-meta meta-category">
+  <span>&nbsp;| 文章分类: </span>
+  
+    <a href='/categories/Linux' target="_blank">Linux</a>
+  
+</div>
+
+
+        
+        <div class="post-meta">
+            <span id="busuanzi_container_page_pv">&nbsp;|
+                <span id="busuanzi_value_page_pv"></span> <span>阅读</span>
+            </span>
+        </div>
+        
+        
+        <div class="clear" style="display: none">
+            <div class="toc-article">
+                <div class="toc-title">文章目录</div>
+            </div>
+        </div>
+        
+        <div class="post-content">
+            <p>教程参考：https://blog.espnlol.com/?p=504</p>
+<h2 id="破解过程">破解过程</h2>
+<h3 id="前期准备">前期准备</h3>
+<ul>
+<li>
+<p>准备反编译工具</p>
+<p>破解中要用户反编译工具 luyten,根据自动环境下载相应的版本</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-http" data-lang="http"><span style="display:flex;"><span><span style="color:#f38ba8">https://github.com/deathmarine/Luyten/releases
+</span></span></span></code></pre></div><p><strong>最新版本的osx 版本不适用 macos 10.15版本以上的系统，可以使用jar 包</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>jar -jar luyten-0.5.4.jar
+</span></span></code></pre></div></li>
+<li>
+<p>需要破解x-pack文件</p>
+<p>找到x-pack文件<code>modules/x-pack-core/x-pack-core-7.6.1.jar</code>
+注：如果是rpm安装的，modules目录位于<code>/usr/share/elasticsearch</code>下，如果下载的二进制包，就在你解压出来的目录里</p>
+</li>
+</ul>
+<h3 id="破解文件">破解文件</h3>
+<h4 id="修改文件">修改文件</h4>
+<ol>
+<li>使用luyten打开x-pack-core-7.6.1.jar，将<code>org.elasticsearch.license.LicenseVerifier</code>和<code>org.elasticsearch.xpack.core.XPackBuild</code>两个源码文件提取出来(找到相应目录，另存为就可以了，文件名分别为<code>LicenseVerifier.java</code>,<code>XPackBuild.java</code>)，进行编辑,文件内容分别如下(其实就是把认证部分去掉了)</li>
+</ol>
+<ul>
+<li>LicenseVerifier.java</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#94e2d5">package</span> <span style="color:#fab387">org.elasticsearch.license</span>;
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span><span style="color:#94e2d5">import</span> <span style="color:#fab387">java.nio.*</span>;
+</span></span><span style="display:flex;"><span><span style="color:#94e2d5">import</span> <span style="color:#fab387">org.elasticsearch.common.bytes.*</span>;
+</span></span><span style="display:flex;"><span><span style="color:#94e2d5">import</span> <span style="color:#fab387">java.security.*</span>;
+</span></span><span style="display:flex;"><span><span style="color:#94e2d5">import</span> <span style="color:#fab387">java.util.*</span>;
+</span></span><span style="display:flex;"><span><span style="color:#94e2d5">import</span> <span style="color:#fab387">org.elasticsearch.common.xcontent.*</span>;
+</span></span><span style="display:flex;"><span><span style="color:#94e2d5">import</span> <span style="color:#fab387">org.apache.lucene.util.*</span>;
+</span></span><span style="display:flex;"><span><span style="color:#94e2d5">import</span> <span style="color:#fab387">org.elasticsearch.core.internal.io.*</span>;
+</span></span><span style="display:flex;"><span><span style="color:#94e2d5">import</span> <span style="color:#fab387">java.io.*</span>;
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span><span style="color:#f38ba8">public</span> <span style="color:#f38ba8">class</span> <span style="color:#f9e2af">LicenseVerifier</span>
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#f38ba8">public</span> <span style="color:#f38ba8">static</span> <span style="color:#f38ba8">boolean</span> <span style="color:#89b4fa">verifyLicense</span>(<span style="color:#f38ba8">final</span> License license, <span style="color:#f38ba8">final</span> <span style="color:#f38ba8">byte</span><span style="color:#89dceb;font-weight:bold">[]</span> publicKeyData) {
+</span></span><span style="display:flex;"><span>        <span style="color:#cba6f7">return</span> <span style="color:#fab387">true</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#f38ba8">public</span> <span style="color:#f38ba8">static</span> <span style="color:#f38ba8">boolean</span> <span style="color:#89b4fa">verifyLicense</span>(<span style="color:#f38ba8">final</span> License license) {
+</span></span><span style="display:flex;"><span>        <span style="color:#cba6f7">return</span> <span style="color:#fab387">true</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><ul>
+<li>XPackBuild.java</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#94e2d5">package</span> <span style="color:#fab387">org.elasticsearch.xpack.core</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#94e2d5">import</span> <span style="color:#fab387">org.elasticsearch.common.io.*</span>;
+</span></span><span style="display:flex;"><span><span style="color:#94e2d5">import</span> <span style="color:#fab387">java.net.*</span>;
+</span></span><span style="display:flex;"><span><span style="color:#94e2d5">import</span> <span style="color:#fab387">org.elasticsearch.common.*</span>;
+</span></span><span style="display:flex;"><span><span style="color:#94e2d5">import</span> <span style="color:#fab387">java.nio.file.*</span>;
+</span></span><span style="display:flex;"><span><span style="color:#94e2d5">import</span> <span style="color:#fab387">java.io.*</span>;
+</span></span><span style="display:flex;"><span><span style="color:#94e2d5">import</span> <span style="color:#fab387">java.util.jar.*</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f38ba8">public</span> <span style="color:#f38ba8">class</span> <span style="color:#f9e2af">XPackBuild</span>
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#f38ba8">public</span> <span style="color:#f38ba8">static</span> <span style="color:#f38ba8">final</span> XPackBuild CURRENT;
+</span></span><span style="display:flex;"><span>    <span style="color:#f38ba8">private</span> String shortHash;
+</span></span><span style="display:flex;"><span>    <span style="color:#f38ba8">private</span> String date;
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#89b4fa;font-weight:bold">@SuppressForbidden</span>(reason <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#a6e3a1">&#34;looks up path of xpack.jar directly&#34;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#f38ba8">static</span> Path <span style="color:#89b4fa">getElasticsearchCodebase</span>() {
+</span></span><span style="display:flex;"><span>        <span style="color:#f38ba8">final</span> URL url <span style="color:#89dceb;font-weight:bold">=</span> XPackBuild.<span style="color:#89b4fa">class</span>.<span style="color:#89b4fa">getProtectionDomain</span>().<span style="color:#89b4fa">getCodeSource</span>().<span style="color:#89b4fa">getLocation</span>();
+</span></span><span style="display:flex;"><span>        <span style="color:#cba6f7">try</span> {
+</span></span><span style="display:flex;"><span>            <span style="color:#cba6f7">return</span> PathUtils.<span style="color:#89b4fa">get</span>(url.<span style="color:#89b4fa">toURI</span>());
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#cba6f7">catch</span> (URISyntaxException bogus) {
+</span></span><span style="display:flex;"><span>            <span style="color:#cba6f7">throw</span> <span style="color:#cba6f7">new</span> RuntimeException(bogus);
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    XPackBuild(<span style="color:#f38ba8">final</span> String shortHash, <span style="color:#f38ba8">final</span> String date) {
+</span></span><span style="display:flex;"><span>        <span style="color:#cba6f7">this</span>.<span style="color:#89b4fa">shortHash</span> <span style="color:#89dceb;font-weight:bold">=</span> shortHash;
+</span></span><span style="display:flex;"><span>        <span style="color:#cba6f7">this</span>.<span style="color:#89b4fa">date</span> <span style="color:#89dceb;font-weight:bold">=</span> date;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#f38ba8">public</span> String <span style="color:#89b4fa">shortHash</span>() {
+</span></span><span style="display:flex;"><span>        <span style="color:#cba6f7">return</span> <span style="color:#cba6f7">this</span>.<span style="color:#89b4fa">shortHash</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#f38ba8">public</span> String <span style="color:#89b4fa">date</span>() {
+</span></span><span style="display:flex;"><span>        <span style="color:#cba6f7">return</span> <span style="color:#cba6f7">this</span>.<span style="color:#89b4fa">date</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#f38ba8">static</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#f38ba8">final</span> Path path <span style="color:#89dceb;font-weight:bold">=</span> getElasticsearchCodebase();
+</span></span><span style="display:flex;"><span>        String shortHash <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#fab387">null</span>;
+</span></span><span style="display:flex;"><span>        String date <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#fab387">null</span>;
+</span></span><span style="display:flex;"><span>        Label_0109: {
+</span></span><span style="display:flex;"><span>            shortHash <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#a6e3a1">&#34;Unknown&#34;</span>;
+</span></span><span style="display:flex;"><span>            date <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#a6e3a1">&#34;Unknown&#34;</span>;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        CURRENT <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#cba6f7">new</span> XPackBuild(shortHash, date);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><ol start="2">
+<li>将上面的两个源码文件编译成class文件</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic"># 编译LicenseVerifier.java</span>
+</span></span><span style="display:flex;"><span>/data/elasticsearch-7.6.1/jdk/bin/javac -cp <span style="color:#a6e3a1">&#34;/data/elasticsearch-7.6.1/lib/*:/data/elasticsearch-7.6.1/modules/x-pack-core/*&#34;</span> /root/x-pack-pojie/LicenseVerifier.java
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic"># 编译XPackBuild.java</span>
+</span></span><span style="display:flex;"><span>/data/elasticsearch-7.6.1/jdk/bin/javac -cp <span style="color:#a6e3a1">&#34;/data/elasticsearch-7.6.1/lib/*:/data/elasticsearch-7.6.1/modules/x-pack-core/*&#34;</span> /root/x-pack-pojie/XPackBuild.java
+</span></span></code></pre></div><ol start="3">
+<li>替换<code>x-pack-core-7.6.1.jar</code>里的LicenseVerifier.class和XPackBuild.class并生成新jar包</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>cp /data/elasticsearch-7.6.1/modules/x-pack-core/x-pack-core-7.6.1.jar /root/x-pack-pojie/
+</span></span><span style="display:flex;"><span><span style="color:#89dceb">cd</span> /root/x-pack-pojie/
+</span></span><span style="display:flex;"><span>jar -xvf x-pack-core-7.6.1.jar
+</span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic"># 替换.class文件</span>
+</span></span><span style="display:flex;"><span>cp XPackBuild.class /root/x-pack-pojie/org/elasticsearch/xpack/core/
+</span></span><span style="display:flex;"><span>cp LicenseVerifier.class /root/x-pack-pojie/org/elasticsearch/license/
+</span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic"># 打包成jar</span>
+</span></span><span style="display:flex;"><span>jar -cvf x-pack-core-7.6.1.jar ./*
+</span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic">#替换生成jar包</span>
+</span></span><span style="display:flex;"><span>cp x-pack-core-7.6.1.jar /data/elasticsearch-7.6.1/modules/x-pack-core/
+</span></span></code></pre></div><h3 id="申请license">申请License</h3>
+<p>elastic官网申请一个license, <a href="https://license.elastic.co/registration">License申请地址</a>，申请完成后，下载下来的License格式为json格式。并将该License的<code>type</code>、<code>expiry_date_in_millis</code>、<code>max_nodes</code>分别修改成<code>platinum</code>、<code>4754098931000</code>、<code>9999</code>。如下：</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{<span style="color:#cba6f7">&#34;license&#34;</span>:
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#cba6f7">&#34;uid&#34;</span>:<span style="color:#a6e3a1">&#34;2f544f9a-3cac-43e2-b7c0-180b175b3db3&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#cba6f7">&#34;type&#34;</span>:<span style="color:#a6e3a1">&#34;platinum&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#cba6f7">&#34;issue_date_in_millis&#34;</span>:<span style="color:#fab387">1598250909777</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#cba6f7">&#34;expiry_date_in_millis&#34;</span>:<span style="color:#fab387">4754007973000</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#cba6f7">&#34;max_nodes&#34;</span>:<span style="color:#fab387">9999</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#cba6f7">&#34;issued_to&#34;</span>:<span style="color:#a6e3a1">&#34;work&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#cba6f7">&#34;issuer&#34;</span>:<span style="color:#a6e3a1">&#34;Web Form&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#cba6f7">&#34;signature&#34;</span>:<span style="color:#a6e3a1">&#34;AAAAAwAAAA3fIq7NLN3Blk2olVjbAAABmC9ZN0hjZDBGYnVyRXpCOW5Bb3FjZDAxOWpSbTVoMVZwUzRxVk1PSmkxaktJRVl5MUYvUWh3bHZVUTllbXNPbzBUemtnbWpBbmlWRmRZb25KNFlBR2x0TXc2K2p1Y1VtMG1UQU9TRGZVSGRwaEJGUjE3bXd3LzRqZ05iLzRteWFNekdxRGpIYlFwYkJiNUs0U1hTVlJKNVlXekMrSlVUdFIvV0FNeWdOYnlESDc3MWhlY3hSQmdKSjJ2ZTcvYlBFOHhPQlV3ZHdDQ0tHcG5uOElCaDJ4K1hob29xSG85N0kvTWV3THhlQk9NL01VMFRjNDZpZEVXeUtUMXIyMlIveFpJUkk2WUdveEZaME9XWitGUi9WNTZVQW1FMG1DenhZU0ZmeXlZakVEMjZFT2NvOWxpZGlqVmlHNC8rWVVUYzMwRGVySHpIdURzKzFiRDl4TmM1TUp2VTBOUlJZUlAyV0ZVL2kvVk10L0NsbXNFYVZwT3NSU082dFNNa2prQ0ZsclZ4NTltbU1CVE5lR09Bck93V2J1Y3c9PQAAAQCjNd8mwy8B1sm9rGrgTmN2Gjm/lxqfnTEpTc+HOEmAgwQ7Q1Ye/FSGVNIU/enZ5cqSzWS2mY8oZ7FM/7UPKVQ4hkarWn2qye964MW+cux54h7dqxlSB19fG0ZJOJZxxwVxxi8iyJPUSQBa+QN8m7TFkK2kVmP+HnhU7mGUrqXt3zTk5d3pZw3QBQ/Rr3wmSYC5pxV6/o2UHFgu1OPDcX+kEb+UZtMrVNneR+cEwyx7o5Bg3rbKC014T+lMtt69Y080JDI5KfHa7e9Ul0c3rozIL975fP45dU175D4PKZy98cvHJgtsCJF3K8XUZKo2lOcbsWzhK2mZ5kFp0BMXF3Hs&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#cba6f7">&#34;start_date_in_millis&#34;</span>:<span style="color:#fab387">1598250909777</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="设置elasticsearch-密码">设置elasticsearch 密码</h3>
+<p>如果不是新安装的 es,这一步略过</p>
+<ol>
+<li>修改<code>/etc/elasticsearch/elasticsearch.yml</code>,加到最后一句</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>xpack.security.enabled: <span style="color:#89dceb">true</span>
+</span></span><span style="display:flex;"><span>xpack.security.transport.ssl.enabled: <span style="color:#89dceb">true</span>
+</span></span></code></pre></div><ol start="2">
+<li>重启elasticsearch
+shell</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>systemctl restart elasticsearch
+</span></span></code></pre></div><ol start="3">
+<li>提前设定es等组件的密码</li>
+</ol>
+<p>这里我的用户和密码为 elastic/elastic</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>/usr/share/elasticsearch/bin/elasticsearch-setup-passwords interactive
+</span></span></code></pre></div><h3 id="导入licensejson">导入license.json</h3>
+<p><strong>先把配置文件里的刚才配置选项(<code>xpack.security.enabled</code>)值改为<code>false</code></strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>curl -XPUT -u elastic:elastic <span style="color:#a6e3a1">&#39;http://192.168.112.231:9200/_xpack/license&#39;</span> -H <span style="color:#a6e3a1">&#34;Content-Type: application/json&#34;</span> -d @license.json
+</span></span></code></pre></div><p>返回如下结果表示导入成功</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{<span style="color:#cba6f7">&#34;acknowledged&#34;</span>:<span style="color:#fab387">true</span>,<span style="color:#cba6f7">&#34;license_status&#34;</span>:<span style="color:#a6e3a1">&#34;valid&#34;</span>}
+</span></span></code></pre></div><h3 id="开启安全配置选项">开启安全配置选项</h3>
+<ol>
+<li>
+<p>将<code>xpack.security.enabled</code> 改为 <code>true</code></p>
+</li>
+<li>
+<p>重启es</p>
+</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>systemctl restart elasticsearch
+</span></span></code></pre></div><h3 id="查看license">查看License</h3>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>curl -XGET -u elastic:elastic http://192.168.112.86:9200/_license
+</span></span></code></pre></div><p>返回结果,注意下 <code>expiry_date</code> 字段</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#cba6f7">&#34;license&#34;</span> : {
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">&#34;status&#34;</span> : <span style="color:#a6e3a1">&#34;active&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">&#34;uid&#34;</span> : <span style="color:#a6e3a1">&#34;2f544f9a-3cac-43e2-b7c0-180b175b3db3&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">&#34;type&#34;</span> : <span style="color:#a6e3a1">&#34;platinum&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">&#34;issue_date&#34;</span> : <span style="color:#a6e3a1">&#34;2020-08-24T06:35:09.777Z&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">&#34;issue_date_in_millis&#34;</span> : <span style="color:#fab387">1598250909777</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">&#34;expiry_date&#34;</span> : <span style="color:#a6e3a1">&#34;2120-08-25T05:46:13.000Z&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">&#34;expiry_date_in_millis&#34;</span> : <span style="color:#fab387">4754007973000</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">&#34;max_nodes&#34;</span> : <span style="color:#fab387">9999</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">&#34;issued_to&#34;</span> : <span style="color:#a6e3a1">&#34;work&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">&#34;issuer&#34;</span> : <span style="color:#a6e3a1">&#34;Web Form&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">&#34;start_date_in_millis&#34;</span> : <span style="color:#fab387">1598250909777</span>
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div>
+        </div>
+
+        
+
+
+        
+
+<div class="post-archive">
+    <h2>相关文章</h2>
+    <ul class="listing">
+        
+        <li><a href="/posts/Linux/Elasticsearch-%E6%BB%9A%E5%8A%A8%E9%87%8D%E5%90%AF/">Elasticsearch 滚动重启</a></li>
+        
+        <li><a href="/posts/Linux/Nacos-%E5%AE%89%E8%A3%85%E9%83%A8%E7%BD%B2%E5%8F%8A%E6%93%8D%E4%BD%9C/">Nacos安装部署及操作</a></li>
+        
+        <li><a href="/posts/%E6%95%B0%E6%8D%AE%E5%BA%93/Redis%E6%89%B9%E9%87%8F%E6%B8%85%E9%99%A4Key/">Redis 批量清除Key</a></li>
+        
+        <li><a href="/posts/Linux/Nginx-Invalid-UTF-8-sequence-in-header-value/">Nginx Invalid UTF-8 sequence in header value</a></li>
+        
+        <li><a href="/posts/Linux/Prometheus%E9%83%A8%E7%BD%B2/">Prometheus部署</a></li>
+        
+    </ul>
+</div>
+
+
+        <div class="post-meta meta-tags">
+            
+            <ul class="clearfix">
+                
+                <li><a href='/tags/Elasticsearch' target="_blank">Elasticsearch</a></li>
+                
+            </ul>
+            
+        </div>
+    </article>
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    <div id="giscus"></div>
+    <script src="https://giscus.app/client.js"
+        data-repo="linuxkai/blogComment"
+        data-repo-id="R_kgDOLr6pTw"
+        data-category="Announcements"
+        data-category-id="DIC_kwDOLr6pT84CekrB"
+        data-mapping="pathname"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position=""
+        data-theme="light"
+        data-lang="zh-CN"
+        crossorigin="anonymous"
+        async>
+    </script>
+    
+
+</div>
+
+                    <footer id="footer">
+    <div>
+        &copy; 2024 <a rel="nofollow" href="https://blog.linuxkai.com/">Linuxkai 的博客</a> 未经允许，禁止转载.
+        
+        Powered by <a rel="nofollow noreferer noopener" href="https://gohugo.io">Hugo</a>
+         &amp; <a rel="nofollow noreferer noopener" href="https://github.com/flysnow-org/maupassant-hugo">maupassant theme</a>.
+    </div>
+</footer>
+
+
+
+
+<script type="text/javascript">
+    window.MathJax = {
+        tex2jax: {
+            inlineMath: [['$', '$']],
+            processEscapes: true
+        }
+    };
+</script>
+<script src='//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+
+<a id="rocket" href="#top"></a>
+<script type="text/javascript" src='/js/totop.js?v=0.0.0' async=""></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XB3WESXB7W"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-XB3WESXB7W', { 'anonymize_ip': false });
+}
+</script>
+
+<style type="text/css">
+div.highlight {
+    position: relative;
+    margin: 1em 0px;
+}
+
+.copy-code {
+    display: none;
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    color: rgba(255, 255, 255, 0.8);
+    background: rgba(78, 78, 78, 0.8);
+    border-radius: var(--radius);
+    padding: 0 5px;
+    font: inherit;
+    user-select: none;
+    cursor: pointer;
+    border: 0;
+    --radius: 8px;
+}
+
+div.highlight:hover .copy-code,pre:hover .copy-code {
+    display: block;
+}
+
+</style>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+
+
+<script type="text/javascript" src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script>
+
+
+
+
+                </div>
+
+                <div id="secondary">
+    <section class="widget">
+        <form id="search" action='https://blog.linuxkai.com/search' method="get" accept-charset="utf-8" target="_blank" _lpchecked="1">
+      
+      <input type="text" name="q" maxlength="20" placeholder='搜索'>
+      <input type="hidden" name="sitesearch" value="https://blog.linuxkai.com/">
+      <button type="submit" class="submit icon-search"></button>
+</form>
+    </section>
+
+    <section class="widget">
+        <h3 class="widget-title">最近文章</h3>
+<ul class="widget-list">
+    
+    <li>
+        <a href="https://blog.linuxkai.com/posts/Git/git-submodule-%E6%93%8D%E4%BD%9C/" title="Git submodule操作" target="_blank">Git submodule操作</a>
+    </li>
+    
+    <li>
+        <a href="https://blog.linuxkai.com/posts/Git/Git%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93%E5%9C%B0%E5%9D%80%E5%8F%98%E6%9B%B4%E6%9C%AC%E5%9C%B0%E5%A6%82%E4%BD%95%E4%BF%AE%E6%94%B9/" title="Git远程仓库地址变更本地如何修改" target="_blank">Git远程仓库地址变更本地如何修改</a>
+    </li>
+    
+    <li>
+        <a href="https://blog.linuxkai.com/posts/Git/Git-%E4%BB%93%E5%BA%93%E8%BF%81%E7%A7%BB/" title="Git 仓库迁移" target="_blank">Git 仓库迁移</a>
+    </li>
+    
+    <li>
+        <a href="https://blog.linuxkai.com/posts/Git/Git-%E4%BF%AE%E6%94%B9%E5%B7%B2%E6%8F%90%E4%BA%A4-commit-%E7%9A%84%E4%BF%A1%E6%81%AF/" title="Git 修改已提交 commit 的信息" target="_blank">Git 修改已提交 commit 的信息</a>
+    </li>
+    
+    <li>
+        <a href="https://blog.linuxkai.com/posts/Git/Git-%E6%8A%80%E5%B7%A7/" title="Git技巧" target="_blank">Git技巧</a>
+    </li>
+    
+    <li>
+        <a href="https://blog.linuxkai.com/posts/Git/git-%E8%AE%BE%E7%BD%AE%E4%BB%A3%E7%90%86/" title="Git设置代理" target="_blank">Git设置代理</a>
+    </li>
+    
+    <li>
+        <a href="https://blog.linuxkai.com/posts/Git/git-%E4%BF%AE%E6%94%B9%E5%88%86%E6%94%AF%E5%90%8D%E7%A7%B0/" title="Git修改分支名称" target="_blank">Git修改分支名称</a>
+    </li>
+    
+    <li>
+        <a href="https://blog.linuxkai.com/posts/Docker/docker-compose-%E4%BF%AE%E6%94%B9%E5%AE%B9%E5%99%A8%E6%97%B6%E5%8C%BA/" title="docker-compose 修改容器时区" target="_blank">docker-compose 修改容器时区</a>
+    </li>
+    
+    <li>
+        <a href="https://blog.linuxkai.com/posts/Linux/df%E5%91%BD%E4%BB%A4hang%E4%BD%8F%E4%B8%80%E7%9B%B4%E4%B8%8D%E5%87%BA%E7%BB%93%E6%9E%9C/" title="df命令hang住，一直不出结果" target="_blank">df命令hang住，一直不出结果</a>
+    </li>
+    
+    <li>
+        <a href="https://blog.linuxkai.com/posts/Kubernetes/%E5%AE%89%E5%85%A8%E5%9C%B0%E6%B8%85%E7%A9%BA%E4%B8%80%E4%B8%AA%E8%8A%82%E7%82%B9/" title="Kubernetes集群安全地清空一个节点" target="_blank">Kubernetes集群安全地清空一个节点</a>
+    </li>
+    
+</ul>
+    </section>
+
+    
+
+    <section class="widget">
+        <h3 class="widget-title"><a href='/categories/'>分类</a></h3>
+<ul class="widget-list">
+    
+    <li><a href="https://blog.linuxkai.com/categories/Docker/">Docker (1)</a></li>
+    
+    <li><a href="https://blog.linuxkai.com/categories/Git/">Git (7)</a></li>
+    
+    <li><a href="https://blog.linuxkai.com/categories/Kubernetes/">Kubernetes (3)</a></li>
+    
+    <li><a href="https://blog.linuxkai.com/categories/Linux/">Linux (22)</a></li>
+    
+    <li><a href="https://blog.linuxkai.com/categories/Python/">Python (1)</a></li>
+    
+    <li><a href="https://blog.linuxkai.com/categories/Windows/">Windows (2)</a></li>
+    
+    <li><a href="https://blog.linuxkai.com/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/">大数据 (2)</a></li>
+    
+    <li><a href="https://blog.linuxkai.com/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库 (7)</a></li>
+    
+</ul>
+    </section>
+
+    <section class="widget">
+        <h3 class="widget-title"><a href='/tags/'>标签</a></h3>
+<div class="tagcloud">
+    
+    <a href="https://blog.linuxkai.com/tags/acme.sh/">Acme.sh</a>
+    
+    <a href="https://blog.linuxkai.com/tags/Ambari/">Ambari</a>
+    
+    <a href="https://blog.linuxkai.com/tags/APISIX/">APISIX</a>
+    
+    <a href="https://blog.linuxkai.com/tags/Bind/">Bind</a>
+    
+    <a href="https://blog.linuxkai.com/tags/CORS/">CORS</a>
+    
+    <a href="https://blog.linuxkai.com/tags/disk/">Disk</a>
+    
+    <a href="https://blog.linuxkai.com/tags/DNS/">DNS</a>
+    
+    <a href="https://blog.linuxkai.com/tags/Docker/">Docker</a>
+    
+    <a href="https://blog.linuxkai.com/tags/Elasticsearch/">Elasticsearch</a>
+    
+    <a href="https://blog.linuxkai.com/tags/ELK/">ELK</a>
+    
+    <a href="https://blog.linuxkai.com/tags/Filebeat/">Filebeat</a>
+    
+    <a href="https://blog.linuxkai.com/tags/Git/">Git</a>
+    
+    <a href="https://blog.linuxkai.com/tags/hadoop/">Hadoop</a>
+    
+    <a href="https://blog.linuxkai.com/tags/Kafka/">Kafka</a>
+    
+    <a href="https://blog.linuxkai.com/tags/Kubernetes/">Kubernetes</a>
+    
+    <a href="https://blog.linuxkai.com/tags/Linux/">Linux</a>
+    
+    <a href="https://blog.linuxkai.com/tags/Logstash/">Logstash</a>
+    
+    <a href="https://blog.linuxkai.com/tags/MongoDB/">MongoDB</a>
+    
+    <a href="https://blog.linuxkai.com/tags/MySQL/">MySQL</a>
+    
+    <a href="https://blog.linuxkai.com/tags/Nacos/">Nacos</a>
+    
+    <a href="https://blog.linuxkai.com/tags/Nexus/">Nexus</a>
+    
+    <a href="https://blog.linuxkai.com/tags/Nginx/">Nginx</a>
+    
+    <a href="https://blog.linuxkai.com/tags/Prometheus/">Prometheus</a>
+    
+    <a href="https://blog.linuxkai.com/tags/Python/">Python</a>
+    
+    <a href="https://blog.linuxkai.com/tags/Redis/">Redis</a>
+    
+    <a href="https://blog.linuxkai.com/tags/resize2fs/">Resize2fs</a>
+    
+    <a href="https://blog.linuxkai.com/tags/S3/">S3</a>
+    
+    <a href="https://blog.linuxkai.com/tags/SSL/">SSL</a>
+    
+    <a href="https://blog.linuxkai.com/tags/Supervisor/">Supervisor</a>
+    
+    <a href="https://blog.linuxkai.com/tags/Windows/">Windows</a>
+    
+    <a href="https://blog.linuxkai.com/tags/ZK/">ZK</a>
+    
+</div>
+    </section>
+
+    
+<section class="widget">
+    <h3 class="widget-title">友情链接</h3>
+    <ul class="widget-list">
+        
+        <li>
+            <a target="_blank" href="https://github.com/linuxkai" title="Linuxkai的Github">Linuxkai的Github</a>
+        </li>
+        
+    </ul>
+</section>
+
+
+    <section class="widget">
+        <h3 class="widget-title">其它</h3>
+        <ul class="widget-list">
+            <li><a href="https://blog.linuxkai.com/index.xml">文章 RSS</a></li>
+        </ul>
+    </section>
+</div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Docker on Linuxkai 的博客</title>
+    <link>https://blog.linuxkai.com/categories/Docker/</link>
+    <description>Recent content in Docker on Linuxkai 的博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <lastBuildDate>Thu, 08 Sep 2022 17:12:40 +0800</lastBuildDate>
+    <atom:link href="https://blog.linuxkai.com/categories/Docker/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>docker-compose 修改容器时区</title>
+      <link>https://blog.linuxkai.com/posts/Docker/docker-compose-%E4%BF%AE%E6%94%B9%E5%AE%B9%E5%99%A8%E6%97%B6%E5%8C%BA/</link>
+      <pubDate>Thu, 08 Sep 2022 17:12:40 +0800</pubDate>
+      <guid>https://blog.linuxkai.com/posts/Docker/docker-compose-%E4%BF%AE%E6%94%B9%E5%AE%B9%E5%99%A8%E6%97%B6%E5%8C%BA/</guid>
+      <description>docker-compose 修改容器时区 方法1 environment: TZ: Asia/Shanghai 或者 environment: - TZ: Asia/Shanghai 方法2 environment: - SET_CONTAINER_TIMEZONE=true - CONTAINER_TIMEZONE=Asia/Shanghai #或者这样写 environment: SET_CONTAINER_TIMEZONE: true CONTAINER_TIMEZONE: Asia/Shanghai</description>
+    </item>
+  </channel>
+</rss>

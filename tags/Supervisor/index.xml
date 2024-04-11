@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Supervisor on Linuxkai 的博客</title>
+    <link>https://blog.linuxkai.com/tags/Supervisor/</link>
+    <description>Recent content in Supervisor on Linuxkai 的博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <lastBuildDate>Thu, 10 Dec 2020 10:23:48 +0800</lastBuildDate>
+    <atom:link href="https://blog.linuxkai.com/tags/Supervisor/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Supervisor安装配置</title>
+      <link>https://blog.linuxkai.com/posts/Linux/Supervisor%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/</link>
+      <pubDate>Thu, 10 Dec 2020 10:23:48 +0800</pubDate>
+      <guid>https://blog.linuxkai.com/posts/Linux/Supervisor%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/</guid>
+      <description>安装supervisor配置 安装 pip install supervisor 未安装pip,可下载python安装包使用python命令安装 下载地址: https://pypi.org/project/supervisor/#files python setup.py install 创建配置文件 echo_supervisord_conf &amp;gt; /etc/supervisord.conf 启动服务 supervisord -c /etc/supervisord.conf 添加新项目 新加的项目，以项目名命令，统一放到/et</description>
+    </item>
+  </channel>
+</rss>

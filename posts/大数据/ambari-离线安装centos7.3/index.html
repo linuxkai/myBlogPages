@@ -1,0 +1,864 @@
+<!doctype html>
+<html lang="zh">
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    
+
+    <title>Ambari 离线安装(centos7.3) | Linuxkai 的博客</title>
+    <meta property="og:title" content="Ambari 离线安装(centos7.3) - Linuxkai 的博客">
+    <meta property="og:type" content="article">
+    
+    <meta property="article:published_time" content='2020-11-05T10:08:53&#43;08:00'>
+    
+    
+    <meta property="article:modified_time" content='2020-11-05T10:08:53&#43;08:00'>
+    
+    <meta name="Keywords" content="运维笔记,Python开发,,Go语言,公众号,小程序">
+    <meta name="description" content="Ambari 离线安装(centos7.3)">
+    
+    <meta name="author" content="">
+    <meta property="og:url" content="https://blog.linuxkai.com/posts/%E5%A4%A7%E6%95%B0%E6%8D%AE/ambari-%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85centos7.3/">
+    <link rel="shortcut icon" href='/favicon.ico'  type="image/x-icon">
+
+    <link rel="stylesheet" href='/css/normalize.css'>
+    <link rel="stylesheet" href='/css/style.css'>
+    <script type="text/javascript" src="//cdn.bootcdn.net/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    
+
+    
+    <script type="text/javascript">
+        var _hmt = _hmt || [];
+        (function () {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?b288dcb7926623147c327f43aa44d284";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+    
+
+    
+
+    
+    
+</head>
+
+<body>
+    <header id="header" class="clearfix">
+    <div class="container">
+        <div class="col-group">
+            <div class="site-name ">
+                
+                    <a id="logo" href="https://blog.linuxkai.com/">
+                        Linuxkai 的博客
+                    </a>
+                
+                <p class="description">运维笔记,Python开发,Golang语言</p>
+            </div>
+            <div>
+                <nav id="nav-menu" class="clearfix">
+                    <a class="current" href="https://blog.linuxkai.com/">首页</a>
+                    
+                    <a  href="https://blog.linuxkai.com/archives/" title="归档">归档</a>
+                    
+                    <a  href="https://blog.linuxkai.com/about/" title="关于">关于</a>
+                    
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>
+
+    <div id="body">
+        <div class="container">
+            <div class="col-group">
+
+                <div class="col-8" id="main">
+                    
+<div class="res-cons">
+    <style type="text/css">
+    .post-toc {
+        position: fixed;
+        width: 200px;
+        margin-left: -210px;
+        padding: 5px 10px;
+        font-family: Athelas, STHeiti, Microsoft Yahei, serif;
+        font-size: 12px;
+        border: 1px solid rgba(0, 0, 0, .07);
+        border-radius: 5px;
+        background-color: rgba(255, 255, 255, 0.98);
+        background-clip: padding-box;
+        -webkit-box-shadow: 1px 1px 2px rgba(0, 0, 0, .125);
+        box-shadow: 1px 1px 2px rgba(0, 0, 0, .125);
+        word-wrap: break-word;
+        white-space: nowrap;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        z-index: 999;
+        cursor: pointer;
+        max-height: 70%;
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+
+    .post-toc .post-toc-title {
+        width: 100%;
+        margin: 0 auto;
+        font-size: 20px;
+        font-weight: 400;
+        text-transform: uppercase;
+        text-align: center;
+    }
+
+    .post-toc .post-toc-content {
+        font-size: 15px;
+    }
+
+    .post-toc .post-toc-content>nav>ul {
+        margin: 10px 0;
+    }
+
+    .post-toc .post-toc-content ul {
+        padding-left: 20px;
+        list-style: square;
+        margin: 0.5em;
+        line-height: 1.8em;
+    }
+
+    .post-toc .post-toc-content ul ul {
+        padding-left: 5px;
+         
+    }
+
+    @media print,
+    screen and (max-width:1057px) {
+        .post-toc {
+            display: none;
+        }
+    }
+</style>
+<div class="post-toc" style="position: absolute; top: 188px;">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#ambari-离线安装centos73">Ambari 离线安装(centos7.3)</a>
+      <ul>
+        <li><a href="#前期准备">前期准备</a>
+          <ul>
+            <li><a href="#配置主机hosts每台机器都要配置etchosts">配置主机hosts(每台机器都要配置/etc/hosts)</a></li>
+            <li><a href="#ssh免密登录配置">SSH免密登录配置</a></li>
+            <li><a href="#关闭及禁止防火墙">关闭及禁止防火墙</a></li>
+            <li><a href="#关闭selinux">关闭SELinux</a></li>
+            <li><a href="#开启ntp服务">开启ntp服务</a></li>
+            <li><a href="#安装jdk">安装jdk</a></li>
+          </ul>
+        </li>
+        <li><a href="#ambari安装">Ambari安装</a>
+          <ul>
+            <li><a href="#准备软件包下载到varwwwhtmlambari并解压">准备软件包,下载到/var/www/html/ambari/，并解压</a></li>
+            <li><a href="#配置ambarihdphdp-utils本地源">配置Ambari,HDP,HDP-UTILS本地源</a></li>
+            <li><a href="#安装mysql">安装Mysql</a></li>
+            <li><a href="#安装ambari-server">安装ambari-server</a></li>
+            <li><a href="#下载mysql驱动">下载mysql驱动</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#ambari初始化">Ambari初始化</a></li>
+            <li><a href="#将ambari数据库初始数据导入mysql">将Ambari数据库初始数据导入mysql</a></li>
+            <li><a href="#启动ambari">启动Ambari</a></li>
+          </ul>
+        </li>
+        <li><a href="#安装时遇到的问题">安装时遇到的问题</a>
+          <ul>
+            <li><a href="#sslerror-failed-to-connect-please-check-openssl-library-versions">SSLError: Failed to connect. Please check openssl library versions</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </div>
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        var postToc = $(".post-toc");
+        if (postToc.length) {
+            var leftPos = $("#main").offset().left;
+            if (leftPos < 220) {
+                postToc.css({ "width": leftPos - 10, "margin-left": (0 - leftPos) })
+            }
+
+            var t = postToc.offset().top - 20,
+                a = {
+                    start: {
+                        position: "absolute",
+                        top: t
+                    },
+                    process: {
+                        position: "fixed",
+                        top: 20
+                    },
+                };
+            $(window).scroll(function () {
+                var e = $(window).scrollTop();
+                e < t ? postToc.css(a.start) : postToc.css(a.process)
+            })
+        }
+
+        if ($("#TableOfContents").children().length < 1) {
+            $(".post-toc").remove();
+        }
+    })
+</script>
+    <article class="post">
+        <header>
+            <h1 class="post-title">Ambari 离线安装(centos7.3)</h1>
+        </header>
+        
+  <time datetime="2020-11-05T02:08:53Z" class="post-meta meta-date dt-published">
+    发布日期: 2020年11月5日
+  </time>
+
+
+  <time datetime="2020-11-05T02:08:53Z" class="post-meta meta-updated">
+    | 更新日期: 2020年11月5日
+  </time>
+
+
+<div class="post-meta meta-category">
+  <span>&nbsp;| 文章分类: </span>
+  
+    <a href='/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE' target="_blank">大数据</a>
+  
+</div>
+
+
+        
+        <div class="post-meta">
+            <span id="busuanzi_container_page_pv">&nbsp;|
+                <span id="busuanzi_value_page_pv"></span> <span>阅读</span>
+            </span>
+        </div>
+        
+        
+        <div class="clear" style="display: none">
+            <div class="toc-article">
+                <div class="toc-title">文章目录</div>
+            </div>
+        </div>
+        
+        <div class="post-content">
+            <h2 id="ambari-离线安装centos73">Ambari 离线安装(centos7.3)</h2>
+<h3 id="前期准备">前期准备</h3>
+<h4 id="配置主机hosts每台机器都要配置etchosts">配置主机hosts(每台机器都要配置/etc/hosts)</h4>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>192.168.111.65  ambari-65
+</span></span><span style="display:flex;"><span>192.168.111.66  ambari-66
+</span></span><span style="display:flex;"><span>192.168.111.67  ambari-67
+</span></span></code></pre></div><h4 id="ssh免密登录配置">SSH免密登录配置</h4>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>ssh-copy-id -i ~/.ssh/id_rsa.pub root@bd02
+</span></span><span style="display:flex;"><span>ssh-copy-id -i ~/.ssh/id_rsa.pub root@bd03
+</span></span></code></pre></div><h4 id="关闭及禁止防火墙">关闭及禁止防火墙</h4>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>systemctl stop firewalld.service
+</span></span><span style="display:flex;"><span>systemctl disable firewalld.service
+</span></span></code></pre></div><h4 id="关闭selinux">关闭SELinux</h4>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic"># /etc/sysconfig/selinux</span>
+</span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic">#修改以下内容</span>
+</span></span><span style="display:flex;"><span><span style="color:#f5e0dc">SELINUX</span><span style="color:#89dceb;font-weight:bold">=</span>disabled
+</span></span></code></pre></div><h4 id="开启ntp服务">开启ntp服务</h4>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>yum install -y ntp
+</span></span><span style="display:flex;"><span>systemctl <span style="color:#89dceb">enable</span> ntpd
+</span></span><span style="display:flex;"><span>systemctl sgtart ntpd
+</span></span></code></pre></div><h4 id="安装jdk">安装jdk</h4>
+<p>此步骤省略</p>
+<h3 id="ambari安装">Ambari安装</h3>
+<h4 id="准备软件包下载到varwwwhtmlambari并解压">准备软件包,下载到/var/www/html/ambari/，并解压</h4>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>wget http://public-repo-1.hortonworks.com/ambari/centos7/2.x/updates/2.6.2.0/ambari-2.6.2.0-centos7.tar.gz
+</span></span><span style="display:flex;"><span>wget http://public-repo-1.hortonworks.com/HDP/centos7/2.x/updates/2.6.5.0/HDP-2.6.5.0-centos7-rpm.tar.gz
+</span></span><span style="display:flex;"><span>wget http://public-repo-1.hortonworks.com/HDP-UTILS-1.1.0.22/repos/centos7/HDP-UTILS-1.1.0.22-centos7.tar.gz
+</span></span><span style="display:flex;"><span>wget http://public-repo-1.hortonworks.com/HDP-GPL/centos7/2.x/updates/2.6.5.0/HDP-GPL-2.6.5.0-centos7-gpl.tar.gz
+</span></span></code></pre></div><h4 id="配置ambarihdphdp-utils本地源">配置Ambari,HDP,HDP-UTILS本地源</h4>
+<p>下载仓库文件</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span><span style="color:#89dceb">cd</span> /etc/yum.repos.d/
+</span></span><span style="display:flex;"><span>wget http://public-repo-1.hortonworks.com/ambari/centos7/2.x/updates/2.6.2.0/ambari.repo
+</span></span><span style="display:flex;"><span>wget http://public-repo-1.hortonworks.com/HDP/centos7/2.x/updates/2.6.5.0/hdp.repo
+</span></span><span style="display:flex;"><span>wget http://public-repo-1.hortonworks.com/HDP-GPL/centos7/2.x/updates/2.6.5.0/hdp.gpl.repo
+</span></span></code></pre></div><p>修改仓库文件</p>
+<ul>
+<li>ambari.repo</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic">#VERSION_NUMBER=2.6.2.0-155</span>
+</span></span><span style="display:flex;"><span><span style="color:#89dceb;font-weight:bold">[</span>ambari-2.6.2.0<span style="color:#89dceb;font-weight:bold">]</span>
+</span></span><span style="display:flex;"><span><span style="color:#f5e0dc">name</span><span style="color:#89dceb;font-weight:bold">=</span>ambari Version - ambari-2.6.2.0
+</span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic">#baseurl=http://public-repo-1.hortonworks.com/ambari/centos7/2.x/updates/2.6.2.0</span>
+</span></span><span style="display:flex;"><span><span style="color:#f5e0dc">baseurl</span><span style="color:#89dceb;font-weight:bold">=</span>http://192.168.111.65/ambari/ambari/centos7/2.6.2.0-155
+</span></span><span style="display:flex;"><span><span style="color:#f5e0dc">gpgcheck</span><span style="color:#89dceb;font-weight:bold">=</span><span style="color:#fab387">1</span>
+</span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic">#gpgkey=http://public-repo-1.hortonworks.com/ambari/centos7/2.x/updates/2.6.2.0/RPM-GPG-KEY/RPM-GPG-KEY-Jenkins</span>
+</span></span><span style="display:flex;"><span><span style="color:#f5e0dc">gpgkey</span><span style="color:#89dceb;font-weight:bold">=</span>http://192.168.111.65/ambari/ambari/centos7/2.6.2.0-155/RPM-GPG-KEY/RPM-GPG-KEY-Jenkins
+</span></span><span style="display:flex;"><span><span style="color:#f5e0dc">enabled</span><span style="color:#89dceb;font-weight:bold">=</span><span style="color:#fab387">1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f5e0dc">priority</span><span style="color:#89dceb;font-weight:bold">=</span><span style="color:#fab387">1</span>
+</span></span></code></pre></div><ul>
+<li>hdp.repo</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic">#VERSION_NUMBER=2.6.5.0-292</span>
+</span></span><span style="display:flex;"><span><span style="color:#89dceb;font-weight:bold">[</span>HDP-2.6.5.0<span style="color:#89dceb;font-weight:bold">]</span>
+</span></span><span style="display:flex;"><span><span style="color:#f5e0dc">name</span><span style="color:#89dceb;font-weight:bold">=</span>HDP Version - HDP-2.6.5.0
+</span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic">#baseurl=http://public-repo-1.hortonworks.com/HDP/centos7/2.x/updates/2.6.5.0</span>
+</span></span><span style="display:flex;"><span><span style="color:#f5e0dc">baseurl</span><span style="color:#89dceb;font-weight:bold">=</span>http://192.168.111.65/ambari/HDP/centos7/2.6.5.0-292
+</span></span><span style="display:flex;"><span><span style="color:#f5e0dc">gpgcheck</span><span style="color:#89dceb;font-weight:bold">=</span><span style="color:#fab387">1</span>
+</span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic">#gpgkey=http://public-repo-1.hortonworks.com/HDP/centos7/2.x/updates/2.6.5.0/RPM-GPG-KEY/RPM-GPG-KEY-Jenkins</span>
+</span></span><span style="display:flex;"><span><span style="color:#f5e0dc">gpgkey</span><span style="color:#89dceb;font-weight:bold">=</span>http://192.168.111.65/ambari/HDP/centos7/2.6.5.0-292/RPM-GPG-KEY/RPM-GPG-KEY-Jenkins
+</span></span><span style="display:flex;"><span><span style="color:#f5e0dc">enabled</span><span style="color:#89dceb;font-weight:bold">=</span><span style="color:#fab387">1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f5e0dc">priority</span><span style="color:#89dceb;font-weight:bold">=</span><span style="color:#fab387">1</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#89dceb;font-weight:bold">[</span>HDP-UTILS-1.1.0.22<span style="color:#89dceb;font-weight:bold">]</span>
+</span></span><span style="display:flex;"><span><span style="color:#f5e0dc">name</span><span style="color:#89dceb;font-weight:bold">=</span>HDP-UTILS Version - HDP-UTILS-1.1.0.22
+</span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic">#baseurl=http://public-repo-1.hortonworks.com/HDP-UTILS-1.1.0.22/repos/centos7</span>
+</span></span><span style="display:flex;"><span><span style="color:#f5e0dc">baseurl</span><span style="color:#89dceb;font-weight:bold">=</span>http://192.168.111.65/ambari/HDP-UTILS/centos7/1.1.0.22
+</span></span><span style="display:flex;"><span><span style="color:#f5e0dc">gpgcheck</span><span style="color:#89dceb;font-weight:bold">=</span><span style="color:#fab387">1</span>
+</span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic">#gpgkey=http://public-repo-1.hortonworks.com/HDP/centos7/2.x/updates/2.6.5.0/RPM-GPG-KEY/RPM-GPG-KEY-Jenkins</span>
+</span></span><span style="display:flex;"><span><span style="color:#f5e0dc">gpgkey</span><span style="color:#89dceb;font-weight:bold">=</span>http://192.168.111.65/ambari/HDP-UTILS/centos7/1.1.0.22/RPM-GPG-KEY/RPM-GPG-KEY-Jenkins
+</span></span><span style="display:flex;"><span><span style="color:#f5e0dc">enabled</span><span style="color:#89dceb;font-weight:bold">=</span><span style="color:#fab387">1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f5e0dc">priority</span><span style="color:#89dceb;font-weight:bold">=</span><span style="color:#fab387">1</span>
+</span></span></code></pre></div><ul>
+<li>hdp.gpl.repo</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic">#VERSION_NUMBER=2.6.5.0-292</span>
+</span></span><span style="display:flex;"><span><span style="color:#89dceb;font-weight:bold">[</span>HDP-GPL-2.6.5.0<span style="color:#89dceb;font-weight:bold">]</span>
+</span></span><span style="display:flex;"><span><span style="color:#f5e0dc">name</span><span style="color:#89dceb;font-weight:bold">=</span>HDP-GPL Version - HDP-GPL-2.6.5.0
+</span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic">#baseurl=http://public-repo-1.hortonworks.com/HDP-GPL/centos7/2.x/updates/2.6.5.0</span>
+</span></span><span style="display:flex;"><span><span style="color:#f5e0dc">baseurl</span><span style="color:#89dceb;font-weight:bold">=</span>http://192.168.111.65/ambari/HDP-GPL/centos7/2.6.5.0-292
+</span></span><span style="display:flex;"><span><span style="color:#f5e0dc">gpgcheck</span><span style="color:#89dceb;font-weight:bold">=</span><span style="color:#fab387">1</span>
+</span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic">#gpgkey=http://public-repo-1.hortonworks.com/HDP-GPL/centos7/2.x/updates/2.6.5.0/RPM-GPG-KEY/RPM-GPG-KEY-Jenkins</span>
+</span></span><span style="display:flex;"><span><span style="color:#f5e0dc">gpgkey</span><span style="color:#89dceb;font-weight:bold">=</span>http://192.168.111.65/ambari/HDP-GPL/centos7/2.6.5.0-292/RPM-GPG-KEY/RPM-GPG-KEY-Jenkins
+</span></span><span style="display:flex;"><span><span style="color:#f5e0dc">enabled</span><span style="color:#89dceb;font-weight:bold">=</span><span style="color:#fab387">1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f5e0dc">priority</span><span style="color:#89dceb;font-weight:bold">=</span><span style="color:#fab387">1</span>
+</span></span></code></pre></div><p>分配到另外两台机器</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>scp ambari.repo hdp.repo hdp.gpl.repo bd02:/etc/yum.repos.d/
+</span></span><span style="display:flex;"><span>scp ambari.repo hdp.repo hdp.gpl.repo bd03:/etc/yum.repos.d/
+</span></span></code></pre></div><p>更新每台机器的yum缓存</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>yum clean all <span style="color:#89dceb;font-weight:bold">&amp;&amp;</span> yum makecache
+</span></span></code></pre></div><h4 id="安装mysql">安装Mysql</h4>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>yum 安装mysql
+</span></span><span style="display:flex;"><span>wget https://repo.mysql.com/mysql80-community-release-el7-3.noarch.rpm
+</span></span><span style="display:flex;"><span>yum -y localinstall mysql80-community-release-el7-3.noarch.rpm
+</span></span><span style="display:flex;"><span>yum-config-manager --disable mysql80-community
+</span></span><span style="display:flex;"><span>yum-config-manager --enable mysql57-community
+</span></span><span style="display:flex;"><span>yum -y install mysql-community-server
+</span></span><span style="display:flex;"><span>systemctl start mysqld
+</span></span><span style="display:flex;"><span>systemctl <span style="color:#89dceb">enable</span> mysqld
+</span></span></code></pre></div><p>修改mysql root用户密码</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>grep <span style="color:#a6e3a1">&#39;temporary password&#39;</span> /var/log/mysqld.log   <span style="color:#6c7086;font-style:italic">#查找自动生成的密码</span>
+</span></span><span style="display:flex;"><span>mysql -uroot -p     <span style="color:#6c7086;font-style:italic">#登录mysql</span>
+</span></span><span style="display:flex;"><span>mysql&gt; ALTER USER <span style="color:#a6e3a1">&#39;root&#39;</span>@<span style="color:#a6e3a1">&#39;localhost&#39;</span> IDENTIFIED BY <span style="color:#a6e3a1">&#39;MyNewPass4!&#39;</span>;   <span style="color:#6c7086;font-style:italic">#修改root密码</span>
+</span></span></code></pre></div><p>创建ambari数据库及用户</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic"># ambari</span>
+</span></span><span style="display:flex;"><span>create database ambari character <span style="color:#89dceb">set</span> utf8 ;
+</span></span><span style="display:flex;"><span>CREATE USER <span style="color:#a6e3a1">&#39;ambari&#39;</span>@<span style="color:#a6e3a1">&#39;%&#39;</span>IDENTIFIED BY <span style="color:#a6e3a1">&#39;MyNewPass4!&#39;</span>;
+</span></span><span style="display:flex;"><span>GRANT ALL PRIVILEGES ON *.* TO <span style="color:#a6e3a1">&#39;ambari&#39;</span>@<span style="color:#a6e3a1">&#39;%&#39;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic"># Hive</span>
+</span></span><span style="display:flex;"><span>create database hive character <span style="color:#89dceb">set</span> utf8 ;  
+</span></span><span style="display:flex;"><span>CREATE USER <span style="color:#a6e3a1">&#39;hive&#39;</span>@<span style="color:#a6e3a1">&#39;%&#39;</span>IDENTIFIED BY <span style="color:#a6e3a1">&#39;MyNewPass4!&#39;</span>;
+</span></span><span style="display:flex;"><span>GRANT ALL PRIVILEGES ON *.* TO <span style="color:#a6e3a1">&#39;hive&#39;</span>@<span style="color:#a6e3a1">&#39;%&#39;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic"># Oozie</span>
+</span></span><span style="display:flex;"><span>create database oozie character <span style="color:#89dceb">set</span> utf8 ;  
+</span></span><span style="display:flex;"><span>CREATE USER <span style="color:#a6e3a1">&#39;oozie&#39;</span>@<span style="color:#a6e3a1">&#39;%&#39;</span>IDENTIFIED BY <span style="color:#a6e3a1">&#39;MyNewPass4!&#39;</span>;
+</span></span><span style="display:flex;"><span>GRANT ALL PRIVILEGES ON *.* TO <span style="color:#a6e3a1">&#39;oozie&#39;</span>@<span style="color:#a6e3a1">&#39;%&#39;</span>;
+</span></span></code></pre></div><h4 id="安装ambari-server">安装ambari-server</h4>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>yum -y install ambari-server
+</span></span></code></pre></div><h4 id="下载mysql驱动">下载mysql驱动</h4>
+<ol>
+<li>下载驱动</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>wget https://repo1.maven.org/maven2/mysql/mysql-connector-java/5.1.40/mysql-connector-java-5.1.40.jar
+</span></span></code></pre></div><h1 id="如果需要其它版本从下面链接下载">如果需要其它版本，从下面链接下载</h1>
+<p><a href="https://mvnrepository.com/artifact/mysql/mysql-connector-java/5.1.40">https://mvnrepository.com/artifact/mysql/mysql-connector-java/5.1.40</a>
+2. 将mysql-connector-Java.jar复制到/usr/share/java目录下</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>mkdir /usr/share/java
+</span></span><span style="display:flex;"><span>cp mysql-connector-java-5.1.40.jar /usr/share/java/mysql-connector-java.jar
+</span></span></code></pre></div><ol start="3">
+<li>将mysql-connector-java.jar复制到/var/lib/ambari-server/resources目录下</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>cp mysql-connector-java-5.1.40.jar /var/lib/ambari-server/resources/mysql-jdbc-driver.jar
+</span></span></code></pre></div><h4 id="ambari初始化">Ambari初始化</h4>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>ambari-server setup --jdbc-db<span style="color:#89dceb;font-weight:bold">=</span>mysql --jdbc-driver<span style="color:#89dceb;font-weight:bold">=</span>/usr/share/java/mysql-connector-java.jar 
+</span></span><span style="display:flex;"><span>ambari-server setup
+</span></span></code></pre></div><p>setup的过程</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span><span style="color:#89dceb;font-weight:bold">[</span>root@ambari-65 java<span style="color:#89dceb;font-weight:bold">]</span><span style="color:#6c7086;font-style:italic"># ambari-server setup</span>
+</span></span><span style="display:flex;"><span>Using python  /usr/bin/python
+</span></span><span style="display:flex;"><span>Setup ambari-server
+</span></span><span style="display:flex;"><span>Checking SELinux...
+</span></span><span style="display:flex;"><span>SELinux status is <span style="color:#a6e3a1">&#39;disabled&#39;</span>
+</span></span><span style="display:flex;"><span>Customize user account <span style="color:#cba6f7">for</span> ambari-server daemon <span style="color:#89dceb;font-weight:bold">[</span>y/n<span style="color:#89dceb;font-weight:bold">]</span> <span style="color:#89dceb;font-weight:bold">(</span>n<span style="color:#89dceb;font-weight:bold">)</span>? ^C
+</span></span><span style="display:flex;"><span>Aborting ... Keyboard Interrupt.
+</span></span><span style="display:flex;"><span><span style="color:#89dceb;font-weight:bold">[</span>root@ambari-65 java<span style="color:#89dceb;font-weight:bold">]</span><span style="color:#6c7086;font-style:italic"># ambari-server setup</span>
+</span></span><span style="display:flex;"><span>Using python  /usr/bin/python
+</span></span><span style="display:flex;"><span>Setup ambari-server
+</span></span><span style="display:flex;"><span>Checking SELinux...
+</span></span><span style="display:flex;"><span>SELinux status is <span style="color:#a6e3a1">&#39;disabled&#39;</span>
+</span></span><span style="display:flex;"><span>Customize user account <span style="color:#cba6f7">for</span> ambari-server daemon <span style="color:#89dceb;font-weight:bold">[</span>y/n<span style="color:#89dceb;font-weight:bold">]</span> <span style="color:#89dceb;font-weight:bold">(</span>n<span style="color:#89dceb;font-weight:bold">)</span>? y
+</span></span><span style="display:flex;"><span>Enter user account <span style="color:#cba6f7">for</span> ambari-server daemon <span style="color:#89dceb;font-weight:bold">(</span>root<span style="color:#89dceb;font-weight:bold">)</span>:
+</span></span><span style="display:flex;"><span>Adjusting ambari-server permissions and ownership...
+</span></span><span style="display:flex;"><span>Checking firewall status...
+</span></span><span style="display:flex;"><span>Checking JDK...
+</span></span><span style="display:flex;"><span><span style="color:#89dceb;font-weight:bold">[</span>1<span style="color:#89dceb;font-weight:bold">]</span> Oracle JDK 1.8 + Java Cryptography Extension <span style="color:#89dceb;font-weight:bold">(</span>JCE<span style="color:#89dceb;font-weight:bold">)</span> Policy Files <span style="color:#fab387">8</span>
+</span></span><span style="display:flex;"><span><span style="color:#89dceb;font-weight:bold">[</span>2<span style="color:#89dceb;font-weight:bold">]</span> Oracle JDK 1.7 + Java Cryptography Extension <span style="color:#89dceb;font-weight:bold">(</span>JCE<span style="color:#89dceb;font-weight:bold">)</span> Policy Files <span style="color:#fab387">7</span>
+</span></span><span style="display:flex;"><span><span style="color:#89dceb;font-weight:bold">[</span>3<span style="color:#89dceb;font-weight:bold">]</span> Custom <span style="color:#f5e0dc">JDK</span>
+</span></span><span style="display:flex;"><span><span style="color:#89dceb;font-weight:bold">==============================================================================</span>
+</span></span><span style="display:flex;"><span>Enter choice <span style="color:#89dceb;font-weight:bold">(</span>1<span style="color:#89dceb;font-weight:bold">)</span>: <span style="color:#fab387">3</span>
+</span></span><span style="display:flex;"><span>WARNING: JDK must be installed on all hosts and JAVA_HOME must be valid on all hosts.
+</span></span><span style="display:flex;"><span>WARNING: JCE Policy files are required <span style="color:#cba6f7">for</span> configuring Kerberos security. If you plan to use Kerberos,please make sure JCE Unlimited Strength Jurisdiction Policy Files are valid on all hosts.
+</span></span><span style="display:flex;"><span>Path to JAVA_HOME: /srv/jdk/
+</span></span><span style="display:flex;"><span>Validating JDK on Ambari Server...done.
+</span></span><span style="display:flex;"><span>Checking GPL software agreement...
+</span></span><span style="display:flex;"><span>GPL License <span style="color:#cba6f7">for</span> LZO: https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html
+</span></span><span style="display:flex;"><span>Enable Ambari Server to download and install GPL Licensed LZO packages <span style="color:#89dceb;font-weight:bold">[</span>y/n<span style="color:#89dceb;font-weight:bold">]</span> <span style="color:#89dceb;font-weight:bold">(</span>n<span style="color:#89dceb;font-weight:bold">)</span>? y
+</span></span><span style="display:flex;"><span>Completing setup...
+</span></span><span style="display:flex;"><span>Configuring database...
+</span></span><span style="display:flex;"><span>Enter advanced database configuration <span style="color:#89dceb;font-weight:bold">[</span>y/n<span style="color:#89dceb;font-weight:bold">]</span> <span style="color:#89dceb;font-weight:bold">(</span>n<span style="color:#89dceb;font-weight:bold">)</span>? y
+</span></span><span style="display:flex;"><span>Configuring database...
+</span></span><span style="display:flex;"><span><span style="color:#89dceb;font-weight:bold">==============================================================================</span>
+</span></span><span style="display:flex;"><span>Choose one of the following options:
+</span></span><span style="display:flex;"><span><span style="color:#89dceb;font-weight:bold">[</span>1<span style="color:#89dceb;font-weight:bold">]</span> - PostgreSQL <span style="color:#89dceb;font-weight:bold">(</span>Embedded<span style="color:#89dceb;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span><span style="color:#89dceb;font-weight:bold">[</span>2<span style="color:#89dceb;font-weight:bold">]</span> - Oracle
+</span></span><span style="display:flex;"><span><span style="color:#89dceb;font-weight:bold">[</span>3<span style="color:#89dceb;font-weight:bold">]</span> - MySQL / MariaDB
+</span></span><span style="display:flex;"><span><span style="color:#89dceb;font-weight:bold">[</span>4<span style="color:#89dceb;font-weight:bold">]</span> - PostgreSQL
+</span></span><span style="display:flex;"><span><span style="color:#89dceb;font-weight:bold">[</span>5<span style="color:#89dceb;font-weight:bold">]</span> - Microsoft SQL Server <span style="color:#89dceb;font-weight:bold">(</span>Tech Preview<span style="color:#89dceb;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span><span style="color:#89dceb;font-weight:bold">[</span>6<span style="color:#89dceb;font-weight:bold">]</span> - SQL Anywhere
+</span></span><span style="display:flex;"><span><span style="color:#89dceb;font-weight:bold">[</span>7<span style="color:#89dceb;font-weight:bold">]</span> - <span style="color:#f5e0dc">BDB</span>
+</span></span><span style="display:flex;"><span><span style="color:#89dceb;font-weight:bold">==============================================================================</span>
+</span></span><span style="display:flex;"><span>Enter choice <span style="color:#89dceb;font-weight:bold">(</span>1<span style="color:#89dceb;font-weight:bold">)</span>: <span style="color:#fab387">3</span>
+</span></span><span style="display:flex;"><span>Hostname <span style="color:#89dceb;font-weight:bold">(</span>localhost<span style="color:#89dceb;font-weight:bold">)</span>:
+</span></span><span style="display:flex;"><span>Port <span style="color:#89dceb;font-weight:bold">(</span>3306<span style="color:#89dceb;font-weight:bold">)</span>:
+</span></span><span style="display:flex;"><span>Database name <span style="color:#89dceb;font-weight:bold">(</span>ambari<span style="color:#89dceb;font-weight:bold">)</span>:
+</span></span><span style="display:flex;"><span>Username <span style="color:#89dceb;font-weight:bold">(</span>ambari<span style="color:#89dceb;font-weight:bold">)</span>:
+</span></span><span style="display:flex;"><span>Enter Database Password <span style="color:#89dceb;font-weight:bold">(</span>bigdata<span style="color:#89dceb;font-weight:bold">)</span>:
+</span></span><span style="display:flex;"><span>Configuring ambari database...
+</span></span><span style="display:flex;"><span>Configuring remote database connection properties...
+</span></span><span style="display:flex;"><span>WARNING: Before starting Ambari Server, you must run the following DDL against the database to create the schema: /var/lib/ambari-server/resources/Ambari-DDL-MySQL-CREATE.sql
+</span></span><span style="display:flex;"><span>Proceed with configuring remote database connection properties <span style="color:#89dceb;font-weight:bold">[</span>y/n<span style="color:#89dceb;font-weight:bold">]</span> <span style="color:#89dceb;font-weight:bold">(</span>y<span style="color:#89dceb;font-weight:bold">)</span>? y
+</span></span><span style="display:flex;"><span>Extracting system views...
+</span></span><span style="display:flex;"><span>ambari-admin-2.6.2.0.155.jar
+</span></span><span style="display:flex;"><span>...........
+</span></span><span style="display:flex;"><span>Adjusting ambari-server permissions and ownership...
+</span></span><span style="display:flex;"><span>Ambari Server <span style="color:#a6e3a1">&#39;setup&#39;</span> completed successfully.
+</span></span></code></pre></div><p>说明：
+1：提示是否自定义设置。输入：y 或 按回车继续
+2：ambari-server 账号。使用root（推荐）用户直接回车 若使用ambari用户输入：ambari
+3：设置JDK,输入数字3，选客户端安装jdk，如果服务器可以访问外网，则可以选1，自动下载jdk1.8，默认下载的安装目录是/usr/java/default
+4：如果上面选择3自定义JDK,则需要设置JAVA_HOME
+5：输入：y 或 按回车继续
+6：输入“y“，进行数据库的高级配置
+7：输入“3“，选择mysql/mariadb数据库
+8：设置数据库的配置参数：host,port,database,username,password。根据实际情况输入，如果和括号内相同，则可以直接回车。若端口改6033则输入port:6033。
+9：输入：y 或 按回车继续
+（若设置更改，可以再次执行ambari-server setup进行设置）
+10: 如果要修改连接mysql密码，请修改如下文件/etc/ambari-server/conf/password.dat</p>
+<h4 id="将ambari数据库初始数据导入mysql">将Ambari数据库初始数据导入mysql</h4>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>mysql &gt; use ambari;
+</span></span><span style="display:flex;"><span>mysql &gt; <span style="color:#89dceb">source</span> /var/lib/ambari-server/resources/Ambari-DDL-MySQL-CREATE.sql;
+</span></span></code></pre></div><h4 id="启动ambari">启动Ambari</h4>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>ambari-server start
+</span></span></code></pre></div><p>如下表示启动成功</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span><span style="color:#89dceb;font-weight:bold">[</span>root@ambari-65 conf<span style="color:#89dceb;font-weight:bold">]</span><span style="color:#6c7086;font-style:italic"># ambari-server start</span>
+</span></span><span style="display:flex;"><span>Using python  /usr/bin/python
+</span></span><span style="display:flex;"><span>Starting ambari-server
+</span></span><span style="display:flex;"><span>Ambari Server running with administrator privileges.
+</span></span><span style="display:flex;"><span>Organizing resource files at /var/lib/ambari-server/resources...
+</span></span><span style="display:flex;"><span>Ambari database consistency check started...
+</span></span><span style="display:flex;"><span>Server PID at: /var/run/ambari-server/ambari-server.pid
+</span></span><span style="display:flex;"><span>Server out at: /var/log/ambari-server/ambari-server.out
+</span></span><span style="display:flex;"><span>Server log at: /var/log/ambari-server/ambari-server.log
+</span></span><span style="display:flex;"><span>Waiting <span style="color:#cba6f7">for</span> server start.......................
+</span></span><span style="display:flex;"><span>Server started listening on <span style="color:#fab387">8080</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>DB configs consistency check: no errors and warnings were found.
+</span></span><span style="display:flex;"><span>Ambari Server <span style="color:#a6e3a1">&#39;start&#39;</span> completed successfully.
+</span></span></code></pre></div><p>浏览器访问：http://192.168.111.65:8080/ 默认登录用户：admin，密码：admin</p>
+<h3 id="安装时遇到的问题">安装时遇到的问题</h3>
+<h4 id="sslerror-failed-to-connect-please-check-openssl-library-versions">SSLError: Failed to connect. Please check openssl library versions</h4>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>ERROR 2020-11-03 19:30:17,841 NetUtil.py:96 - EOF occurred in violation of protocol <span style="color:#89dceb;font-weight:bold">(</span>_ssl.c:579<span style="color:#89dceb;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span>ERROR 2020-11-03 19:30:17,841 NetUtil.py:97 - SSLError: Failed to connect. Please check openssl library versions. 
+</span></span><span style="display:flex;"><span>Refer to: https://bugzilla.redhat.com/show_bug.cgi?id<span style="color:#89dceb;font-weight:bold">=</span><span style="color:#fab387">1022468</span> <span style="color:#cba6f7">for</span> more details.
+</span></span></code></pre></div><p>解决方式：
+修改配置文件(/etc/ambari-agent/conf/ambari-agent.ini),在<code>security</code>模块添加如下配置，然后重启ambari-agent</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span><span style="color:#89dceb;font-weight:bold">[</span>security<span style="color:#89dceb;font-weight:bold">]</span>
+</span></span><span style="display:flex;"><span><span style="color:#f5e0dc">force_https_protocol</span><span style="color:#89dceb;font-weight:bold">=</span>PROTOCOL_TLSv1_2
+</span></span></code></pre></div>
+        </div>
+
+        
+
+
+        
+
+<div class="post-archive">
+    <h2>相关文章</h2>
+    <ul class="listing">
+        
+        <li><a href="/posts/%E6%95%B0%E6%8D%AE%E5%BA%93/MongoDB%E7%94%A8%E6%88%B7%E6%93%8D%E4%BD%9C/">MongoDB用户操作</a></li>
+        
+        <li><a href="/posts/Linux/ELK%E5%AE%89%E8%A3%85/">ELK安装</a></li>
+        
+        <li><a href="/posts/%E6%95%B0%E6%8D%AE%E5%BA%93/%E7%BA%BF%E4%B8%8Amongodb%E6%9B%B4%E6%96%B0%E8%AE%A4%E8%AF%81%E6%AD%A5%E9%AA%A4/">线上MongoDB更新认证步骤</a></li>
+        
+        <li><a href="/posts/%E6%95%B0%E6%8D%AE%E5%BA%93/MongoDB%E6%95%B0%E6%8D%AE%E5%A4%87%E4%BB%BD/">mongoDB数据备份</a></li>
+        
+        <li><a href="/posts/%E6%95%B0%E6%8D%AE%E5%BA%93/MongoDB%E9%85%8D%E7%BD%AE%E8%AE%A4%E8%AF%81%E6%9C%BA%E5%88%B6/">mongoDB配置认证机制</a></li>
+        
+    </ul>
+</div>
+
+
+        <div class="post-meta meta-tags">
+            
+            <ul class="clearfix">
+                
+                <li><a href='/tags/Ambari' target="_blank">Ambari</a></li>
+                
+            </ul>
+            
+        </div>
+    </article>
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    <div id="giscus"></div>
+    <script src="https://giscus.app/client.js"
+        data-repo="linuxkai/blogComment"
+        data-repo-id="R_kgDOLr6pTw"
+        data-category="Announcements"
+        data-category-id="DIC_kwDOLr6pT84CekrB"
+        data-mapping="pathname"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position=""
+        data-theme="light"
+        data-lang="zh-CN"
+        crossorigin="anonymous"
+        async>
+    </script>
+    
+
+</div>
+
+                    <footer id="footer">
+    <div>
+        &copy; 2024 <a rel="nofollow" href="https://blog.linuxkai.com/">Linuxkai 的博客</a> 未经允许，禁止转载.
+        
+        Powered by <a rel="nofollow noreferer noopener" href="https://gohugo.io">Hugo</a>
+         &amp; <a rel="nofollow noreferer noopener" href="https://github.com/flysnow-org/maupassant-hugo">maupassant theme</a>.
+    </div>
+</footer>
+
+
+
+
+<script type="text/javascript">
+    window.MathJax = {
+        tex2jax: {
+            inlineMath: [['$', '$']],
+            processEscapes: true
+        }
+    };
+</script>
+<script src='//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+
+<a id="rocket" href="#top"></a>
+<script type="text/javascript" src='/js/totop.js?v=0.0.0' async=""></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XB3WESXB7W"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-XB3WESXB7W', { 'anonymize_ip': false });
+}
+</script>
+
+<style type="text/css">
+div.highlight {
+    position: relative;
+    margin: 1em 0px;
+}
+
+.copy-code {
+    display: none;
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    color: rgba(255, 255, 255, 0.8);
+    background: rgba(78, 78, 78, 0.8);
+    border-radius: var(--radius);
+    padding: 0 5px;
+    font: inherit;
+    user-select: none;
+    cursor: pointer;
+    border: 0;
+    --radius: 8px;
+}
+
+div.highlight:hover .copy-code,pre:hover .copy-code {
+    display: block;
+}
+
+</style>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+
+
+<script type="text/javascript" src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script>
+
+
+
+
+                </div>
+
+                <div id="secondary">
+    <section class="widget">
+        <form id="search" action='https://blog.linuxkai.com/search' method="get" accept-charset="utf-8" target="_blank" _lpchecked="1">
+      
+      <input type="text" name="q" maxlength="20" placeholder='搜索'>
+      <input type="hidden" name="sitesearch" value="https://blog.linuxkai.com/">
+      <button type="submit" class="submit icon-search"></button>
+</form>
+    </section>
+
+    <section class="widget">
+        <h3 class="widget-title">最近文章</h3>
+<ul class="widget-list">
+    
+    <li>
+        <a href="https://blog.linuxkai.com/posts/Git/git-submodule-%E6%93%8D%E4%BD%9C/" title="Git submodule操作" target="_blank">Git submodule操作</a>
+    </li>
+    
+    <li>
+        <a href="https://blog.linuxkai.com/posts/Git/Git%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93%E5%9C%B0%E5%9D%80%E5%8F%98%E6%9B%B4%E6%9C%AC%E5%9C%B0%E5%A6%82%E4%BD%95%E4%BF%AE%E6%94%B9/" title="Git远程仓库地址变更本地如何修改" target="_blank">Git远程仓库地址变更本地如何修改</a>
+    </li>
+    
+    <li>
+        <a href="https://blog.linuxkai.com/posts/Git/Git-%E4%BB%93%E5%BA%93%E8%BF%81%E7%A7%BB/" title="Git 仓库迁移" target="_blank">Git 仓库迁移</a>
+    </li>
+    
+    <li>
+        <a href="https://blog.linuxkai.com/posts/Git/Git-%E4%BF%AE%E6%94%B9%E5%B7%B2%E6%8F%90%E4%BA%A4-commit-%E7%9A%84%E4%BF%A1%E6%81%AF/" title="Git 修改已提交 commit 的信息" target="_blank">Git 修改已提交 commit 的信息</a>
+    </li>
+    
+    <li>
+        <a href="https://blog.linuxkai.com/posts/Git/Git-%E6%8A%80%E5%B7%A7/" title="Git技巧" target="_blank">Git技巧</a>
+    </li>
+    
+    <li>
+        <a href="https://blog.linuxkai.com/posts/Git/git-%E8%AE%BE%E7%BD%AE%E4%BB%A3%E7%90%86/" title="Git设置代理" target="_blank">Git设置代理</a>
+    </li>
+    
+    <li>
+        <a href="https://blog.linuxkai.com/posts/Git/git-%E4%BF%AE%E6%94%B9%E5%88%86%E6%94%AF%E5%90%8D%E7%A7%B0/" title="Git修改分支名称" target="_blank">Git修改分支名称</a>
+    </li>
+    
+    <li>
+        <a href="https://blog.linuxkai.com/posts/Docker/docker-compose-%E4%BF%AE%E6%94%B9%E5%AE%B9%E5%99%A8%E6%97%B6%E5%8C%BA/" title="docker-compose 修改容器时区" target="_blank">docker-compose 修改容器时区</a>
+    </li>
+    
+    <li>
+        <a href="https://blog.linuxkai.com/posts/Linux/df%E5%91%BD%E4%BB%A4hang%E4%BD%8F%E4%B8%80%E7%9B%B4%E4%B8%8D%E5%87%BA%E7%BB%93%E6%9E%9C/" title="df命令hang住，一直不出结果" target="_blank">df命令hang住，一直不出结果</a>
+    </li>
+    
+    <li>
+        <a href="https://blog.linuxkai.com/posts/Kubernetes/%E5%AE%89%E5%85%A8%E5%9C%B0%E6%B8%85%E7%A9%BA%E4%B8%80%E4%B8%AA%E8%8A%82%E7%82%B9/" title="Kubernetes集群安全地清空一个节点" target="_blank">Kubernetes集群安全地清空一个节点</a>
+    </li>
+    
+</ul>
+    </section>
+
+    
+
+    <section class="widget">
+        <h3 class="widget-title"><a href='/categories/'>分类</a></h3>
+<ul class="widget-list">
+    
+    <li><a href="https://blog.linuxkai.com/categories/Docker/">Docker (1)</a></li>
+    
+    <li><a href="https://blog.linuxkai.com/categories/Git/">Git (7)</a></li>
+    
+    <li><a href="https://blog.linuxkai.com/categories/Kubernetes/">Kubernetes (3)</a></li>
+    
+    <li><a href="https://blog.linuxkai.com/categories/Linux/">Linux (22)</a></li>
+    
+    <li><a href="https://blog.linuxkai.com/categories/Python/">Python (1)</a></li>
+    
+    <li><a href="https://blog.linuxkai.com/categories/Windows/">Windows (2)</a></li>
+    
+    <li><a href="https://blog.linuxkai.com/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/">大数据 (2)</a></li>
+    
+    <li><a href="https://blog.linuxkai.com/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库 (7)</a></li>
+    
+</ul>
+    </section>
+
+    <section class="widget">
+        <h3 class="widget-title"><a href='/tags/'>标签</a></h3>
+<div class="tagcloud">
+    
+    <a href="https://blog.linuxkai.com/tags/acme.sh/">Acme.sh</a>
+    
+    <a href="https://blog.linuxkai.com/tags/Ambari/">Ambari</a>
+    
+    <a href="https://blog.linuxkai.com/tags/APISIX/">APISIX</a>
+    
+    <a href="https://blog.linuxkai.com/tags/Bind/">Bind</a>
+    
+    <a href="https://blog.linuxkai.com/tags/CORS/">CORS</a>
+    
+    <a href="https://blog.linuxkai.com/tags/disk/">Disk</a>
+    
+    <a href="https://blog.linuxkai.com/tags/DNS/">DNS</a>
+    
+    <a href="https://blog.linuxkai.com/tags/Docker/">Docker</a>
+    
+    <a href="https://blog.linuxkai.com/tags/Elasticsearch/">Elasticsearch</a>
+    
+    <a href="https://blog.linuxkai.com/tags/ELK/">ELK</a>
+    
+    <a href="https://blog.linuxkai.com/tags/Filebeat/">Filebeat</a>
+    
+    <a href="https://blog.linuxkai.com/tags/Git/">Git</a>
+    
+    <a href="https://blog.linuxkai.com/tags/hadoop/">Hadoop</a>
+    
+    <a href="https://blog.linuxkai.com/tags/Kafka/">Kafka</a>
+    
+    <a href="https://blog.linuxkai.com/tags/Kubernetes/">Kubernetes</a>
+    
+    <a href="https://blog.linuxkai.com/tags/Linux/">Linux</a>
+    
+    <a href="https://blog.linuxkai.com/tags/Logstash/">Logstash</a>
+    
+    <a href="https://blog.linuxkai.com/tags/MongoDB/">MongoDB</a>
+    
+    <a href="https://blog.linuxkai.com/tags/MySQL/">MySQL</a>
+    
+    <a href="https://blog.linuxkai.com/tags/Nacos/">Nacos</a>
+    
+    <a href="https://blog.linuxkai.com/tags/Nexus/">Nexus</a>
+    
+    <a href="https://blog.linuxkai.com/tags/Nginx/">Nginx</a>
+    
+    <a href="https://blog.linuxkai.com/tags/Prometheus/">Prometheus</a>
+    
+    <a href="https://blog.linuxkai.com/tags/Python/">Python</a>
+    
+    <a href="https://blog.linuxkai.com/tags/Redis/">Redis</a>
+    
+    <a href="https://blog.linuxkai.com/tags/resize2fs/">Resize2fs</a>
+    
+    <a href="https://blog.linuxkai.com/tags/S3/">S3</a>
+    
+    <a href="https://blog.linuxkai.com/tags/SSL/">SSL</a>
+    
+    <a href="https://blog.linuxkai.com/tags/Supervisor/">Supervisor</a>
+    
+    <a href="https://blog.linuxkai.com/tags/Windows/">Windows</a>
+    
+    <a href="https://blog.linuxkai.com/tags/ZK/">ZK</a>
+    
+</div>
+    </section>
+
+    
+<section class="widget">
+    <h3 class="widget-title">友情链接</h3>
+    <ul class="widget-list">
+        
+        <li>
+            <a target="_blank" href="https://github.com/linuxkai" title="Linuxkai的Github">Linuxkai的Github</a>
+        </li>
+        
+    </ul>
+</section>
+
+
+    <section class="widget">
+        <h3 class="widget-title">其它</h3>
+        <ul class="widget-list">
+            <li><a href="https://blog.linuxkai.com/index.xml">文章 RSS</a></li>
+        </ul>
+    </section>
+</div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,643 @@
+<!doctype html>
+<html lang="zh">
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    
+
+    <title>Linux | Linuxkai 的博客</title>
+    <meta property="og:title" content="Linux - Linuxkai 的博客">
+    <meta property="og:type" content="article">
+    
+    
+    <meta name="Keywords" content="运维笔记,Python开发,,Go语言,公众号,小程序">
+    <meta name="description" content="Linux">
+    
+    <meta name="author" content="">
+    <meta property="og:url" content="https://blog.linuxkai.com/categories/Linux/">
+    <link rel="shortcut icon" href='/favicon.ico'  type="image/x-icon">
+
+    <link rel="stylesheet" href='/css/normalize.css'>
+    <link rel="stylesheet" href='/css/style.css'>
+    <link rel="alternate" type="application/rss+xml" href="https://blog.linuxkai.com/categories/Linux/index.xml" title="Linuxkai 的博客" />
+    <script type="text/javascript" src="//cdn.bootcdn.net/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    
+
+    
+    <script type="text/javascript">
+        var _hmt = _hmt || [];
+        (function () {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?b288dcb7926623147c327f43aa44d284";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+    
+
+    
+
+    
+    
+</head>
+
+<body>
+    <header id="header" class="clearfix">
+    <div class="container">
+        <div class="col-group">
+            <div class="site-name ">
+                
+                    <a id="logo" href="https://blog.linuxkai.com/">
+                        Linuxkai 的博客
+                    </a>
+                
+                <p class="description">运维笔记,Python开发,Golang语言</p>
+            </div>
+            <div>
+                <nav id="nav-menu" class="clearfix">
+                    <a class="" href="https://blog.linuxkai.com/">首页</a>
+                    
+                    <a  href="https://blog.linuxkai.com/archives/" title="归档">归档</a>
+                    
+                    <a  href="https://blog.linuxkai.com/about/" title="关于">关于</a>
+                    
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>
+
+    <div id="body">
+        <div class="container">
+            <div class="col-group">
+
+                <div class="col-8" id="main">
+                    
+<div class="res-cons">
+    
+    <h3 class="archive-title">
+        分类
+        <span class="keyword">Linux</span>
+        中的文章
+    </h3>
+    
+
+    
+    <article class="post">
+        <header>
+            <h1 class="post-title">
+                <a href="https://blog.linuxkai.com/posts/Linux/df%E5%91%BD%E4%BB%A4hang%E4%BD%8F%E4%B8%80%E7%9B%B4%E4%B8%8D%E5%87%BA%E7%BB%93%E6%9E%9C/" target="_blank">df命令hang住，一直不出结果</a>
+            </h1>
+        </header>
+        
+  <time datetime="2022-09-07T03:14:05Z" class="post-meta meta-date dt-published">
+    发布日期: 2022年9月7日
+  </time>
+
+
+  <time datetime="2022-09-07T03:14:05Z" class="post-meta meta-updated">
+    | 更新日期: 2022年9月7日
+  </time>
+
+
+<div class="post-meta meta-category">
+  <span>&nbsp;| 文章分类: </span>
+  
+    <a href='/categories/Linux' target="_blank">Linux</a>
+  
+</div>
+
+
+        <div class="post-content">
+            说明 当使用 df 命令查看磁盘空间时被 hang 住，不显示结果 查找问题 通过strace命令查看系统调用 execve(&#34;/usr/bin/df&#34;, [&#34;df&#34;], 0x7ffcdb37ef80 /* 25 vars */) = 0 brk(NULL) = 0xcb9000 mmap(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0x7fbfdc740000 access(&#34;/etc/ld.so.preload&#34;, R_OK) = -1 ENOENT (没有那个文件或目录) open(&#34;/etc/ld.so.cache&#34;, O_RDONLY|O_CLOEXEC) = 3 fstat(3, {st_mode=S_IFREG|0644, st_size=60184, ...}) = 0 mmap(NULL, 60184, PROT_READ, MAP_PRIVATE, 3, 0) = 0x7fbfdc731000 close(3) =……
+            <p class="readmore"><a href="https://blog.linuxkai.com/posts/Linux/df%E5%91%BD%E4%BB%A4hang%E4%BD%8F%E4%B8%80%E7%9B%B4%E4%B8%8D%E5%87%BA%E7%BB%93%E6%9E%9C/" target="_blank">阅读全文</a></p>
+        </div>
+    </article>
+    
+    <article class="post">
+        <header>
+            <h1 class="post-title">
+                <a href="https://blog.linuxkai.com/posts/Linux/Nginx-add_header/" target="_blank">Nginx  add_header</a>
+            </h1>
+        </header>
+        
+  <time datetime="2022-07-20T06:09:16Z" class="post-meta meta-date dt-published">
+    发布日期: 2022年7月20日
+  </time>
+
+
+  <time datetime="2022-07-20T06:09:16Z" class="post-meta meta-updated">
+    | 更新日期: 2022年7月20日
+  </time>
+
+
+<div class="post-meta meta-category">
+  <span>&nbsp;| 文章分类: </span>
+  
+    <a href='/categories/Linux' target="_blank">Linux</a>
+  
+</div>
+
+
+        <div class="post-content">
+            X-Frame-Options 用来给浏览器指示允许一个页面可否在 、、 或者 中展现的标记。站点可以通过确保网站没有被嵌入到别人的站点里面，从而避免点击劫持攻击 语法 # http,server,location X-Frame-Options: DENY X-Frame-Options: SAMEORIGIN DENY: 表示该页面不允许在 frame 中展示，即便是在相同域名的页面中嵌套……
+            <p class="readmore"><a href="https://blog.linuxkai.com/posts/Linux/Nginx-add_header/" target="_blank">阅读全文</a></p>
+        </div>
+    </article>
+    
+    <article class="post">
+        <header>
+            <h1 class="post-title">
+                <a href="https://blog.linuxkai.com/posts/Linux/DNS-Bind%E9%85%8D%E7%BD%AE/" target="_blank">DNS Bind配置</a>
+            </h1>
+        </header>
+        
+  <time datetime="2022-07-01T14:31:32Z" class="post-meta meta-date dt-published">
+    发布日期: 2022年7月1日
+  </time>
+
+
+  <time datetime="2022-07-01T14:31:32Z" class="post-meta meta-updated">
+    | 更新日期: 2022年7月1日
+  </time>
+
+
+<div class="post-meta meta-category">
+  <span>&nbsp;| 文章分类: </span>
+  
+    <a href='/categories/Linux' target="_blank">Linux</a>
+  
+</div>
+
+
+        <div class="post-content">
+            参考文档： https://www.cnblogs.com/sandshell/p/11673658.html#autoid-7-3-0 要求 使用内部解析 内部解析如果失败，使用公网解析 dns 集群使用 环境 系统版本：Centos 7.3 192.168.112.231(主DNS) 192.168.112.9(从DNS) 192.168.112.……
+            <p class="readmore"><a href="https://blog.linuxkai.com/posts/Linux/DNS-Bind%E9%85%8D%E7%BD%AE/" target="_blank">阅读全文</a></p>
+        </div>
+    </article>
+    
+    <article class="post">
+        <header>
+            <h1 class="post-title">
+                <a href="https://blog.linuxkai.com/posts/Linux/%E5%9F%BA%E4%BA%8E-acme.sh-%E8%87%AA%E5%8A%A8%E6%9B%B4%E6%96%B0-APISIX-SSL-%E8%AF%81%E4%B9%A6/" target="_blank">基于 acme.sh 自动更新 APISIX SSL 证书</a>
+            </h1>
+        </header>
+        
+  <time datetime="2022-06-06T10:02:37Z" class="post-meta meta-date dt-published">
+    发布日期: 2022年6月6日
+  </time>
+
+
+  <time datetime="2022-06-06T10:02:37Z" class="post-meta meta-updated">
+    | 更新日期: 2022年6月6日
+  </time>
+
+
+<div class="post-meta meta-category">
+  <span>&nbsp;| 文章分类: </span>
+  
+    <a href='/categories/Linux' target="_blank">Linux</a>
+  
+</div>
+
+
+        <div class="post-content">
+            基于 acme.sh 自动更新 APISIX SSL 证书 安装 openssl , jq 略 安装acme.sh curl https://get.acme.sh | sh -s email=my@example.com my@example.com 替换成自己的邮箱，用于ZeroSSL.com 账号注册，acme.sh 默认CA 已经更新为ZeroSSL了，而ZeroSSL 需要邮箱地址注……
+            <p class="readmore"><a href="https://blog.linuxkai.com/posts/Linux/%E5%9F%BA%E4%BA%8E-acme.sh-%E8%87%AA%E5%8A%A8%E6%9B%B4%E6%96%B0-APISIX-SSL-%E8%AF%81%E4%B9%A6/" target="_blank">阅读全文</a></p>
+        </div>
+    </article>
+    
+    <article class="post">
+        <header>
+            <h1 class="post-title">
+                <a href="https://blog.linuxkai.com/posts/Linux/%E8%B7%A8%E5%9F%9F%E9%97%AE%E9%A2%98/" target="_blank">跨域问题</a>
+            </h1>
+        </header>
+        
+  <time datetime="2022-02-07T09:09:37Z" class="post-meta meta-date dt-published">
+    发布日期: 2022年2月7日
+  </time>
+
+
+  <time datetime="2022-02-07T09:09:37Z" class="post-meta meta-updated">
+    | 更新日期: 2022年2月7日
+  </time>
+
+
+<div class="post-meta meta-category">
+  <span>&nbsp;| 文章分类: </span>
+  
+    <a href='/categories/Linux' target="_blank">Linux</a>
+  
+</div>
+
+
+        <div class="post-content">
+            跨域问题 产生跨域的原因 浏览器的限制 跨域 XHR(XMLHttpRequest)请求 解决思路 JSONP nginx 代理 浏览器禁止检查跨域 浏览器禁止检查跨域(以 chrome 为例) 彻底关闭 chrome 使用命令行启动 mac open -a &#34;Google Chrome&#34; --args --disable-web-security --user-data-dir windows /PATH_TO/chrome.exe --args --disable-web-security --user-data-dir # 也可……
+            <p class="readmore"><a href="https://blog.linuxkai.com/posts/Linux/%E8%B7%A8%E5%9F%9F%E9%97%AE%E9%A2%98/" target="_blank">阅读全文</a></p>
+        </div>
+    </article>
+    
+    <article class="post">
+        <header>
+            <h1 class="post-title">
+                <a href="https://blog.linuxkai.com/posts/Linux/%E4%BA%91%E4%B8%BB%E6%9C%BA%E7%A3%81%E7%9B%98%E6%89%A9%E5%AE%B9/" target="_blank">云主机磁盘扩容</a>
+            </h1>
+        </header>
+        
+  <time datetime="2022-02-07T02:34:29Z" class="post-meta meta-date dt-published">
+    发布日期: 2022年2月7日
+  </time>
+
+
+  <time datetime="2022-02-07T02:34:29Z" class="post-meta meta-updated">
+    | 更新日期: 2022年2月7日
+  </time>
+
+
+<div class="post-meta meta-category">
+  <span>&nbsp;| 文章分类: </span>
+  
+    <a href='/categories/Linux' target="_blank">Linux</a>
+  
+</div>
+
+
+        <div class="post-content">
+            磁盘扩容 有分区 root@aws-wlomni-jp-52-154:~# growpart /dev/xvdf 1 CHANGED: partition=1 start=2048 old: size=1048573919 end=1048575967 new: size=2147481567,end=2147483615 root@aws-wlomni-jp-52-154:~# root@aws-wlomni-jp-52-154:~# resize2fs /dev/xvdf1 resize2fs 1.42.13 (17-May-2015) Filesystem at /dev/xvdf1 is mounted on /databackup; on-line resizing required old_desc_blocks = 32, new_desc_blocks = 64 The filesystem on /dev/xvdf1 is now 268435195 (4k) blocks long. 无分区 resize2fs /dev/xvdf1……
+            <p class="readmore"><a href="https://blog.linuxkai.com/posts/Linux/%E4%BA%91%E4%B8%BB%E6%9C%BA%E7%A3%81%E7%9B%98%E6%89%A9%E5%AE%B9/" target="_blank">阅读全文</a></p>
+        </div>
+    </article>
+    
+    <article class="post">
+        <header>
+            <h1 class="post-title">
+                <a href="https://blog.linuxkai.com/posts/Linux/Nginx%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86WebSocket/" target="_blank">Nginx反向代理WebSocket</a>
+            </h1>
+        </header>
+        
+  <time datetime="2022-01-10T08:31:16Z" class="post-meta meta-date dt-published">
+    发布日期: 2022年1月10日
+  </time>
+
+
+  <time datetime="2022-01-10T08:31:16Z" class="post-meta meta-updated">
+    | 更新日期: 2022年1月10日
+  </time>
+
+
+<div class="post-meta meta-category">
+  <span>&nbsp;| 文章分类: </span>
+  
+    <a href='/categories/Linux' target="_blank">Linux</a>
+  
+</div>
+
+
+        <div class="post-content">
+            nginx添加配置文件websocket.conf 下面文件的domain, upstream,ssl根据自己情况修改 map $http_upgrade $connection_upgrade { default upgrade; &#39;&#39; close; } upstream websocket { server localhost:8282; # appserver_ip:ws_port } server { listen 80; server_name websocket.abc.com; location / { proxy_pass http://websocket; proxy_read_timeout 300s; proxy_send_timeout 300s; proxy_set_header Host $host; proxy_set_header X-Real-IP $remote_addr; proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for; proxy_http_version 1.1;……
+            <p class="readmore"><a href="https://blog.linuxkai.com/posts/Linux/Nginx%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86WebSocket/" target="_blank">阅读全文</a></p>
+        </div>
+    </article>
+    
+    <article class="post">
+        <header>
+            <h1 class="post-title">
+                <a href="https://blog.linuxkai.com/posts/Linux/Nexus%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/" target="_blank">Nexus安装配置</a>
+            </h1>
+        </header>
+        
+  <time datetime="2021-11-26T15:39:33Z" class="post-meta meta-date dt-published">
+    发布日期: 2021年11月26日
+  </time>
+
+
+  <time datetime="2021-11-26T15:39:33Z" class="post-meta meta-updated">
+    | 更新日期: 2021年11月26日
+  </time>
+
+
+<div class="post-meta meta-category">
+  <span>&nbsp;| 文章分类: </span>
+  
+    <a href='/categories/Linux' target="_blank">Linux</a>
+  
+</div>
+
+
+        <div class="post-content">
+            官方文档：https://help.sonatype.com/repomanager3/download/download-archives&mdash;repository-manager-3 版本说……
+            <p class="readmore"><a href="https://blog.linuxkai.com/posts/Linux/Nexus%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/" target="_blank">阅读全文</a></p>
+        </div>
+    </article>
+    
+    <article class="post">
+        <header>
+            <h1 class="post-title">
+                <a href="https://blog.linuxkai.com/posts/Linux/Kafka-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" target="_blank">Kafka 常用命令</a>
+            </h1>
+        </header>
+        
+  <time datetime="2021-11-13T15:41:24Z" class="post-meta meta-date dt-published">
+    发布日期: 2021年11月13日
+  </time>
+
+
+  <time datetime="2021-11-13T15:41:24Z" class="post-meta meta-updated">
+    | 更新日期: 2021年11月13日
+  </time>
+
+
+<div class="post-meta meta-category">
+  <span>&nbsp;| 文章分类: </span>
+  
+    <a href='/categories/Linux' target="_blank">Linux</a>
+  
+</div>
+
+
+        <div class="post-content">
+            TOPIC 说明： Kafka使用版本：2.12-0.10.2.2(instruction 服务使用的此版本) kafka2.2.0版本以上, 使用--bootstrap-server 127.0.0.1:9092 连接，--zookeepker 1……
+            <p class="readmore"><a href="https://blog.linuxkai.com/posts/Linux/Kafka-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" target="_blank">阅读全文</a></p>
+        </div>
+    </article>
+    
+    <article class="post">
+        <header>
+            <h1 class="post-title">
+                <a href="https://blog.linuxkai.com/posts/Linux/Elasticsearch%E6%8E%A5%E5%85%A5ldap/" target="_blank">Elasticsearch接入LDAP</a>
+            </h1>
+        </header>
+        
+  <time datetime="2021-07-29T09:21:28Z" class="post-meta meta-date dt-published">
+    发布日期: 2021年7月29日
+  </time>
+
+
+  <time datetime="2021-07-29T09:21:28Z" class="post-meta meta-updated">
+    | 更新日期: 2021年7月29日
+  </time>
+
+
+<div class="post-meta meta-category">
+  <span>&nbsp;| 文章分类: </span>
+  
+    <a href='/categories/Linux' target="_blank">Linux</a>
+  
+</div>
+
+
+        <div class="post-content">
+            说明： elasticsearch版本: 7.6.1 修改elasticsearch.yml,添加如下内容，并根据自己情况做相应修改 # 使用ldap xpack: security: authc: realms: ldap: ldap1: order: 0 url: &#34;ldap://192.168.0.100:389&#34; user_dn_templates: - &#34;uid={0},ou=People,dc=Chk,dc=com&#34; group_search: base_dn: &#34;dc=Chk,dc=com&#34; files: role_mapping: &#34;/etc/elasticsearch/role_mapping.yml&#34; unmapped_groups_as_roles: false # 使用ldaps xpack: security: authc: realms: ldap:……
+            <p class="readmore"><a href="https://blog.linuxkai.com/posts/Linux/Elasticsearch%E6%8E%A5%E5%85%A5ldap/" target="_blank">阅读全文</a></p>
+        </div>
+    </article>
+    
+
+    
+
+
+
+<ol class="page-navigator">
+    
+
+    
+    <li  class="current">
+        <a href="https://blog.linuxkai.com/categories/Linux/">1</a>
+    </li>
+    
+    <li >
+        <a href="https://blog.linuxkai.com/categories/Linux/page/2/">2</a>
+    </li>
+    
+    <li >
+        <a href="https://blog.linuxkai.com/categories/Linux/page/3/">3</a>
+    </li>
+    
+
+    
+    <li class="next">
+        <a href="https://blog.linuxkai.com/categories/Linux/page/2/">下一页</a>
+    </li>
+    
+</ol>
+
+
+
+</div>
+
+                    <footer id="footer">
+    <div>
+        &copy; 2024 <a rel="nofollow" href="https://blog.linuxkai.com/">Linuxkai 的博客</a> 未经允许，禁止转载.
+        
+        Powered by <a rel="nofollow noreferer noopener" href="https://gohugo.io">Hugo</a>
+         &amp; <a rel="nofollow noreferer noopener" href="https://github.com/flysnow-org/maupassant-hugo">maupassant theme</a>.
+    </div>
+</footer>
+
+
+
+<a id="rocket" href="#top"></a>
+<script type="text/javascript" src='/js/totop.js?v=0.0.0' async=""></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XB3WESXB7W"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-XB3WESXB7W', { 'anonymize_ip': false });
+}
+</script>
+
+
+
+<script type="text/javascript" src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script>
+
+
+
+
+                </div>
+
+                <div id="secondary">
+    <section class="widget">
+        <form id="search" action='https://blog.linuxkai.com/search' method="get" accept-charset="utf-8" target="_blank" _lpchecked="1">
+      
+      <input type="text" name="q" maxlength="20" placeholder='搜索'>
+      <input type="hidden" name="sitesearch" value="https://blog.linuxkai.com/">
+      <button type="submit" class="submit icon-search"></button>
+</form>
+    </section>
+
+    <section class="widget">
+        <h3 class="widget-title">最近文章</h3>
+<ul class="widget-list">
+    
+    <li>
+        <a href="https://blog.linuxkai.com/posts/Git/git-submodule-%E6%93%8D%E4%BD%9C/" title="Git submodule操作" target="_blank">Git submodule操作</a>
+    </li>
+    
+    <li>
+        <a href="https://blog.linuxkai.com/posts/Git/Git%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93%E5%9C%B0%E5%9D%80%E5%8F%98%E6%9B%B4%E6%9C%AC%E5%9C%B0%E5%A6%82%E4%BD%95%E4%BF%AE%E6%94%B9/" title="Git远程仓库地址变更本地如何修改" target="_blank">Git远程仓库地址变更本地如何修改</a>
+    </li>
+    
+    <li>
+        <a href="https://blog.linuxkai.com/posts/Git/Git-%E4%BB%93%E5%BA%93%E8%BF%81%E7%A7%BB/" title="Git 仓库迁移" target="_blank">Git 仓库迁移</a>
+    </li>
+    
+    <li>
+        <a href="https://blog.linuxkai.com/posts/Git/Git-%E4%BF%AE%E6%94%B9%E5%B7%B2%E6%8F%90%E4%BA%A4-commit-%E7%9A%84%E4%BF%A1%E6%81%AF/" title="Git 修改已提交 commit 的信息" target="_blank">Git 修改已提交 commit 的信息</a>
+    </li>
+    
+    <li>
+        <a href="https://blog.linuxkai.com/posts/Git/Git-%E6%8A%80%E5%B7%A7/" title="Git技巧" target="_blank">Git技巧</a>
+    </li>
+    
+    <li>
+        <a href="https://blog.linuxkai.com/posts/Git/git-%E8%AE%BE%E7%BD%AE%E4%BB%A3%E7%90%86/" title="Git设置代理" target="_blank">Git设置代理</a>
+    </li>
+    
+    <li>
+        <a href="https://blog.linuxkai.com/posts/Git/git-%E4%BF%AE%E6%94%B9%E5%88%86%E6%94%AF%E5%90%8D%E7%A7%B0/" title="Git修改分支名称" target="_blank">Git修改分支名称</a>
+    </li>
+    
+    <li>
+        <a href="https://blog.linuxkai.com/posts/Docker/docker-compose-%E4%BF%AE%E6%94%B9%E5%AE%B9%E5%99%A8%E6%97%B6%E5%8C%BA/" title="docker-compose 修改容器时区" target="_blank">docker-compose 修改容器时区</a>
+    </li>
+    
+    <li>
+        <a href="https://blog.linuxkai.com/posts/Linux/df%E5%91%BD%E4%BB%A4hang%E4%BD%8F%E4%B8%80%E7%9B%B4%E4%B8%8D%E5%87%BA%E7%BB%93%E6%9E%9C/" title="df命令hang住，一直不出结果" target="_blank">df命令hang住，一直不出结果</a>
+    </li>
+    
+    <li>
+        <a href="https://blog.linuxkai.com/posts/Kubernetes/%E5%AE%89%E5%85%A8%E5%9C%B0%E6%B8%85%E7%A9%BA%E4%B8%80%E4%B8%AA%E8%8A%82%E7%82%B9/" title="Kubernetes集群安全地清空一个节点" target="_blank">Kubernetes集群安全地清空一个节点</a>
+    </li>
+    
+</ul>
+    </section>
+
+    
+
+    <section class="widget">
+        <h3 class="widget-title"><a href='/categories/'>分类</a></h3>
+<ul class="widget-list">
+    
+    <li><a href="https://blog.linuxkai.com/categories/Docker/">Docker (1)</a></li>
+    
+    <li><a href="https://blog.linuxkai.com/categories/Git/">Git (7)</a></li>
+    
+    <li><a href="https://blog.linuxkai.com/categories/Kubernetes/">Kubernetes (3)</a></li>
+    
+    <li><a href="https://blog.linuxkai.com/categories/Linux/">Linux (22)</a></li>
+    
+    <li><a href="https://blog.linuxkai.com/categories/Python/">Python (1)</a></li>
+    
+    <li><a href="https://blog.linuxkai.com/categories/Windows/">Windows (2)</a></li>
+    
+    <li><a href="https://blog.linuxkai.com/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/">大数据 (2)</a></li>
+    
+    <li><a href="https://blog.linuxkai.com/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库 (7)</a></li>
+    
+</ul>
+    </section>
+
+    <section class="widget">
+        <h3 class="widget-title"><a href='/tags/'>标签</a></h3>
+<div class="tagcloud">
+    
+    <a href="https://blog.linuxkai.com/tags/acme.sh/">Acme.sh</a>
+    
+    <a href="https://blog.linuxkai.com/tags/Ambari/">Ambari</a>
+    
+    <a href="https://blog.linuxkai.com/tags/APISIX/">APISIX</a>
+    
+    <a href="https://blog.linuxkai.com/tags/Bind/">Bind</a>
+    
+    <a href="https://blog.linuxkai.com/tags/CORS/">CORS</a>
+    
+    <a href="https://blog.linuxkai.com/tags/disk/">Disk</a>
+    
+    <a href="https://blog.linuxkai.com/tags/DNS/">DNS</a>
+    
+    <a href="https://blog.linuxkai.com/tags/Docker/">Docker</a>
+    
+    <a href="https://blog.linuxkai.com/tags/Elasticsearch/">Elasticsearch</a>
+    
+    <a href="https://blog.linuxkai.com/tags/ELK/">ELK</a>
+    
+    <a href="https://blog.linuxkai.com/tags/Filebeat/">Filebeat</a>
+    
+    <a href="https://blog.linuxkai.com/tags/Git/">Git</a>
+    
+    <a href="https://blog.linuxkai.com/tags/hadoop/">Hadoop</a>
+    
+    <a href="https://blog.linuxkai.com/tags/Kafka/">Kafka</a>
+    
+    <a href="https://blog.linuxkai.com/tags/Kubernetes/">Kubernetes</a>
+    
+    <a href="https://blog.linuxkai.com/tags/Linux/">Linux</a>
+    
+    <a href="https://blog.linuxkai.com/tags/Logstash/">Logstash</a>
+    
+    <a href="https://blog.linuxkai.com/tags/MongoDB/">MongoDB</a>
+    
+    <a href="https://blog.linuxkai.com/tags/MySQL/">MySQL</a>
+    
+    <a href="https://blog.linuxkai.com/tags/Nacos/">Nacos</a>
+    
+    <a href="https://blog.linuxkai.com/tags/Nexus/">Nexus</a>
+    
+    <a href="https://blog.linuxkai.com/tags/Nginx/">Nginx</a>
+    
+    <a href="https://blog.linuxkai.com/tags/Prometheus/">Prometheus</a>
+    
+    <a href="https://blog.linuxkai.com/tags/Python/">Python</a>
+    
+    <a href="https://blog.linuxkai.com/tags/Redis/">Redis</a>
+    
+    <a href="https://blog.linuxkai.com/tags/resize2fs/">Resize2fs</a>
+    
+    <a href="https://blog.linuxkai.com/tags/S3/">S3</a>
+    
+    <a href="https://blog.linuxkai.com/tags/SSL/">SSL</a>
+    
+    <a href="https://blog.linuxkai.com/tags/Supervisor/">Supervisor</a>
+    
+    <a href="https://blog.linuxkai.com/tags/Windows/">Windows</a>
+    
+    <a href="https://blog.linuxkai.com/tags/ZK/">ZK</a>
+    
+</div>
+    </section>
+
+    
+<section class="widget">
+    <h3 class="widget-title">友情链接</h3>
+    <ul class="widget-list">
+        
+        <li>
+            <a target="_blank" href="https://github.com/linuxkai" title="Linuxkai的Github">Linuxkai的Github</a>
+        </li>
+        
+    </ul>
+</section>
+
+
+    <section class="widget">
+        <h3 class="widget-title">其它</h3>
+        <ul class="widget-list">
+            <li><a href="https://blog.linuxkai.com/index.xml">文章 RSS</a></li>
+        </ul>
+    </section>
+</div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

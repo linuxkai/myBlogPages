@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Ambari on Linuxkai 的博客</title>
+    <link>https://blog.linuxkai.com/tags/Ambari/</link>
+    <description>Recent content in Ambari on Linuxkai 的博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <lastBuildDate>Thu, 05 Nov 2020 10:08:53 +0800</lastBuildDate>
+    <atom:link href="https://blog.linuxkai.com/tags/Ambari/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Ambari 离线安装(centos7.3)</title>
+      <link>https://blog.linuxkai.com/posts/%E5%A4%A7%E6%95%B0%E6%8D%AE/ambari-%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85centos7.3/</link>
+      <pubDate>Thu, 05 Nov 2020 10:08:53 +0800</pubDate>
+      <guid>https://blog.linuxkai.com/posts/%E5%A4%A7%E6%95%B0%E6%8D%AE/ambari-%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85centos7.3/</guid>
+      <description>Ambari 离线安装(centos7.3) 前期准备 配置主机hosts(每台机器都要配置/etc/hosts) 192.168.111.65 ambari-65 192.168.111.66 ambari-66 192.168.111.67 ambari-67 SSH免密登录配置 ssh-copy-id -i ~/.ssh/id_rsa.pub root@bd02 ssh-copy-id -i ~/.ssh/id_rsa.pub root@bd03 关闭及禁止防火墙 systemctl stop firewalld.service systemctl disable firewalld.service 关闭SELinux # /etc/sysconfig/selinux #修改</description>
+    </item>
+  </channel>
+</rss>

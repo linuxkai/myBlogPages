@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Nginx on Linuxkai 的博客</title>
+    <link>https://blog.linuxkai.com/tags/Nginx/</link>
+    <description>Recent content in Nginx on Linuxkai 的博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <lastBuildDate>Wed, 20 Jul 2022 14:09:16 +0800</lastBuildDate>
+    <atom:link href="https://blog.linuxkai.com/tags/Nginx/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Nginx  add_header</title>
+      <link>https://blog.linuxkai.com/posts/Linux/Nginx-add_header/</link>
+      <pubDate>Wed, 20 Jul 2022 14:09:16 +0800</pubDate>
+      <guid>https://blog.linuxkai.com/posts/Linux/Nginx-add_header/</guid>
+      <description>X-Frame-Options 用来给浏览器指示允许一个页面可否在 、、 或者 中展现的标记。站点可以通过确保网站没有被嵌入到别人的站点里面，从而避免点击劫持攻击 语法 # http,server,location X-Frame-Options: DENY X-Frame-Options: SAMEORIGIN DENY: 表示该页面不允许在 frame 中展示，即便是在相同域名的页面中嵌套</description>
+    </item>
+    <item>
+      <title>Nginx反向代理WebSocket</title>
+      <link>https://blog.linuxkai.com/posts/Linux/Nginx%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86WebSocket/</link>
+      <pubDate>Mon, 10 Jan 2022 16:31:16 +0800</pubDate>
+      <guid>https://blog.linuxkai.com/posts/Linux/Nginx%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86WebSocket/</guid>
+      <description>nginx添加配置文件websocket.conf 下面文件的domain, upstream,ssl根据自己情况修改 map $http_upgrade $connection_upgrade { default upgrade; &amp;#39;&amp;#39; close; } upstream websocket { server localhost:8282; # appserver_ip:ws_port } server { listen 80; server_name websocket.abc.com; location / { proxy_pass http://websocket; proxy_read_timeout 300s; proxy_send_timeout 300s; proxy_set_header Host $host; proxy_set_header X-Real-IP $remote_addr; proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for; proxy_http_version 1.1;</description>
+    </item>
+    <item>
+      <title>Nginx Invalid UTF-8 sequence in header value</title>
+      <link>https://blog.linuxkai.com/posts/Linux/Nginx-Invalid-UTF-8-sequence-in-header-value/</link>
+      <pubDate>Sat, 09 Jan 2021 23:44:01 +0800</pubDate>
+      <guid>https://blog.linuxkai.com/posts/Linux/Nginx-Invalid-UTF-8-sequence-in-header-value/</guid>
+      <description>failed: Invalid UTF-8 sequence in header value 解决方式 nginx.conf里添加： server_tag &amp;#34;apache&amp;#34;;</description>
+    </item>
+    <item>
+      <title>nginx 添加 auth 认证</title>
+      <link>https://blog.linuxkai.com/posts/Linux/Nginx-%E6%B7%BB%E5%8A%A0-auth-%E8%AE%A4%E8%AF%81/</link>
+      <pubDate>Wed, 30 Dec 2020 13:48:51 +0800</pubDate>
+      <guid>https://blog.linuxkai.com/posts/Linux/Nginx-%E6%B7%BB%E5%8A%A0-auth-%E8%AE%A4%E8%AF%81/</guid>
+      <description>安装 htpasswd # RHEL / CentOS / Oracle Linux yum -y install httpd-tools # Debian，Ubuntu apt -y install apache2-utils 修改 nginx 的 server 配置文件,添加如下两句 auth_basic &amp;#34;User Authentication&amp;#34;; # 登录时显示的字符 auth_basic_user_file conf/htpasswd.db; 示例： server { ... auth_basic &amp;#34;User Authentication&amp;#34;; auth_basic_user_file conf/htpasswd.db; location /public/ { auth_basic off; } } 生成密码 -c 代表是新建 htpasswd.db 文件，如果有就不用</description>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>ELK on Linuxkai 的博客</title>
+    <link>https://blog.linuxkai.com/tags/ELK/</link>
+    <description>Recent content in ELK on Linuxkai 的博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <lastBuildDate>Wed, 08 Jan 2020 10:21:21 +0800</lastBuildDate>
+    <atom:link href="https://blog.linuxkai.com/tags/ELK/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>ELK安装</title>
+      <link>https://blog.linuxkai.com/posts/Linux/ELK%E5%AE%89%E8%A3%85/</link>
+      <pubDate>Wed, 08 Jan 2020 10:21:21 +0800</pubDate>
+      <guid>https://blog.linuxkai.com/posts/Linux/ELK%E5%AE%89%E8%A3%85/</guid>
+      <description>配置yum源 elasticsearch [elasticsearch] name=Elasticsearch repository for 7.x packages baseurl=https://artifacts.elastic.co/packages/7.x/yum gpgcheck=1 gpgkey=https://artifacts.elastic.co/GPG-KEY-elasticsearch enabled=0 autorefresh=1 type=rpm-md kibana [kibana-7.x] name=Kibana repository for 7.x packages baseurl=https://artifacts.elastic.co/packages/7.x/yum gpgcheck=1 gpgkey=https://artifacts.elastic.co/GPG-KEY-elasticsearch enabled=1 autorefresh=1 type=rpm-md logstash [logstash-7.x] name=Elastic repository for 7.x packages baseurl=https://artifacts.elastic.co/packages/7.x/yum gpgcheck=1 gpgkey=https://artifacts.elastic.co/GPG-KEY-elasticsearch enabled=1 autorefresh=1 type=rpm-md 安装 sudo yum install elasticsearch sudo yum install kibana sudo yum install logstash 启动 systemctl start elasticsearch systemctl start kibana systemctl start logstash docker 安装 使用官方docker 仓库 注：使用官方的，比较慢，老是超</description>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Acme.sh on Linuxkai 的博客</title>
+    <link>https://blog.linuxkai.com/tags/acme.sh/</link>
+    <description>Recent content in Acme.sh on Linuxkai 的博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <lastBuildDate>Mon, 06 Jun 2022 18:02:37 +0800</lastBuildDate>
+    <atom:link href="https://blog.linuxkai.com/tags/acme.sh/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>基于 acme.sh 自动更新 APISIX SSL 证书</title>
+      <link>https://blog.linuxkai.com/posts/Linux/%E5%9F%BA%E4%BA%8E-acme.sh-%E8%87%AA%E5%8A%A8%E6%9B%B4%E6%96%B0-APISIX-SSL-%E8%AF%81%E4%B9%A6/</link>
+      <pubDate>Mon, 06 Jun 2022 18:02:37 +0800</pubDate>
+      <guid>https://blog.linuxkai.com/posts/Linux/%E5%9F%BA%E4%BA%8E-acme.sh-%E8%87%AA%E5%8A%A8%E6%9B%B4%E6%96%B0-APISIX-SSL-%E8%AF%81%E4%B9%A6/</guid>
+      <description>基于 acme.sh 自动更新 APISIX SSL 证书 安装 openssl , jq 略 安装acme.sh curl https://get.acme.sh | sh -s email=my@example.com my@example.com 替换成自己的邮箱，用于ZeroSSL.com 账号注册，acme.sh 默认CA 已经更新为ZeroSSL了，而ZeroSSL 需要邮箱地址注</description>
+    </item>
+  </channel>
+</rss>

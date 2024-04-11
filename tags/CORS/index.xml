@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>CORS on Linuxkai 的博客</title>
+    <link>https://blog.linuxkai.com/tags/CORS/</link>
+    <description>Recent content in CORS on Linuxkai 的博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <lastBuildDate>Mon, 07 Feb 2022 17:09:37 +0800</lastBuildDate>
+    <atom:link href="https://blog.linuxkai.com/tags/CORS/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>跨域问题</title>
+      <link>https://blog.linuxkai.com/posts/Linux/%E8%B7%A8%E5%9F%9F%E9%97%AE%E9%A2%98/</link>
+      <pubDate>Mon, 07 Feb 2022 17:09:37 +0800</pubDate>
+      <guid>https://blog.linuxkai.com/posts/Linux/%E8%B7%A8%E5%9F%9F%E9%97%AE%E9%A2%98/</guid>
+      <description>跨域问题 产生跨域的原因 浏览器的限制 跨域 XHR(XMLHttpRequest)请求 解决思路 JSONP nginx 代理 浏览器禁止检查跨域 浏览器禁止检查跨域(以 chrome 为例) 彻底关闭 chrome 使用命令行启动 mac open -a &amp;#34;Google Chrome&amp;#34; --args --disable-web-security --user-data-dir windows /PATH_TO/chrome.exe --args --disable-web-security --user-data-dir # 也可</description>
+    </item>
+  </channel>
+</rss>

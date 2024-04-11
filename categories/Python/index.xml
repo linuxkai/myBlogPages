@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Python on Linuxkai 的博客</title>
+    <link>https://blog.linuxkai.com/categories/Python/</link>
+    <description>Recent content in Python on Linuxkai 的博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <lastBuildDate>Fri, 24 Dec 2021 14:39:09 +0800</lastBuildDate>
+    <atom:link href="https://blog.linuxkai.com/categories/Python/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Python获取本机IP地址</title>
+      <link>https://blog.linuxkai.com/posts/Python/python-%E8%8E%B7%E5%8F%96%E6%9C%AC%E6%9C%BA-ip/</link>
+      <pubDate>Fri, 24 Dec 2021 14:39:09 +0800</pubDate>
+      <guid>https://blog.linuxkai.com/posts/Python/python-%E8%8E%B7%E5%8F%96%E6%9C%AC%E6%9C%BA-ip/</guid>
+      <description>Python 获取本机 ip地址 其它方法如果有多个 ip或者是装了 docker 后,产生多个虚拟的网卡后, 得到的结果 就不准确了 import socket import uuid def get_host_ip(): &amp;#34;&amp;#34;&amp;#34; 查询本机ip地址 :return: ip &amp;#34;&amp;#34;&amp;#34; ip = str(uuid.uuid1()).replace(&amp;#39;-&amp;#39;, &amp;#39;&amp;#39;) try: s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM) s.connect((&amp;#39;8.8.8.8&amp;#39;, 80)) ip = s.getsockname()[0] except: pass finally: s.close() return ip</description>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Kafka on Linuxkai 的博客</title>
+    <link>https://blog.linuxkai.com/tags/Kafka/</link>
+    <description>Recent content in Kafka on Linuxkai 的博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <lastBuildDate>Sat, 13 Nov 2021 23:41:24 +0800</lastBuildDate>
+    <atom:link href="https://blog.linuxkai.com/tags/Kafka/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Kafka 常用命令</title>
+      <link>https://blog.linuxkai.com/posts/Linux/Kafka-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</link>
+      <pubDate>Sat, 13 Nov 2021 23:41:24 +0800</pubDate>
+      <guid>https://blog.linuxkai.com/posts/Linux/Kafka-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</guid>
+      <description>TOPIC 说明： Kafka使用版本：2.12-0.10.2.2(instruction 服务使用的此版本) kafka2.2.0版本以上, 使用--bootstrap-server 127.0.0.1:9092 连接，--zookeepker 1</description>
+    </item>
+    <item>
+      <title>ZK Kafka集群添加认证</title>
+      <link>https://blog.linuxkai.com/posts/Linux/ZK-Kafka%E9%9B%86%E7%BE%A4%E6%B7%BB%E5%8A%A0%E8%AE%A4%E8%AF%81/</link>
+      <pubDate>Sat, 09 Jan 2021 23:30:24 +0800</pubDate>
+      <guid>https://blog.linuxkai.com/posts/Linux/ZK-Kafka%E9%9B%86%E7%BE%A4%E6%B7%BB%E5%8A%A0%E8%AE%A4%E8%AF%81/</guid>
+      <description>本文参考: https://www.cnblogs.com/ilovena/p/10123516.html 环境说明： 软件版本: kafka_2.12-2.6.0.tgz(本文使用的是kafka自带的zk) 系统版本: CentOS 7.3.1611 机器: 192.168.111.65 192.168.111.66 192.168.111.67 zookeeper配置 为zookeeper添加SASL支持，在配置</description>
+    </item>
+  </channel>
+</rss>

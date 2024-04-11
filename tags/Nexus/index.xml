@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Nexus on Linuxkai 的博客</title>
+    <link>https://blog.linuxkai.com/tags/Nexus/</link>
+    <description>Recent content in Nexus on Linuxkai 的博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <lastBuildDate>Fri, 26 Nov 2021 23:39:33 +0800</lastBuildDate>
+    <atom:link href="https://blog.linuxkai.com/tags/Nexus/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Nexus安装配置</title>
+      <link>https://blog.linuxkai.com/posts/Linux/Nexus%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/</link>
+      <pubDate>Fri, 26 Nov 2021 23:39:33 +0800</pubDate>
+      <guid>https://blog.linuxkai.com/posts/Linux/Nexus%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/</guid>
+      <description>官方文档：https://help.sonatype.com/repomanager3/download/download-archives&amp;mdash;repository-manager-3 版本说</description>
+    </item>
+  </channel>
+</rss>

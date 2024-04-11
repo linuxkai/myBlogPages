@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Disk on Linuxkai 的博客</title>
+    <link>https://blog.linuxkai.com/tags/disk/</link>
+    <description>Recent content in Disk on Linuxkai 的博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <lastBuildDate>Mon, 07 Feb 2022 10:34:29 +0800</lastBuildDate>
+    <atom:link href="https://blog.linuxkai.com/tags/disk/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>云主机磁盘扩容</title>
+      <link>https://blog.linuxkai.com/posts/Linux/%E4%BA%91%E4%B8%BB%E6%9C%BA%E7%A3%81%E7%9B%98%E6%89%A9%E5%AE%B9/</link>
+      <pubDate>Mon, 07 Feb 2022 10:34:29 +0800</pubDate>
+      <guid>https://blog.linuxkai.com/posts/Linux/%E4%BA%91%E4%B8%BB%E6%9C%BA%E7%A3%81%E7%9B%98%E6%89%A9%E5%AE%B9/</guid>
+      <description>磁盘扩容 有分区 root@aws-wlomni-jp-52-154:~# growpart /dev/xvdf 1 CHANGED: partition=1 start=2048 old: size=1048573919 end=1048575967 new: size=2147481567,end=2147483615 root@aws-wlomni-jp-52-154:~# root@aws-wlomni-jp-52-154:~# resize2fs /dev/xvdf1 resize2fs 1.42.13 (17-May-2015) Filesystem at /dev/xvdf1 is mounted on /databackup; on-line resizing required old_desc_blocks = 32, new_desc_blocks = 64 The filesystem on /dev/xvdf1 is now 268435195 (4k) blocks long. 无分区 resize2fs /dev/xvdf1</description>
+    </item>
+  </channel>
+</rss>

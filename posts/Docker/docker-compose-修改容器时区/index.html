@@ -1,0 +1,606 @@
+<!doctype html>
+<html lang="zh">
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    
+
+    <title>docker-compose 修改容器时区 | Linuxkai 的博客</title>
+    <meta property="og:title" content="docker-compose 修改容器时区 - Linuxkai 的博客">
+    <meta property="og:type" content="article">
+    
+    <meta property="article:published_time" content='2022-09-08T17:12:40&#43;08:00'>
+    
+    
+    <meta property="article:modified_time" content='2022-09-08T17:12:40&#43;08:00'>
+    
+    <meta name="Keywords" content="运维笔记,Python开发,,Go语言,公众号,小程序">
+    <meta name="description" content="docker-compose 修改容器时区">
+    
+    <meta name="author" content="">
+    <meta property="og:url" content="https://blog.linuxkai.com/posts/Docker/docker-compose-%E4%BF%AE%E6%94%B9%E5%AE%B9%E5%99%A8%E6%97%B6%E5%8C%BA/">
+    <link rel="shortcut icon" href='/favicon.ico'  type="image/x-icon">
+
+    <link rel="stylesheet" href='/css/normalize.css'>
+    <link rel="stylesheet" href='/css/style.css'>
+    <script type="text/javascript" src="//cdn.bootcdn.net/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    
+
+    
+    <script type="text/javascript">
+        var _hmt = _hmt || [];
+        (function () {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?b288dcb7926623147c327f43aa44d284";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+    
+
+    
+
+    
+    
+</head>
+
+<body>
+    <header id="header" class="clearfix">
+    <div class="container">
+        <div class="col-group">
+            <div class="site-name ">
+                
+                    <a id="logo" href="https://blog.linuxkai.com/">
+                        Linuxkai 的博客
+                    </a>
+                
+                <p class="description">运维笔记,Python开发,Golang语言</p>
+            </div>
+            <div>
+                <nav id="nav-menu" class="clearfix">
+                    <a class="current" href="https://blog.linuxkai.com/">首页</a>
+                    
+                    <a  href="https://blog.linuxkai.com/archives/" title="归档">归档</a>
+                    
+                    <a  href="https://blog.linuxkai.com/about/" title="关于">关于</a>
+                    
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>
+
+    <div id="body">
+        <div class="container">
+            <div class="col-group">
+
+                <div class="col-8" id="main">
+                    
+<div class="res-cons">
+    <style type="text/css">
+    .post-toc {
+        position: fixed;
+        width: 200px;
+        margin-left: -210px;
+        padding: 5px 10px;
+        font-family: Athelas, STHeiti, Microsoft Yahei, serif;
+        font-size: 12px;
+        border: 1px solid rgba(0, 0, 0, .07);
+        border-radius: 5px;
+        background-color: rgba(255, 255, 255, 0.98);
+        background-clip: padding-box;
+        -webkit-box-shadow: 1px 1px 2px rgba(0, 0, 0, .125);
+        box-shadow: 1px 1px 2px rgba(0, 0, 0, .125);
+        word-wrap: break-word;
+        white-space: nowrap;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        z-index: 999;
+        cursor: pointer;
+        max-height: 70%;
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+
+    .post-toc .post-toc-title {
+        width: 100%;
+        margin: 0 auto;
+        font-size: 20px;
+        font-weight: 400;
+        text-transform: uppercase;
+        text-align: center;
+    }
+
+    .post-toc .post-toc-content {
+        font-size: 15px;
+    }
+
+    .post-toc .post-toc-content>nav>ul {
+        margin: 10px 0;
+    }
+
+    .post-toc .post-toc-content ul {
+        padding-left: 20px;
+        list-style: square;
+        margin: 0.5em;
+        line-height: 1.8em;
+    }
+
+    .post-toc .post-toc-content ul ul {
+        padding-left: 5px;
+         
+    }
+
+    @media print,
+    screen and (max-width:1057px) {
+        .post-toc {
+            display: none;
+        }
+    }
+</style>
+<div class="post-toc" style="position: absolute; top: 188px;">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#docker-compose-修改容器时区">docker-compose 修改容器时区</a>
+      <ul>
+        <li><a href="#方法1">方法1</a></li>
+        <li><a href="#方法2">方法2</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </div>
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        var postToc = $(".post-toc");
+        if (postToc.length) {
+            var leftPos = $("#main").offset().left;
+            if (leftPos < 220) {
+                postToc.css({ "width": leftPos - 10, "margin-left": (0 - leftPos) })
+            }
+
+            var t = postToc.offset().top - 20,
+                a = {
+                    start: {
+                        position: "absolute",
+                        top: t
+                    },
+                    process: {
+                        position: "fixed",
+                        top: 20
+                    },
+                };
+            $(window).scroll(function () {
+                var e = $(window).scrollTop();
+                e < t ? postToc.css(a.start) : postToc.css(a.process)
+            })
+        }
+
+        if ($("#TableOfContents").children().length < 1) {
+            $(".post-toc").remove();
+        }
+    })
+</script>
+    <article class="post">
+        <header>
+            <h1 class="post-title">docker-compose 修改容器时区</h1>
+        </header>
+        
+  <time datetime="2022-09-08T09:12:40Z" class="post-meta meta-date dt-published">
+    发布日期: 2022年9月8日
+  </time>
+
+
+  <time datetime="2022-09-08T09:12:40Z" class="post-meta meta-updated">
+    | 更新日期: 2022年9月8日
+  </time>
+
+
+<div class="post-meta meta-category">
+  <span>&nbsp;| 文章分类: </span>
+  
+    <a href='/categories/Docker' target="_blank">Docker</a>
+  
+</div>
+
+
+        
+        <div class="post-meta">
+            <span id="busuanzi_container_page_pv">&nbsp;|
+                <span id="busuanzi_value_page_pv"></span> <span>阅读</span>
+            </span>
+        </div>
+        
+        
+        <div class="clear" style="display: none">
+            <div class="toc-article">
+                <div class="toc-title">文章目录</div>
+            </div>
+        </div>
+        
+        <div class="post-content">
+            <h2 id="docker-compose-修改容器时区">docker-compose 修改容器时区</h2>
+<h3 id="方法1">方法1</h3>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#cba6f7">environment</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#cba6f7">TZ</span>: Asia/Shanghai
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span>或者
+</span></span><span style="display:flex;"><span><span style="color:#cba6f7">environment</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#cba6f7">TZ</span>: Asia/Shanghai
+</span></span></code></pre></div><h3 id="方法2">方法2</h3>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#cba6f7">environment</span>:
+</span></span><span style="display:flex;"><span>  - SET_CONTAINER_TIMEZONE=true
+</span></span><span style="display:flex;"><span>  - CONTAINER_TIMEZONE=Asia/Shanghai
+</span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic">#或者这样写</span>
+</span></span><span style="display:flex;"><span><span style="color:#cba6f7">environment</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#cba6f7">SET_CONTAINER_TIMEZONE</span>: <span style="color:#fab387">true</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#cba6f7">CONTAINER_TIMEZONE</span>: Asia/Shanghai
+</span></span></code></pre></div>
+        </div>
+
+        
+
+
+        
+
+<div class="post-archive">
+    <h2>相关文章</h2>
+    <ul class="listing">
+        
+        <li><a href="/posts/Linux/df%E5%91%BD%E4%BB%A4hang%E4%BD%8F%E4%B8%80%E7%9B%B4%E4%B8%8D%E5%87%BA%E7%BB%93%E6%9E%9C/">df命令hang住，一直不出结果</a></li>
+        
+        <li><a href="/posts/Kubernetes/%E5%AE%89%E5%85%A8%E5%9C%B0%E6%B8%85%E7%A9%BA%E4%B8%80%E4%B8%AA%E8%8A%82%E7%82%B9/">Kubernetes集群安全地清空一个节点</a></li>
+        
+        <li><a href="/posts/Kubernetes/k8s-update/">Kubernetes update步骤</a></li>
+        
+        <li><a href="/posts/Linux/Nginx-add_header/">Nginx  add_header</a></li>
+        
+        <li><a href="/posts/Linux/DNS-Bind%E9%85%8D%E7%BD%AE/">DNS Bind配置</a></li>
+        
+    </ul>
+</div>
+
+
+        <div class="post-meta meta-tags">
+            
+            <ul class="clearfix">
+                
+                <li><a href='/tags/Docker' target="_blank">Docker</a></li>
+                
+            </ul>
+            
+        </div>
+    </article>
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    <div id="giscus"></div>
+    <script src="https://giscus.app/client.js"
+        data-repo="linuxkai/blogComment"
+        data-repo-id="R_kgDOLr6pTw"
+        data-category="Announcements"
+        data-category-id="DIC_kwDOLr6pT84CekrB"
+        data-mapping="pathname"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position=""
+        data-theme="light"
+        data-lang="zh-CN"
+        crossorigin="anonymous"
+        async>
+    </script>
+    
+
+</div>
+
+                    <footer id="footer">
+    <div>
+        &copy; 2024 <a rel="nofollow" href="https://blog.linuxkai.com/">Linuxkai 的博客</a> 未经允许，禁止转载.
+        
+        Powered by <a rel="nofollow noreferer noopener" href="https://gohugo.io">Hugo</a>
+         &amp; <a rel="nofollow noreferer noopener" href="https://github.com/flysnow-org/maupassant-hugo">maupassant theme</a>.
+    </div>
+</footer>
+
+
+
+
+<script type="text/javascript">
+    window.MathJax = {
+        tex2jax: {
+            inlineMath: [['$', '$']],
+            processEscapes: true
+        }
+    };
+</script>
+<script src='//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+
+<a id="rocket" href="#top"></a>
+<script type="text/javascript" src='/js/totop.js?v=0.0.0' async=""></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XB3WESXB7W"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-XB3WESXB7W', { 'anonymize_ip': false });
+}
+</script>
+
+<style type="text/css">
+div.highlight {
+    position: relative;
+    margin: 1em 0px;
+}
+
+.copy-code {
+    display: none;
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    color: rgba(255, 255, 255, 0.8);
+    background: rgba(78, 78, 78, 0.8);
+    border-radius: var(--radius);
+    padding: 0 5px;
+    font: inherit;
+    user-select: none;
+    cursor: pointer;
+    border: 0;
+    --radius: 8px;
+}
+
+div.highlight:hover .copy-code,pre:hover .copy-code {
+    display: block;
+}
+
+</style>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+
+
+<script type="text/javascript" src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script>
+
+
+
+
+                </div>
+
+                <div id="secondary">
+    <section class="widget">
+        <form id="search" action='https://blog.linuxkai.com/search' method="get" accept-charset="utf-8" target="_blank" _lpchecked="1">
+      
+      <input type="text" name="q" maxlength="20" placeholder='搜索'>
+      <input type="hidden" name="sitesearch" value="https://blog.linuxkai.com/">
+      <button type="submit" class="submit icon-search"></button>
+</form>
+    </section>
+
+    <section class="widget">
+        <h3 class="widget-title">最近文章</h3>
+<ul class="widget-list">
+    
+    <li>
+        <a href="https://blog.linuxkai.com/posts/Git/git-submodule-%E6%93%8D%E4%BD%9C/" title="Git submodule操作" target="_blank">Git submodule操作</a>
+    </li>
+    
+    <li>
+        <a href="https://blog.linuxkai.com/posts/Git/Git%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93%E5%9C%B0%E5%9D%80%E5%8F%98%E6%9B%B4%E6%9C%AC%E5%9C%B0%E5%A6%82%E4%BD%95%E4%BF%AE%E6%94%B9/" title="Git远程仓库地址变更本地如何修改" target="_blank">Git远程仓库地址变更本地如何修改</a>
+    </li>
+    
+    <li>
+        <a href="https://blog.linuxkai.com/posts/Git/Git-%E4%BB%93%E5%BA%93%E8%BF%81%E7%A7%BB/" title="Git 仓库迁移" target="_blank">Git 仓库迁移</a>
+    </li>
+    
+    <li>
+        <a href="https://blog.linuxkai.com/posts/Git/Git-%E4%BF%AE%E6%94%B9%E5%B7%B2%E6%8F%90%E4%BA%A4-commit-%E7%9A%84%E4%BF%A1%E6%81%AF/" title="Git 修改已提交 commit 的信息" target="_blank">Git 修改已提交 commit 的信息</a>
+    </li>
+    
+    <li>
+        <a href="https://blog.linuxkai.com/posts/Git/Git-%E6%8A%80%E5%B7%A7/" title="Git技巧" target="_blank">Git技巧</a>
+    </li>
+    
+    <li>
+        <a href="https://blog.linuxkai.com/posts/Git/git-%E8%AE%BE%E7%BD%AE%E4%BB%A3%E7%90%86/" title="Git设置代理" target="_blank">Git设置代理</a>
+    </li>
+    
+    <li>
+        <a href="https://blog.linuxkai.com/posts/Git/git-%E4%BF%AE%E6%94%B9%E5%88%86%E6%94%AF%E5%90%8D%E7%A7%B0/" title="Git修改分支名称" target="_blank">Git修改分支名称</a>
+    </li>
+    
+    <li>
+        <a href="https://blog.linuxkai.com/posts/Docker/docker-compose-%E4%BF%AE%E6%94%B9%E5%AE%B9%E5%99%A8%E6%97%B6%E5%8C%BA/" title="docker-compose 修改容器时区" target="_blank">docker-compose 修改容器时区</a>
+    </li>
+    
+    <li>
+        <a href="https://blog.linuxkai.com/posts/Linux/df%E5%91%BD%E4%BB%A4hang%E4%BD%8F%E4%B8%80%E7%9B%B4%E4%B8%8D%E5%87%BA%E7%BB%93%E6%9E%9C/" title="df命令hang住，一直不出结果" target="_blank">df命令hang住，一直不出结果</a>
+    </li>
+    
+    <li>
+        <a href="https://blog.linuxkai.com/posts/Kubernetes/%E5%AE%89%E5%85%A8%E5%9C%B0%E6%B8%85%E7%A9%BA%E4%B8%80%E4%B8%AA%E8%8A%82%E7%82%B9/" title="Kubernetes集群安全地清空一个节点" target="_blank">Kubernetes集群安全地清空一个节点</a>
+    </li>
+    
+</ul>
+    </section>
+
+    
+
+    <section class="widget">
+        <h3 class="widget-title"><a href='/categories/'>分类</a></h3>
+<ul class="widget-list">
+    
+    <li><a href="https://blog.linuxkai.com/categories/Docker/">Docker (1)</a></li>
+    
+    <li><a href="https://blog.linuxkai.com/categories/Git/">Git (7)</a></li>
+    
+    <li><a href="https://blog.linuxkai.com/categories/Kubernetes/">Kubernetes (3)</a></li>
+    
+    <li><a href="https://blog.linuxkai.com/categories/Linux/">Linux (22)</a></li>
+    
+    <li><a href="https://blog.linuxkai.com/categories/Python/">Python (1)</a></li>
+    
+    <li><a href="https://blog.linuxkai.com/categories/Windows/">Windows (2)</a></li>
+    
+    <li><a href="https://blog.linuxkai.com/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/">大数据 (2)</a></li>
+    
+    <li><a href="https://blog.linuxkai.com/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库 (7)</a></li>
+    
+</ul>
+    </section>
+
+    <section class="widget">
+        <h3 class="widget-title"><a href='/tags/'>标签</a></h3>
+<div class="tagcloud">
+    
+    <a href="https://blog.linuxkai.com/tags/acme.sh/">Acme.sh</a>
+    
+    <a href="https://blog.linuxkai.com/tags/Ambari/">Ambari</a>
+    
+    <a href="https://blog.linuxkai.com/tags/APISIX/">APISIX</a>
+    
+    <a href="https://blog.linuxkai.com/tags/Bind/">Bind</a>
+    
+    <a href="https://blog.linuxkai.com/tags/CORS/">CORS</a>
+    
+    <a href="https://blog.linuxkai.com/tags/disk/">Disk</a>
+    
+    <a href="https://blog.linuxkai.com/tags/DNS/">DNS</a>
+    
+    <a href="https://blog.linuxkai.com/tags/Docker/">Docker</a>
+    
+    <a href="https://blog.linuxkai.com/tags/Elasticsearch/">Elasticsearch</a>
+    
+    <a href="https://blog.linuxkai.com/tags/ELK/">ELK</a>
+    
+    <a href="https://blog.linuxkai.com/tags/Filebeat/">Filebeat</a>
+    
+    <a href="https://blog.linuxkai.com/tags/Git/">Git</a>
+    
+    <a href="https://blog.linuxkai.com/tags/hadoop/">Hadoop</a>
+    
+    <a href="https://blog.linuxkai.com/tags/Kafka/">Kafka</a>
+    
+    <a href="https://blog.linuxkai.com/tags/Kubernetes/">Kubernetes</a>
+    
+    <a href="https://blog.linuxkai.com/tags/Linux/">Linux</a>
+    
+    <a href="https://blog.linuxkai.com/tags/Logstash/">Logstash</a>
+    
+    <a href="https://blog.linuxkai.com/tags/MongoDB/">MongoDB</a>
+    
+    <a href="https://blog.linuxkai.com/tags/MySQL/">MySQL</a>
+    
+    <a href="https://blog.linuxkai.com/tags/Nacos/">Nacos</a>
+    
+    <a href="https://blog.linuxkai.com/tags/Nexus/">Nexus</a>
+    
+    <a href="https://blog.linuxkai.com/tags/Nginx/">Nginx</a>
+    
+    <a href="https://blog.linuxkai.com/tags/Prometheus/">Prometheus</a>
+    
+    <a href="https://blog.linuxkai.com/tags/Python/">Python</a>
+    
+    <a href="https://blog.linuxkai.com/tags/Redis/">Redis</a>
+    
+    <a href="https://blog.linuxkai.com/tags/resize2fs/">Resize2fs</a>
+    
+    <a href="https://blog.linuxkai.com/tags/S3/">S3</a>
+    
+    <a href="https://blog.linuxkai.com/tags/SSL/">SSL</a>
+    
+    <a href="https://blog.linuxkai.com/tags/Supervisor/">Supervisor</a>
+    
+    <a href="https://blog.linuxkai.com/tags/Windows/">Windows</a>
+    
+    <a href="https://blog.linuxkai.com/tags/ZK/">ZK</a>
+    
+</div>
+    </section>
+
+    
+<section class="widget">
+    <h3 class="widget-title">友情链接</h3>
+    <ul class="widget-list">
+        
+        <li>
+            <a target="_blank" href="https://github.com/linuxkai" title="Linuxkai的Github">Linuxkai的Github</a>
+        </li>
+        
+    </ul>
+</section>
+
+
+    <section class="widget">
+        <h3 class="widget-title">其它</h3>
+        <ul class="widget-list">
+            <li><a href="https://blog.linuxkai.com/index.xml">文章 RSS</a></li>
+        </ul>
+    </section>
+</div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

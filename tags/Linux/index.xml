@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Linux on Linuxkai 的博客</title>
+    <link>https://blog.linuxkai.com/tags/Linux/</link>
+    <description>Recent content in Linux on Linuxkai 的博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <lastBuildDate>Wed, 07 Sep 2022 11:14:05 +0800</lastBuildDate>
+    <atom:link href="https://blog.linuxkai.com/tags/Linux/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>df命令hang住，一直不出结果</title>
+      <link>https://blog.linuxkai.com/posts/Linux/df%E5%91%BD%E4%BB%A4hang%E4%BD%8F%E4%B8%80%E7%9B%B4%E4%B8%8D%E5%87%BA%E7%BB%93%E6%9E%9C/</link>
+      <pubDate>Wed, 07 Sep 2022 11:14:05 +0800</pubDate>
+      <guid>https://blog.linuxkai.com/posts/Linux/df%E5%91%BD%E4%BB%A4hang%E4%BD%8F%E4%B8%80%E7%9B%B4%E4%B8%8D%E5%87%BA%E7%BB%93%E6%9E%9C/</guid>
+      <description>说明 当使用 df 命令查看磁盘空间时被 hang 住，不显示结果 查找问题 通过strace命令查看系统调用 execve(&amp;#34;/usr/bin/df&amp;#34;, [&amp;#34;df&amp;#34;], 0x7ffcdb37ef80 /* 25 vars */) = 0 brk(NULL) = 0xcb9000 mmap(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0x7fbfdc740000 access(&amp;#34;/etc/ld.so.preload&amp;#34;, R_OK) = -1 ENOENT (没有那个文件或目录) open(&amp;#34;/etc/ld.so.cache&amp;#34;, O_RDONLY|O_CLOEXEC) = 3 fstat(3, {st_mode=S_IFREG|0644, st_size=60184, ...}) = 0 mmap(NULL, 60184, PROT_READ, MAP_PRIVATE, 3, 0) = 0x7fbfdc731000 close(3) =</description>
+    </item>
+    <item>
+      <title>yum安装mysql5.7</title>
+      <link>https://blog.linuxkai.com/posts/%E6%95%B0%E6%8D%AE%E5%BA%93/yum%E5%AE%89%E8%A3%85mysql5.7/</link>
+      <pubDate>Thu, 10 Dec 2020 10:23:48 +0800</pubDate>
+      <guid>https://blog.linuxkai.com/posts/%E6%95%B0%E6%8D%AE%E5%BA%93/yum%E5%AE%89%E8%A3%85mysql5.7/</guid>
+      <description>yum安装mysql5.7 下载mysql官方yum源 sudo wget https://repo.mysql.com//mysql80-community-release-el7-3.noarch.rpm 安装yum源 sudo yum -y localinstall mysql80-community-release-el7-3.noarch.rpm 禁用掉8.0版本，开启5.7版本(官方默认开启的是8.0版本) #查看当前mysql版本哪个是启动 sudo yum repolist all | grep mysql #后面显示</description>
+    </item>
+  </channel>
+</rss>

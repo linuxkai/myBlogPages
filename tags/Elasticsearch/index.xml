@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Elasticsearch on Linuxkai 的博客</title>
+    <link>https://blog.linuxkai.com/tags/Elasticsearch/</link>
+    <description>Recent content in Elasticsearch on Linuxkai 的博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <lastBuildDate>Thu, 29 Jul 2021 17:21:28 +0800</lastBuildDate>
+    <atom:link href="https://blog.linuxkai.com/tags/Elasticsearch/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Elasticsearch接入LDAP</title>
+      <link>https://blog.linuxkai.com/posts/Linux/Elasticsearch%E6%8E%A5%E5%85%A5ldap/</link>
+      <pubDate>Thu, 29 Jul 2021 17:21:28 +0800</pubDate>
+      <guid>https://blog.linuxkai.com/posts/Linux/Elasticsearch%E6%8E%A5%E5%85%A5ldap/</guid>
+      <description>说明： elasticsearch版本: 7.6.1 修改elasticsearch.yml,添加如下内容，并根据自己情况做相应修改 # 使用ldap xpack: security: authc: realms: ldap: ldap1: order: 0 url: &amp;#34;ldap://192.168.0.100:389&amp;#34; user_dn_templates: - &amp;#34;uid={0},ou=People,dc=Chk,dc=com&amp;#34; group_search: base_dn: &amp;#34;dc=Chk,dc=com&amp;#34; files: role_mapping: &amp;#34;/etc/elasticsearch/role_mapping.yml&amp;#34; unmapped_groups_as_roles: false # 使用ldaps xpack: security: authc: realms: ldap:</description>
+    </item>
+    <item>
+      <title>Elasticsearch7.6.1 破解</title>
+      <link>https://blog.linuxkai.com/posts/Linux/Elasticsearch7.6.1-%E7%A0%B4%E8%A7%A3/</link>
+      <pubDate>Tue, 27 Jul 2021 23:47:39 +0800</pubDate>
+      <guid>https://blog.linuxkai.com/posts/Linux/Elasticsearch7.6.1-%E7%A0%B4%E8%A7%A3/</guid>
+      <description>教程参考：https://blog.espnlol.com/?p=504 破解过程 前期准备 准备反编译工具 破解中要用户反编译工具 luyten,根据自动环境下载相应的版本 https://github.com/deathmarine/Luyten/releases 最新版本的osx 版本不适用 macos 10.</description>
+    </item>
+    <item>
+      <title>Elasticsearch 滚动重启</title>
+      <link>https://blog.linuxkai.com/posts/Linux/Elasticsearch-%E6%BB%9A%E5%8A%A8%E9%87%8D%E5%90%AF/</link>
+      <pubDate>Sat, 09 Jan 2021 23:36:31 +0800</pubDate>
+      <guid>https://blog.linuxkai.com/posts/Linux/Elasticsearch-%E6%BB%9A%E5%8A%A8%E9%87%8D%E5%90%AF/</guid>
+      <description>全集群重启 禁用分片分配 PUT _cluster/settings { &amp;#34;persistent&amp;#34;: { &amp;#34;cluster.routing.allocation.enable&amp;#34;: &amp;#34;primaries&amp;#34; } } 关闭所有es节点 sudo systemctl stop elasticsearch # 或者 kill $(cat pid) 根据需要对es做出修改 重新启动节点 如果有专用的主节点，请先启动它，然后等待专用的主节点选举出主节点，再继续启动数据节点 查看集</description>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Windows on Linuxkai 的博客</title>
+    <link>https://blog.linuxkai.com/tags/Windows/</link>
+    <description>Recent content in Windows on Linuxkai 的博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <lastBuildDate>Thu, 25 Nov 2021 10:09:06 +0800</lastBuildDate>
+    <atom:link href="https://blog.linuxkai.com/tags/Windows/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Windows服务器查看硬件信息命令</title>
+      <link>https://blog.linuxkai.com/posts/Windows/Windows%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%9F%A5%E7%9C%8B%E7%A1%AC%E4%BB%B6%E4%BF%A1%E6%81%AF%E5%91%BD%E4%BB%A4/</link>
+      <pubDate>Thu, 25 Nov 2021 10:09:06 +0800</pubDate>
+      <guid>https://blog.linuxkai.com/posts/Windows/Windows%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%9F%A5%E7%9C%8B%E7%A1%AC%E4%BB%B6%E4%BF%A1%E6%81%AF%E5%91%BD%E4%BB%A4/</guid>
+      <description>windows服务器查看硬件信息命令 查看内存信息 查看内存详细信息 gwmi -class win32_physicalmemory 查看内存列表信息 wmic wmic:root\cli&amp;gt;memorychip get * 查看内存最大容量和插槽数量 gwmi -class win32_physicalmemoryarray wmic wmic:root\cli&amp;gt;path Win32_PhysicalMemoryArray get MemoryDevices 查看CPU信息 查看CPU详细信息 gwmi -class win32_proccessor 查看物理CPU个数 @(gwmi -class win32_processor).count 查</description>
+    </item>
+    <item>
+      <title>Windows下使用bat设置http代理</title>
+      <link>https://blog.linuxkai.com/posts/Windows/Windows%E4%B8%8B%E4%BD%BF%E7%94%A8bat%E8%AE%BE%E7%BD%AEhttp%E4%BB%A3%E7%90%86/</link>
+      <pubDate>Thu, 25 Nov 2021 10:06:11 +0800</pubDate>
+      <guid>https://blog.linuxkai.com/posts/Windows/Windows%E4%B8%8B%E4%BD%BF%E7%94%A8bat%E8%AE%BE%E7%BD%AEhttp%E4%BB%A3%E7%90%86/</guid>
+      <description>Windows下使用bat设置http代理 设置 @echo off echo 开始设置http代理.......... echo 现在程序将关闭您的浏览器。。。。。 taskkill /f /im iexplore.exe reg add &amp;#34;HKCU\Software\Microsoft\Windows\CurrentVersion\Internet Settings&amp;#34; /v ProxyEnable /t REG_DWORD /d 1 /f reg add &amp;#34;HKCU\Software\Microsoft\Windows\CurrentVersion\Internet Settings&amp;#34; /v ProxyServer /d &amp;#34;123.123.123.123:1111&amp;#34; /f color 2 echo 已成功设置代理服务</description>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,371 @@
+<!doctype html>
+<html lang="zh">
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    
+
+    <title>Windows | Linuxkai 的博客</title>
+    <meta property="og:title" content="Windows - Linuxkai 的博客">
+    <meta property="og:type" content="article">
+    
+    
+    <meta name="Keywords" content="运维笔记,Python开发,,Go语言,公众号,小程序">
+    <meta name="description" content="Windows">
+    
+    <meta name="author" content="">
+    <meta property="og:url" content="https://blog.linuxkai.com/categories/Windows/">
+    <link rel="shortcut icon" href='/favicon.ico'  type="image/x-icon">
+
+    <link rel="stylesheet" href='/css/normalize.css'>
+    <link rel="stylesheet" href='/css/style.css'>
+    <link rel="alternate" type="application/rss+xml" href="https://blog.linuxkai.com/categories/Windows/index.xml" title="Linuxkai 的博客" />
+    <script type="text/javascript" src="//cdn.bootcdn.net/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    
+
+    
+    <script type="text/javascript">
+        var _hmt = _hmt || [];
+        (function () {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?b288dcb7926623147c327f43aa44d284";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+    
+
+    
+
+    
+    
+</head>
+
+<body>
+    <header id="header" class="clearfix">
+    <div class="container">
+        <div class="col-group">
+            <div class="site-name ">
+                
+                    <a id="logo" href="https://blog.linuxkai.com/">
+                        Linuxkai 的博客
+                    </a>
+                
+                <p class="description">运维笔记,Python开发,Golang语言</p>
+            </div>
+            <div>
+                <nav id="nav-menu" class="clearfix">
+                    <a class="" href="https://blog.linuxkai.com/">首页</a>
+                    
+                    <a  href="https://blog.linuxkai.com/archives/" title="归档">归档</a>
+                    
+                    <a  href="https://blog.linuxkai.com/about/" title="关于">关于</a>
+                    
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>
+
+    <div id="body">
+        <div class="container">
+            <div class="col-group">
+
+                <div class="col-8" id="main">
+                    
+<div class="res-cons">
+    
+    <h3 class="archive-title">
+        分类
+        <span class="keyword">Windows</span>
+        中的文章
+    </h3>
+    
+
+    
+    <article class="post">
+        <header>
+            <h1 class="post-title">
+                <a href="https://blog.linuxkai.com/posts/Windows/Windows%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%9F%A5%E7%9C%8B%E7%A1%AC%E4%BB%B6%E4%BF%A1%E6%81%AF%E5%91%BD%E4%BB%A4/" target="_blank">Windows服务器查看硬件信息命令</a>
+            </h1>
+        </header>
+        
+  <time datetime="2021-11-25T02:09:06Z" class="post-meta meta-date dt-published">
+    发布日期: 2021年11月25日
+  </time>
+
+
+  <time datetime="2021-11-25T02:09:06Z" class="post-meta meta-updated">
+    | 更新日期: 2021年11月25日
+  </time>
+
+
+<div class="post-meta meta-category">
+  <span>&nbsp;| 文章分类: </span>
+  
+    <a href='/categories/Windows' target="_blank">Windows</a>
+  
+</div>
+
+
+        <div class="post-content">
+            windows服务器查看硬件信息命令 查看内存信息 查看内存详细信息 gwmi -class win32_physicalmemory 查看内存列表信息 wmic wmic:root\cli&gt;memorychip get * 查看内存最大容量和插槽数量 gwmi -class win32_physicalmemoryarray wmic wmic:root\cli&gt;path Win32_PhysicalMemoryArray get MemoryDevices 查看CPU信息 查看CPU详细信息 gwmi -class win32_proccessor 查看物理CPU个数 @(gwmi -class win32_processor).count 查……
+            <p class="readmore"><a href="https://blog.linuxkai.com/posts/Windows/Windows%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%9F%A5%E7%9C%8B%E7%A1%AC%E4%BB%B6%E4%BF%A1%E6%81%AF%E5%91%BD%E4%BB%A4/" target="_blank">阅读全文</a></p>
+        </div>
+    </article>
+    
+    <article class="post">
+        <header>
+            <h1 class="post-title">
+                <a href="https://blog.linuxkai.com/posts/Windows/Windows%E4%B8%8B%E4%BD%BF%E7%94%A8bat%E8%AE%BE%E7%BD%AEhttp%E4%BB%A3%E7%90%86/" target="_blank">Windows下使用bat设置http代理</a>
+            </h1>
+        </header>
+        
+  <time datetime="2021-11-25T02:06:11Z" class="post-meta meta-date dt-published">
+    发布日期: 2021年11月25日
+  </time>
+
+
+  <time datetime="2021-11-25T02:06:11Z" class="post-meta meta-updated">
+    | 更新日期: 2021年11月25日
+  </time>
+
+
+<div class="post-meta meta-category">
+  <span>&nbsp;| 文章分类: </span>
+  
+    <a href='/categories/Windows' target="_blank">Windows</a>
+  
+</div>
+
+
+        <div class="post-content">
+            Windows下使用bat设置http代理 设置 @echo off echo 开始设置http代理.......... echo 现在程序将关闭您的浏览器。。。。。 taskkill /f /im iexplore.exe reg add &#34;HKCU\Software\Microsoft\Windows\CurrentVersion\Internet Settings&#34; /v ProxyEnable /t REG_DWORD /d 1 /f reg add &#34;HKCU\Software\Microsoft\Windows\CurrentVersion\Internet Settings&#34; /v ProxyServer /d &#34;123.123.123.123:1111&#34; /f color 2 echo 已成功设置代理服务……
+            <p class="readmore"><a href="https://blog.linuxkai.com/posts/Windows/Windows%E4%B8%8B%E4%BD%BF%E7%94%A8bat%E8%AE%BE%E7%BD%AEhttp%E4%BB%A3%E7%90%86/" target="_blank">阅读全文</a></p>
+        </div>
+    </article>
+    
+
+    
+
+
+
+
+
+</div>
+
+                    <footer id="footer">
+    <div>
+        &copy; 2024 <a rel="nofollow" href="https://blog.linuxkai.com/">Linuxkai 的博客</a> 未经允许，禁止转载.
+        
+        Powered by <a rel="nofollow noreferer noopener" href="https://gohugo.io">Hugo</a>
+         &amp; <a rel="nofollow noreferer noopener" href="https://github.com/flysnow-org/maupassant-hugo">maupassant theme</a>.
+    </div>
+</footer>
+
+
+
+<a id="rocket" href="#top"></a>
+<script type="text/javascript" src='/js/totop.js?v=0.0.0' async=""></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XB3WESXB7W"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-XB3WESXB7W', { 'anonymize_ip': false });
+}
+</script>
+
+
+
+<script type="text/javascript" src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script>
+
+
+
+
+                </div>
+
+                <div id="secondary">
+    <section class="widget">
+        <form id="search" action='https://blog.linuxkai.com/search' method="get" accept-charset="utf-8" target="_blank" _lpchecked="1">
+      
+      <input type="text" name="q" maxlength="20" placeholder='搜索'>
+      <input type="hidden" name="sitesearch" value="https://blog.linuxkai.com/">
+      <button type="submit" class="submit icon-search"></button>
+</form>
+    </section>
+
+    <section class="widget">
+        <h3 class="widget-title">最近文章</h3>
+<ul class="widget-list">
+    
+    <li>
+        <a href="https://blog.linuxkai.com/posts/Git/git-submodule-%E6%93%8D%E4%BD%9C/" title="Git submodule操作" target="_blank">Git submodule操作</a>
+    </li>
+    
+    <li>
+        <a href="https://blog.linuxkai.com/posts/Git/Git%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93%E5%9C%B0%E5%9D%80%E5%8F%98%E6%9B%B4%E6%9C%AC%E5%9C%B0%E5%A6%82%E4%BD%95%E4%BF%AE%E6%94%B9/" title="Git远程仓库地址变更本地如何修改" target="_blank">Git远程仓库地址变更本地如何修改</a>
+    </li>
+    
+    <li>
+        <a href="https://blog.linuxkai.com/posts/Git/Git-%E4%BB%93%E5%BA%93%E8%BF%81%E7%A7%BB/" title="Git 仓库迁移" target="_blank">Git 仓库迁移</a>
+    </li>
+    
+    <li>
+        <a href="https://blog.linuxkai.com/posts/Git/Git-%E4%BF%AE%E6%94%B9%E5%B7%B2%E6%8F%90%E4%BA%A4-commit-%E7%9A%84%E4%BF%A1%E6%81%AF/" title="Git 修改已提交 commit 的信息" target="_blank">Git 修改已提交 commit 的信息</a>
+    </li>
+    
+    <li>
+        <a href="https://blog.linuxkai.com/posts/Git/Git-%E6%8A%80%E5%B7%A7/" title="Git技巧" target="_blank">Git技巧</a>
+    </li>
+    
+    <li>
+        <a href="https://blog.linuxkai.com/posts/Git/git-%E8%AE%BE%E7%BD%AE%E4%BB%A3%E7%90%86/" title="Git设置代理" target="_blank">Git设置代理</a>
+    </li>
+    
+    <li>
+        <a href="https://blog.linuxkai.com/posts/Git/git-%E4%BF%AE%E6%94%B9%E5%88%86%E6%94%AF%E5%90%8D%E7%A7%B0/" title="Git修改分支名称" target="_blank">Git修改分支名称</a>
+    </li>
+    
+    <li>
+        <a href="https://blog.linuxkai.com/posts/Docker/docker-compose-%E4%BF%AE%E6%94%B9%E5%AE%B9%E5%99%A8%E6%97%B6%E5%8C%BA/" title="docker-compose 修改容器时区" target="_blank">docker-compose 修改容器时区</a>
+    </li>
+    
+    <li>
+        <a href="https://blog.linuxkai.com/posts/Linux/df%E5%91%BD%E4%BB%A4hang%E4%BD%8F%E4%B8%80%E7%9B%B4%E4%B8%8D%E5%87%BA%E7%BB%93%E6%9E%9C/" title="df命令hang住，一直不出结果" target="_blank">df命令hang住，一直不出结果</a>
+    </li>
+    
+    <li>
+        <a href="https://blog.linuxkai.com/posts/Kubernetes/%E5%AE%89%E5%85%A8%E5%9C%B0%E6%B8%85%E7%A9%BA%E4%B8%80%E4%B8%AA%E8%8A%82%E7%82%B9/" title="Kubernetes集群安全地清空一个节点" target="_blank">Kubernetes集群安全地清空一个节点</a>
+    </li>
+    
+</ul>
+    </section>
+
+    
+
+    <section class="widget">
+        <h3 class="widget-title"><a href='/categories/'>分类</a></h3>
+<ul class="widget-list">
+    
+    <li><a href="https://blog.linuxkai.com/categories/Docker/">Docker (1)</a></li>
+    
+    <li><a href="https://blog.linuxkai.com/categories/Git/">Git (7)</a></li>
+    
+    <li><a href="https://blog.linuxkai.com/categories/Kubernetes/">Kubernetes (3)</a></li>
+    
+    <li><a href="https://blog.linuxkai.com/categories/Linux/">Linux (22)</a></li>
+    
+    <li><a href="https://blog.linuxkai.com/categories/Python/">Python (1)</a></li>
+    
+    <li><a href="https://blog.linuxkai.com/categories/Windows/">Windows (2)</a></li>
+    
+    <li><a href="https://blog.linuxkai.com/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/">大数据 (2)</a></li>
+    
+    <li><a href="https://blog.linuxkai.com/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库 (7)</a></li>
+    
+</ul>
+    </section>
+
+    <section class="widget">
+        <h3 class="widget-title"><a href='/tags/'>标签</a></h3>
+<div class="tagcloud">
+    
+    <a href="https://blog.linuxkai.com/tags/acme.sh/">Acme.sh</a>
+    
+    <a href="https://blog.linuxkai.com/tags/Ambari/">Ambari</a>
+    
+    <a href="https://blog.linuxkai.com/tags/APISIX/">APISIX</a>
+    
+    <a href="https://blog.linuxkai.com/tags/Bind/">Bind</a>
+    
+    <a href="https://blog.linuxkai.com/tags/CORS/">CORS</a>
+    
+    <a href="https://blog.linuxkai.com/tags/disk/">Disk</a>
+    
+    <a href="https://blog.linuxkai.com/tags/DNS/">DNS</a>
+    
+    <a href="https://blog.linuxkai.com/tags/Docker/">Docker</a>
+    
+    <a href="https://blog.linuxkai.com/tags/Elasticsearch/">Elasticsearch</a>
+    
+    <a href="https://blog.linuxkai.com/tags/ELK/">ELK</a>
+    
+    <a href="https://blog.linuxkai.com/tags/Filebeat/">Filebeat</a>
+    
+    <a href="https://blog.linuxkai.com/tags/Git/">Git</a>
+    
+    <a href="https://blog.linuxkai.com/tags/hadoop/">Hadoop</a>
+    
+    <a href="https://blog.linuxkai.com/tags/Kafka/">Kafka</a>
+    
+    <a href="https://blog.linuxkai.com/tags/Kubernetes/">Kubernetes</a>
+    
+    <a href="https://blog.linuxkai.com/tags/Linux/">Linux</a>
+    
+    <a href="https://blog.linuxkai.com/tags/Logstash/">Logstash</a>
+    
+    <a href="https://blog.linuxkai.com/tags/MongoDB/">MongoDB</a>
+    
+    <a href="https://blog.linuxkai.com/tags/MySQL/">MySQL</a>
+    
+    <a href="https://blog.linuxkai.com/tags/Nacos/">Nacos</a>
+    
+    <a href="https://blog.linuxkai.com/tags/Nexus/">Nexus</a>
+    
+    <a href="https://blog.linuxkai.com/tags/Nginx/">Nginx</a>
+    
+    <a href="https://blog.linuxkai.com/tags/Prometheus/">Prometheus</a>
+    
+    <a href="https://blog.linuxkai.com/tags/Python/">Python</a>
+    
+    <a href="https://blog.linuxkai.com/tags/Redis/">Redis</a>
+    
+    <a href="https://blog.linuxkai.com/tags/resize2fs/">Resize2fs</a>
+    
+    <a href="https://blog.linuxkai.com/tags/S3/">S3</a>
+    
+    <a href="https://blog.linuxkai.com/tags/SSL/">SSL</a>
+    
+    <a href="https://blog.linuxkai.com/tags/Supervisor/">Supervisor</a>
+    
+    <a href="https://blog.linuxkai.com/tags/Windows/">Windows</a>
+    
+    <a href="https://blog.linuxkai.com/tags/ZK/">ZK</a>
+    
+</div>
+    </section>
+
+    
+<section class="widget">
+    <h3 class="widget-title">友情链接</h3>
+    <ul class="widget-list">
+        
+        <li>
+            <a target="_blank" href="https://github.com/linuxkai" title="Linuxkai的Github">Linuxkai的Github</a>
+        </li>
+        
+    </ul>
+</section>
+
+
+    <section class="widget">
+        <h3 class="widget-title">其它</h3>
+        <ul class="widget-list">
+            <li><a href="https://blog.linuxkai.com/index.xml">文章 RSS</a></li>
+        </ul>
+    </section>
+</div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

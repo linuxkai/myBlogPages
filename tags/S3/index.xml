@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>S3 on Linuxkai 的博客</title>
+    <link>https://blog.linuxkai.com/tags/S3/</link>
+    <description>Recent content in S3 on Linuxkai 的博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <lastBuildDate>Sat, 09 Jan 2021 23:14:01 +0800</lastBuildDate>
+    <atom:link href="https://blog.linuxkai.com/tags/S3/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Filebeat S3模块的使用</title>
+      <link>https://blog.linuxkai.com/posts/Linux/Filebeat-S3%E6%A8%A1%E5%9D%97%E7%9A%84%E4%BD%BF%E7%94%A8/</link>
+      <pubDate>Sat, 09 Jan 2021 23:14:01 +0800</pubDate>
+      <guid>https://blog.linuxkai.com/posts/Linux/Filebeat-S3%E6%A8%A1%E5%9D%97%E7%9A%84%E4%BD%BF%E7%94%A8/</guid>
+      <description>说明： Filebeat 的 S3模块是用来采集AWS 的 S3存储的服务器访问日志的，通过配置 S3的事件通知，将s3的事件通知发送到 SQS,然后再用 Filebeat从 SQS 采集日志到 es 里 前提： 单独申请个 SQS,用于存储 s3的</description>
+    </item>
+  </channel>
+</rss>

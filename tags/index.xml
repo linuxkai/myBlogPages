@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tags on Linuxkai 的博客</title>
+    <link>https://blog.linuxkai.com/tags/</link>
+    <description>Recent content in Tags on Linuxkai 的博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <lastBuildDate>Sat, 25 Nov 2023 17:57:40 +0800</lastBuildDate>
+    <atom:link href="https://blog.linuxkai.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Git</title>
+      <link>https://blog.linuxkai.com/tags/Git/</link>
+      <pubDate>Sat, 25 Nov 2023 17:57:40 +0800</pubDate>
+      <guid>https://blog.linuxkai.com/tags/Git/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Docker</title>
+      <link>https://blog.linuxkai.com/tags/Docker/</link>
+      <pubDate>Thu, 08 Sep 2022 17:12:40 +0800</pubDate>
+      <guid>https://blog.linuxkai.com/tags/Docker/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Linux</title>
+      <link>https://blog.linuxkai.com/tags/Linux/</link>
+      <pubDate>Wed, 07 Sep 2022 11:14:05 +0800</pubDate>
+      <guid>https://blog.linuxkai.com/tags/Linux/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Kubernetes</title>
+      <link>https://blog.linuxkai.com/tags/Kubernetes/</link>
+      <pubDate>Wed, 03 Aug 2022 10:30:14 +0800</pubDate>
+      <guid>https://blog.linuxkai.com/tags/Kubernetes/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Nginx</title>
+      <link>https://blog.linuxkai.com/tags/Nginx/</link>
+      <pubDate>Wed, 20 Jul 2022 14:09:16 +0800</pubDate>
+      <guid>https://blog.linuxkai.com/tags/Nginx/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Bind</title>
+      <link>https://blog.linuxkai.com/tags/Bind/</link>
+      <pubDate>Fri, 01 Jul 2022 22:31:32 +0800</pubDate>
+      <guid>https://blog.linuxkai.com/tags/Bind/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>DNS</title>
+      <link>https://blog.linuxkai.com/tags/DNS/</link>
+      <pubDate>Fri, 01 Jul 2022 22:31:32 +0800</pubDate>
+      <guid>https://blog.linuxkai.com/tags/DNS/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Acme.sh</title>
+      <link>https://blog.linuxkai.com/tags/acme.sh/</link>
+      <pubDate>Mon, 06 Jun 2022 18:02:37 +0800</pubDate>
+      <guid>https://blog.linuxkai.com/tags/acme.sh/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>APISIX</title>
+      <link>https://blog.linuxkai.com/tags/APISIX/</link>
+      <pubDate>Mon, 06 Jun 2022 18:02:37 +0800</pubDate>
+      <guid>https://blog.linuxkai.com/tags/APISIX/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>SSL</title>
+      <link>https://blog.linuxkai.com/tags/SSL/</link>
+      <pubDate>Mon, 06 Jun 2022 18:02:37 +0800</pubDate>
+      <guid>https://blog.linuxkai.com/tags/SSL/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>MySQL</title>
+      <link>https://blog.linuxkai.com/tags/MySQL/</link>
+      <pubDate>Wed, 09 Feb 2022 16:35:37 +0800</pubDate>
+      <guid>https://blog.linuxkai.com/tags/MySQL/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>CORS</title>
+      <link>https://blog.linuxkai.com/tags/CORS/</link>
+      <pubDate>Mon, 07 Feb 2022 17:09:37 +0800</pubDate>
+      <guid>https://blog.linuxkai.com/tags/CORS/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Disk</title>
+      <link>https://blog.linuxkai.com/tags/disk/</link>
+      <pubDate>Mon, 07 Feb 2022 10:34:29 +0800</pubDate>
+      <guid>https://blog.linuxkai.com/tags/disk/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Resize2fs</title>
+      <link>https://blog.linuxkai.com/tags/resize2fs/</link>
+      <pubDate>Mon, 07 Feb 2022 10:34:29 +0800</pubDate>
+      <guid>https://blog.linuxkai.com/tags/resize2fs/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Python</title>
+      <link>https://blog.linuxkai.com/tags/Python/</link>
+      <pubDate>Fri, 24 Dec 2021 14:39:09 +0800</pubDate>
+      <guid>https://blog.linuxkai.com/tags/Python/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Nexus</title>
+      <link>https://blog.linuxkai.com/tags/Nexus/</link>
+      <pubDate>Fri, 26 Nov 2021 23:39:33 +0800</pubDate>
+      <guid>https://blog.linuxkai.com/tags/Nexus/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Redis</title>
+      <link>https://blog.linuxkai.com/tags/Redis/</link>
+      <pubDate>Thu, 25 Nov 2021 10:15:27 +0800</pubDate>
+      <guid>https://blog.linuxkai.com/tags/Redis/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Windows</title>
+      <link>https://blog.linuxkai.com/tags/Windows/</link>
+      <pubDate>Thu, 25 Nov 2021 10:09:06 +0800</pubDate>
+      <guid>https://blog.linuxkai.com/tags/Windows/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Kafka</title>
+      <link>https://blog.linuxkai.com/tags/Kafka/</link>
+      <pubDate>Sat, 13 Nov 2021 23:41:24 +0800</pubDate>
+      <guid>https://blog.linuxkai.com/tags/Kafka/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Elasticsearch</title>
+      <link>https://blog.linuxkai.com/tags/Elasticsearch/</link>
+      <pubDate>Thu, 29 Jul 2021 17:21:28 +0800</pubDate>
+      <guid>https://blog.linuxkai.com/tags/Elasticsearch/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Nacos</title>
+      <link>https://blog.linuxkai.com/tags/Nacos/</link>
+      <pubDate>Thu, 01 Apr 2021 22:33:38 +0800</pubDate>
+      <guid>https://blog.linuxkai.com/tags/Nacos/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Prometheus</title>
+      <link>https://blog.linuxkai.com/tags/Prometheus/</link>
+      <pubDate>Sat, 09 Jan 2021 23:37:12 +0800</pubDate>
+      <guid>https://blog.linuxkai.com/tags/Prometheus/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>ZK</title>
+      <link>https://blog.linuxkai.com/tags/ZK/</link>
+      <pubDate>Sat, 09 Jan 2021 23:30:24 +0800</pubDate>
+      <guid>https://blog.linuxkai.com/tags/ZK/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Logstash</title>
+      <link>https://blog.linuxkai.com/tags/Logstash/</link>
+      <pubDate>Sat, 09 Jan 2021 23:17:27 +0800</pubDate>
+      <guid>https://blog.linuxkai.com/tags/Logstash/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Filebeat</title>
+      <link>https://blog.linuxkai.com/tags/Filebeat/</link>
+      <pubDate>Sat, 09 Jan 2021 23:14:01 +0800</pubDate>
+      <guid>https://blog.linuxkai.com/tags/Filebeat/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>S3</title>
+      <link>https://blog.linuxkai.com/tags/S3/</link>
+      <pubDate>Sat, 09 Jan 2021 23:14:01 +0800</pubDate>
+      <guid>https://blog.linuxkai.com/tags/S3/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Hadoop</title>
+      <link>https://blog.linuxkai.com/tags/hadoop/</link>
+      <pubDate>Mon, 28 Dec 2020 17:41:12 +0800</pubDate>
+      <guid>https://blog.linuxkai.com/tags/hadoop/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Supervisor</title>
+      <link>https://blog.linuxkai.com/tags/Supervisor/</link>
+      <pubDate>Thu, 10 Dec 2020 10:23:48 +0800</pubDate>
+      <guid>https://blog.linuxkai.com/tags/Supervisor/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Ambari</title>
+      <link>https://blog.linuxkai.com/tags/Ambari/</link>
+      <pubDate>Thu, 05 Nov 2020 10:08:53 +0800</pubDate>
+      <guid>https://blog.linuxkai.com/tags/Ambari/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>MongoDB</title>
+      <link>https://blog.linuxkai.com/tags/MongoDB/</link>
+      <pubDate>Mon, 17 Feb 2020 16:50:16 +0800</pubDate>
+      <guid>https://blog.linuxkai.com/tags/MongoDB/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>ELK</title>
+      <link>https://blog.linuxkai.com/tags/ELK/</link>
+      <pubDate>Wed, 08 Jan 2020 10:21:21 +0800</pubDate>
+      <guid>https://blog.linuxkai.com/tags/ELK/</guid>
+      <description></description>
+    </item>
+  </channel>
+</rss>
