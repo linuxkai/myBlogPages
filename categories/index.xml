@@ -6,8 +6,15 @@
     <description>Recent content in Categories on Linuxkai 的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <lastBuildDate>Sat, 25 Nov 2023 17:57:40 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 11 Apr 2024 15:00:17 +0800</lastBuildDate>
     <atom:link href="https://blog.linuxkai.com/categories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Linux</title>
+      <link>https://blog.linuxkai.com/categories/Linux/</link>
+      <pubDate>Thu, 11 Apr 2024 15:00:17 +0800</pubDate>
+      <guid>https://blog.linuxkai.com/categories/Linux/</guid>
+      <description></description>
+    </item>
     <item>
       <title>Git</title>
       <link>https://blog.linuxkai.com/categories/Git/</link>
@@ -20,13 +27,6 @@
       <link>https://blog.linuxkai.com/categories/Docker/</link>
       <pubDate>Thu, 08 Sep 2022 17:12:40 +0800</pubDate>
       <guid>https://blog.linuxkai.com/categories/Docker/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Linux</title>
-      <link>https://blog.linuxkai.com/categories/Linux/</link>
-      <pubDate>Wed, 07 Sep 2022 11:14:05 +0800</pubDate>
-      <guid>https://blog.linuxkai.com/categories/Linux/</guid>
       <description></description>
     </item>
     <item>

@@ -83,6 +83,39 @@
     <article class="post">
         <header>
             <h1 class="post-title">
+                <a href="https://blog.linuxkai.com/posts/Kubernetes/%E5%AE%89%E5%85%A8%E5%9C%B0%E6%B8%85%E7%A9%BA%E4%B8%80%E4%B8%AA%E8%8A%82%E7%82%B9/" title="Kubernetes集群安全地清空一个节点" target="_blank">Kubernetes集群安全地清空一个节点</a>
+            </h1>
+        </header>
+        
+  <time datetime="2022-08-03T02:30:14Z" class="post-meta meta-date dt-published">
+    发布日期: 2022年8月3日
+  </time>
+
+
+  <time datetime="2022-08-03T02:30:14Z" class="post-meta meta-updated">
+    | 更新日期: 2022年8月3日
+  </time>
+
+
+<div class="post-meta meta-category">
+  <span>&nbsp;| 文章分类: </span>
+  
+    <a href='/categories/Kubernetes' target="_blank">Kubernetes</a>
+  
+</div>
+
+
+        <div class="post-content">
+            k8s 集群安全地清空一个节点 清空节点 kubectl drain &lt;node name&gt; 问题 ➜ ~ kubectl drain xdf-31-kvm-python-107 node/xdf-31-kvm-python-107 already cordoned error: unable to drain node &#34;xdf-31-kvm-python-107&#34; due to error:[cannot delete Pods with local storage (use --delete-emptydir-data to override): ailearn-dev/ailearn-composer-interface-v1-f6f756895-wpnx5, ailearn-dev/ailearn-instruction-proxy-svr-v1-666d48bb6d-wlclh, ailearn-dev/kubevpn.traffic.manager, argocd/argocd-dex-server-5665ffc49-j5q2n, kube-system/metrics-server-799d467fd5-7tvc7, cannot delete DaemonSet-managed Pods (use --ignore-daemonsets to ignore): kube-system/calico-node-rcgw7, kube-system/kube-proxy-5rlmq, metallb-system/speaker-rbbvp, monitoring/node-exporter-5sl72], continuing command... There are pending nodes to be drained: xdf-31-kvm-python-107 cannot delete Pods with local storage (use --delete-emptydir-data to override): ailearn-dev/ailearn-composer-interface-v1-f6f756895-wpnx5, ailearn-dev/ailearn-instruction-proxy-svr-v1-666d48bb6d-wlclh, ailearn-dev/kubevpn.traffic.manager, argocd/argocd-dex-server-5665ffc49-j5q2n, kube-system/metrics-server-799d467fd5-7tvc7 cannot delete DaemonSet-managed Pods (use --ignore-daemonsets to ignore): kube-system/calico-node-rcgw7, kube-system/kube-proxy-5rlmq,……
+        </div>
+        <p class="readmore"><a href="https://blog.linuxkai.com/posts/Kubernetes/%E5%AE%89%E5%85%A8%E5%9C%B0%E6%B8%85%E7%A9%BA%E4%B8%80%E4%B8%AA%E8%8A%82%E7%82%B9/" target="_blank">阅读全文</a></p>
+    </article>
+    
+    
+    
+    <article class="post">
+        <header>
+            <h1 class="post-title">
                 <a href="https://blog.linuxkai.com/posts/Kubernetes/k8s-update/" title="Kubernetes update步骤" target="_blank">Kubernetes update步骤</a>
             </h1>
         </header>
@@ -377,39 +410,6 @@
     
     
     
-    <article class="post">
-        <header>
-            <h1 class="post-title">
-                <a href="https://blog.linuxkai.com/posts/Kubernetes/kubernetes-install/" title="Kubernetes安装步骤" target="_blank">Kubernetes安装步骤</a>
-            </h1>
-        </header>
-        
-  <time datetime="2021-12-01T05:15:28Z" class="post-meta meta-date dt-published">
-    发布日期: 2021年12月1日
-  </time>
-
-
-  <time datetime="2021-12-01T05:15:28Z" class="post-meta meta-updated">
-    | 更新日期: 2021年12月1日
-  </time>
-
-
-<div class="post-meta meta-category">
-  <span>&nbsp;| 文章分类: </span>
-  
-    <a href='/categories/Kubernetes' target="_blank">Kubernetes</a>
-  
-</div>
-
-
-        <div class="post-content">
-            kubernetes install 前置知识点 生产环境部署k8s 集群有两种模式 kubeadm: Kubeadm是一个K8s部署工具，提供kubeadm init和kubeadm join，用于快速部署Kubernetes集群 二进制包: 从github下载……
-        </div>
-        <p class="readmore"><a href="https://blog.linuxkai.com/posts/Kubernetes/kubernetes-install/" target="_blank">阅读全文</a></p>
-    </article>
-    
-    
-    
 
 
 
@@ -501,6 +501,10 @@ if (!doNotTrack) {
 <ul class="widget-list">
     
     <li>
+        <a href="https://blog.linuxkai.com/posts/Linux/Elasticsearch-Api-%E6%93%8D%E4%BD%9C/" title="Elasticsearch Api 操作" target="_blank">Elasticsearch Api 操作</a>
+    </li>
+    
+    <li>
         <a href="https://blog.linuxkai.com/posts/Git/git-submodule-%E6%93%8D%E4%BD%9C/" title="Git submodule操作" target="_blank">Git submodule操作</a>
     </li>
     
@@ -536,10 +540,6 @@ if (!doNotTrack) {
         <a href="https://blog.linuxkai.com/posts/Linux/df%E5%91%BD%E4%BB%A4hang%E4%BD%8F%E4%B8%80%E7%9B%B4%E4%B8%8D%E5%87%BA%E7%BB%93%E6%9E%9C/" title="df命令hang住，一直不出结果" target="_blank">df命令hang住，一直不出结果</a>
     </li>
     
-    <li>
-        <a href="https://blog.linuxkai.com/posts/Kubernetes/%E5%AE%89%E5%85%A8%E5%9C%B0%E6%B8%85%E7%A9%BA%E4%B8%80%E4%B8%AA%E8%8A%82%E7%82%B9/" title="Kubernetes集群安全地清空一个节点" target="_blank">Kubernetes集群安全地清空一个节点</a>
-    </li>
-    
 </ul>
     </section>
 
@@ -555,7 +555,7 @@ if (!doNotTrack) {
     
     <li><a href="https://blog.linuxkai.com/categories/Kubernetes/">Kubernetes (3)</a></li>
     
-    <li><a href="https://blog.linuxkai.com/categories/Linux/">Linux (22)</a></li>
+    <li><a href="https://blog.linuxkai.com/categories/Linux/">Linux (23)</a></li>
     
     <li><a href="https://blog.linuxkai.com/categories/Python/">Python (1)</a></li>
     

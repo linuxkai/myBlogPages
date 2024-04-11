@@ -6,8 +6,15 @@
     <description>Recent content in Posts on Linuxkai 的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <lastBuildDate>Sat, 25 Nov 2023 17:57:40 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 11 Apr 2024 15:00:17 +0800</lastBuildDate>
     <atom:link href="https://blog.linuxkai.com/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Elasticsearch Api 操作</title>
+      <link>https://blog.linuxkai.com/posts/Linux/Elasticsearch-Api-%E6%93%8D%E4%BD%9C/</link>
+      <pubDate>Thu, 11 Apr 2024 15:00:17 +0800</pubDate>
+      <guid>https://blog.linuxkai.com/posts/Linux/Elasticsearch-Api-%E6%93%8D%E4%BD%9C/</guid>
+      <description>Elasticsearch api 操作 常用选项 返回漂亮的展示 ?pretty=true 返回人性化的结果 ?human cat apis 查看节点版本信息 curl -s -XGET -u elastic:elastic http://127.0.0.1:9200 查看集群健康状态 curl -u elastic:elastic http://127.0.0.1:9200/_cat/health?v 查看nodes状态 curl -u elastic:elastic http://127.0.0.1:9200/_cat/nodes?pretty 查看所有索引 curl -s -XGET -u elastic:elastic http://127.0.0.1:9200/_cat/indices # 添加过滤条件 curl -u elastic:elastic http://127.0.0.1:9200/_cat/indices/tbex*-2020.09.25?v 查看全部索引分片信息 curl</description>
+    </item>
     <item>
       <title>Git submodule操作</title>
       <link>https://blog.linuxkai.com/posts/Git/git-submodule-%E6%93%8D%E4%BD%9C/</link>
